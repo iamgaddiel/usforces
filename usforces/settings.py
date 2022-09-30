@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 from environ import Env
 
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -30,7 +32,10 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '.vercel.app',
+    'localhost',
+]
 
 
 # Application definition
@@ -45,6 +50,10 @@ INSTALLED_APPS = [
 
     # Apps
     'core',
+
+    # Third Party
+    'django_countries',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -62,7 +71,9 @@ ROOT_URLCONF = 'usforces.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR / 'templates',
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -83,12 +94,12 @@ WSGI_APPLICATION = 'usforces.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'djongo',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': env('DB_NAME'),
-        'ENFORCE_SCHEMA': False,
-        'CLIENT': {
-            'host': env('DB_HOST')
-        }
+        'USER': env('DB_USER'),
+        'PASSWORD': env('DB_PASSWORD'),
+        'HOST': env('DB_HOST'),
+        'PORT': env('DB_PORT')
     }
 }
 
@@ -130,7 +141,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
-	BASE_DIR / 'static',
+    BASE_DIR / 'static',
 ]
 
 
@@ -145,3 +156,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 AUTH_USER_MODEL = 'core.User'
+
+
+LOGIN_REDIRECT_URL = 'core:admin_dashboard'
+
+# LOGIN_REDIRECT_URL = 'core:admin_dashboard'
+
+LOGIN_URL = 'core:admin_login'

@@ -1,0 +1,114 @@
+{% extends 'core/admin_dashboard_base.html' %} {% load static %} 
+
+
+{% block admin_head %}
+<link href="{% static 'plugins/sweetalert/css/sweetalert.css' %}" rel="stylesheet">
+{% endblock admin_head %}
+
+{% block main%}
+<div class="content-body">
+  <div class="container-fluid mt-3">
+    <!-- 
+          ***************************************
+          ADD SOLIDER BUTTON
+          ***************************************
+       -->
+       <div class="section my-2 d-flex justify-content-end">
+          <a href="{% url 'core:admin_user_create' %}" class="btn mb-1 btn-primary text-light">
+              <span>Add Soldier</span>
+          </a>
+       </div>
+    <!-- 
+          ***************************************
+          USER liSTS
+          ***************************************
+       -->
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="card-title">
+              <h4>Users</h4>
+            </div>
+            <div class="active-member">
+              <div class="table-responsive">
+                <table class="table table-xs mb-0">
+                  <thead>
+                    <tr>
+                      <th>Soldiers</th>
+                      <th>ID</th>
+                      <th>Country</th>
+                      <th>Activity</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for user in users %}
+                    <tr>
+                      <td>
+                        <img
+                          src="{% static 'images/avatar/1.jpg' %}"
+                          class="rounded-circle mr-3"
+                          alt=""
+                        />{{ user.first_name }} {{ user.last_name}}
+                      </td>
+                      <td>{{ user.pk }}</td>
+                      <td>
+                        <span>United States</span>
+                      </td>
+                      <td>
+                        <span>Last Login</span>
+                        <span class="m-0 pl-3">10 sec ago</span>
+                      </td>
+                      <td>
+                        <span class="d-flex">
+                          <a
+                            href="{% url 'core:admin_user_detail' user.pk %}"
+                            data-toggle="tooltip"
+                            data-placement="top"
+                            title="Edit"
+                            class="nav-link"
+                          >
+                            <i class="fa fa-pencil color-muted m-r-5"></i>
+                          </a>
+                          <a
+                            href="{% url 'core:admin_user_delete' user.pk %}"
+                            data-toggle="tooltip"
+                            data-placement="top"
+                            title="Close"
+                            class="sweet-confirm text-danger nav-link"
+                          >
+                            <i class="fa fa-close color-danger"></i>
+                          </a>
+                        </span>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- #/ container -->
+{% endblock main %}
+
+
+{% block admin_script %}
+
+<script src="{% static 'plugins/sweetalert/js/sweetalert.init.js' %}"></script>
+<script src="{% static 'plugins/common/common.min.js' %}"></script>
+<script src="{% static 'js/custom.min.js' %}"></script>
+<script src="{% static 'js/settings.js' %}"></script>
+<script src="{% static 'js/gleek.js' %}"></script>
+<script src="{% static 'js/styleSwitcher.js' %}"></script>
+
+
+<script src="{% static 'plugins/sweetalert/js/sweetalert.min.js' %}"></script>
+
+{% endblock admin_script %}
+

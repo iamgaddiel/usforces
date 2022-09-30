@@ -1,0 +1,185 @@
+{% extends 'core/admin_dashboard_base.html' %} 
+{% load static %} 
+{% load widget_tweaks %}
+
+
+{% block main%}
+<div class="content-body">
+  <div class="row page-titles mx-0">
+    <div class="col p-md-0">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">Home</a></li>
+        </ol>
+    </div>
+  </div>
+  <!-- row -->
+  
+  <div class="container-fluid">
+    <!-- 
+          ***************************************
+          ADD SOLIDER BUTTON
+          ***************************************
+       -->
+    <section class="my-2 d-flex justify-content-start">
+      <a
+        href="{% url 'core:admin_users' %}"
+        class="btn mb-1 btn-primary text-light"
+      >
+        <span>Back</span>
+      </a>
+    </section>
+  
+    <div class="row justify-content-center">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="form-validation">
+              <form class="form-valide" method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+  
+                  <div class="form-group row">
+                     {% if form.errors %}
+                      {% for error in form.errors %}
+                          <div class="alert alert-danger" role="alert">
+                              <small class="text-dark">{{ error }}</small>
+                          </div>
+                      {% endfor %}
+                     {% endif %}
+                    </div>
+  
+  
+                  <!-- First Name -->
+                <div class="form-group row">
+                  <label class="col-lg-4 col-form-label" for="val-username"
+                    >First Name <span class="text-danger">*</span>
+                  </label>
+                  <div class="col-lg-6">
+                      {{   form.first_name|attr:"class:form-control"|attr:"placeholder:Enter your first name"|attr:"type:text" }}
+                  </div>
+                </div>
+  
+                <!-- Last Name -->
+                <div class="form-group row">
+                  <label class="col-lg-4 col-form-label" for="val-username"
+                    >Last Name <span class="text-danger">*</span>
+                  </label>
+                  <div class="col-lg-6">
+                      {{   form.last_name|attr:"class:form-control"|attr:"placeholder:Enter your last name"|attr:"type:text" }}
+                  </div>
+                </div>
+  
+  
+                <!-- Username -->
+                <div class="form-group row">
+                  <label class="col-lg-4 col-form-label" for="val-username"
+                    >Username <span class="text-danger">*</span>
+                  </label>
+                  <div class="col-lg-6">
+                      {{   form.username|attr:"class:form-control"|attr:"placeholder:Enter a username"|attr:"type:text" }}
+                  </div>
+                </div>
+  
+  
+                <!-- Email -->
+                <div class="form-group row">
+                  <label class="col-lg-4 col-form-label" for="val-username"
+                    >Email <span class="text-danger">*</span>
+                  </label>
+                  <div class="col-lg-6">
+                      {{   form.email|attr:"class:form-control"|attr:"placeholder:Your valid email.."|attr:"type:email" }}
+                  </div>
+                </div>
+  
+                <!-- Gender -->
+                <div class="form-group row">
+                  <label class="col-lg-4 col-form-label" for="val-username"
+                    >Gender <span class="text-danger">*</span>
+                  </label>
+                  <div class="col-lg-6">
+                      {{   form.gender|attr:"class:form-control"|attr:"placeholder:Gender..." }}
+                  </div>
+                </div>
+  
+                <!-- Military ID -->
+                <div class="form-group row">
+                  <label class="col-lg-4 col-form-label" for="val-username"
+                    >Military ID <span class="text-danger">*</span>
+                  </label>
+                  <div class="col-lg-6">
+                      {{   form.military_id|attr:"class:form-control"|attr:"placeholder:Your a Military ID.."|attr:"type:text" }}
+                  </div>
+                </div>
+  
+                <!-- Country -->
+                <div class="form-group row">
+                  <label class="col-lg-4 col-form-label" for="val-username"
+                    >Country <span class="text-danger">*</span>
+                  </label>
+                  <div class="col-lg-6">
+                      {{   form.country|attr:"class:form-control"|attr:"placeholder:Your a country..."}}
+                  </div>
+                </div>
+  
+  
+                <!-- Zip Code -->
+                <div class="form-group row">
+                  <label class="col-lg-4 col-form-label" for="val-username"
+                    >Zip Code <span class="text-danger">*</span>
+                  </label>
+                  <div class="col-lg-6">
+                      {{   form.zip_code|attr:"class:form-control"|attr:"placeholder:Enter Zip Code..."}}
+                  </div>
+                </div>
+  
+  
+                <!-- Image -->
+                <div class="form-group row">
+                  <label class="col-lg-4 col-form-label" for="val-username"
+                    >Image <span class="text-danger">*</span>
+                  </label>
+                  <div class="col-lg-6">
+                      {{   form.image|attr:"class:form-control"|attr:"placeholder:Enter you image..."}}
+                  </div>
+                </div>
+  
+  
+                <!-- Password -->
+                <div class="form-group row">
+                  <label class="col-lg-4 col-form-label" for="val-username"
+                    >Password <span class="text-danger">*</span>
+                  </label>
+                  <div class="col-lg-6">
+                      {{   form.password1|attr:"class:form-control"|attr:"placeholder:Enter password...."|attr:"type:password"}}
+                  </div>
+                </div>
+  
+  
+                <!-- Confirm Password -->
+                <div class="form-group row">
+                  <label class="col-lg-4 col-form-label" for="val-username"
+                    >Password Confirm<span class="text-danger">*</span>
+                  </label>
+                  <div class="col-lg-6">
+                      {{   form.password2|attr:"class:form-control"|attr:"placeholder:..and confirm it!"|attr:"type:password"}}
+                  </div>
+                </div>
+  
+  
+                <div class="form-group row">
+                  <div class="col-lg-8 ml-auto">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+{% endblock main %}
