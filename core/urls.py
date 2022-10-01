@@ -3,6 +3,11 @@ from django.contrib.auth.views import  LogoutView
 
 from .views import (
     UserDashboard,
+    UserGiftListView,
+    UserRetirementCreationView,
+    UserRetirementDetailView,
+    UserShareGiftView,
+    UserTransferView,
     index,
     AdminDashboard,
     AdminLoginView,
@@ -13,6 +18,9 @@ from .views import (
     admin_logout,
     user_logout,
     user_login,
+    UserLogoutView,
+    UserRetirementView,
+    UserReplacementView,
 )
 
 
@@ -74,5 +82,45 @@ urlpatterns = [
         'dashboard/',
         UserDashboard.as_view(),
         name='user_dashboard'
+    ),
+    path(
+        'logout',
+        UserLogoutView.as_view(),
+        name='user_logout'
+    ),
+    path(
+        'retirement',
+        UserRetirementView.as_view(),
+        name='user_retirement'
+    ),
+    path(
+        'retirement/create/',
+        UserRetirementCreationView.as_view(),
+        name='user_retirement_create'
+    ),
+    path(
+        'retirement/detail/<uuid:pk>/',
+        UserRetirementDetailView.as_view(),
+        name='user_retirement_detail'
+    ),
+    path(
+        'replacement',
+        UserReplacementView.as_view(),
+        name='user_replacement'
+    ),
+    path(
+        'transfer',
+        UserTransferView.as_view(),
+        name='user_transfer'
+    ),
+    path(
+        'gift/list/',
+        UserGiftListView.as_view(),
+        name='user_git_list'
+    ),
+    path(
+        'gift/share/',
+        UserShareGiftView.as_view(),
+        name='user_git_share'
     ),
 ]

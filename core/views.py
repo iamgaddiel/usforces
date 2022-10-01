@@ -2,6 +2,7 @@ from ast import Dict
 from http.client import HTTPResponse
 import json
 from typing import Any
+from django.forms import BaseModelForm
 
 from django.http import HttpResponse
 from django.forms.models import model_to_dict
@@ -11,7 +12,8 @@ from django.views.generic import (
     DetailView,
     DeleteView,
     CreateView,
-    ListView
+    ListView,
+    View
 )
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import  LoginView
@@ -21,9 +23,9 @@ from django.urls import reverse_lazy
 from django.shortcuts import redirect, resolve_url
 from django.core import serializers
 
-from core.forms import CustomUserCreationForm, UserCreationForm, UserLoginForm
-from core.models import User
-from core.utils import ExtendedEncoder, get_random_string
+from core.forms import CustomUserCreationForm, RetirementForm, UserCreationForm, UserLoginForm
+from core.models import Retirement, User
+from core.utils import get_random_string
 
 
 
@@ -198,8 +200,68 @@ class UserDashboard(TemplateView):
     def get_context_data(self, **kwargs):
         cxt = super().get_context_data(**kwargs)
         cxt['user'] = self.request.session.get('user')
-
-        # print(self.request.session.exists)
         return cxt
 
 
+class UserRetirementView(ListView):
+    model = Retirement
+    template_name = 'core/user_retirement.html'
+    context_object_name = 'retirements'
+
+
+class UserRetirementCreationView(CreateView):
+    model = Retirement
+    template_name = "core/user_retirement_create.html"
+    success_url = reverse_lazy('core:user_retirement_create')
+    form_class = RetirementForm
+
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        user = self.request.session['user']
+        form.instance.first_name = user.first_name
+        form.instance.last_name = user.last_name
+        form.instance.email = user.email
+        form.instance.zip_code = user.zip_code
+        form.instance.user = User.objects.get(pk=user.id).id
+        # form.instance.user = User.objects.get(pk=user.id)/
+        form.save()
+        return super().form_valid(form)
+
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        return super().form_valid(form)
+
+
+class UserRetirementDetailView(DetailView):
+    model = Retirement
+    context_object_name = 'application'
+    template_name = 'core/user_retirement_detail.html'
+
+
+class UserReplacementView(ListView):
+    model = Retirement
+    template_name = 'core/user_replacement.html'
+    context_object_name = 'replacement'
+
+
+class UserTransferView(ListView):
+    model = Retirement
+    template_name = 'core/user_transfer.html'
+    context_object_name = 'transfer'
+
+class UserGiftListView(ListView):
+    model = Retirement
+    template_name = 'core/user_gift.html'
+    context_object_name = 'transfer'
+
+
+class UserShareGiftView(ListView):
+    model = Retirement
+    template_name = 'core/user_gift_share.html'
+    context_object_name = 'transfer'
+
+
+    # success_url = reverse_lazy('core:user_User')
+
+class UserLogoutView(View):
+    def get(self, *args, **kwargs):
+        self.request.session.flush()
+        return redirect('core:user_login')

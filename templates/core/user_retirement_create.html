@@ -1,0 +1,148 @@
+{% extends 'core/admin_dashboard_base.html' %} 
+{% load static %} 
+{% load widget_tweaks %}
+
+
+{% block main%}
+<div class="content-body">
+  <div class="row page-titles mx-0">
+    <div class="col p-md-0">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">Home</a></li>
+        </ol>
+    </div>
+  </div>
+  <!-- row -->
+  
+  <div class="container-fluid">
+    <!-- 
+          ***************************************
+          ADD SOLIDER BUTTON
+          ***************************************
+       -->
+    <section class="my-2 d-flex justify-content-start">
+      <a
+        href="{% url 'core:user_retirement' %}"
+        class="btn mb-1 btn-primary text-light"
+      >
+        <span>Back</span>
+      </a>
+    </section>
+  
+    <div class="row justify-content-center">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="form-validation">
+              <form class="form-valide" method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+
+                <div class="form-group row">
+                  <label class="col-lg-4 col-form-label" for="val-username"
+                    >{{ form.address.label_tag }} <span class="text-danger">*</span>
+                  </label>
+                  <div class="col-lg-6">
+                      {{   form.address|attr:"class:form-control"|attr:"placeholder:Enter your address"|attr:"type:text" }}
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-lg-4 col-form-label" for="val-username"
+                    >{{ form.city.label_tag }} <span class="text-danger">*</span>
+                  </label>
+                  <div class="col-lg-6">
+                      {{   form.city|attr:"class:form-control"|attr:"placeholder:Enter your address"|attr:"type:text" }}
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-lg-4 col-form-label" for="val-username"
+                    >{{ form.region.label_tag }} <span class="text-danger">*</span>
+                  </label>
+                  <div class="col-lg-6">
+                      {{   form.region|attr:"class:form-control"|attr:"placeholder:Enter your address"|attr:"type:text" }}
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-lg-4 col-form-label" for="val-username"
+                    >{{ form.phone_number.label_tag }} <span class="text-danger">*</span>
+                  </label>
+                  <div class="col-lg-6">
+                      {{   form.phone_number|attr:"class:form-control"|attr:"placeholder:Enter your address"|attr:"type:text" }}
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-lg-4 col-form-label" for="val-username"
+                    >{{ form.ceremony_date.label_tag }} <span class="text-danger">*</span>
+                  </label>
+                  <div class="col-lg-6">
+                      {{   form.ceremony_date|attr:"class:form-control"|attr:"type:date" }}
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-lg-4 col-form-label" for="val-username"
+                    >{{ form.rank.label_tag }} <span class="text-danger">*</span>
+                  </label>
+                  <div class="col-lg-6">
+                      {{   form.rank|attr:"class:form-control"|attr:"placeholder:Enter your address"|attr:"type:text" }}
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-lg-4 col-form-label" for="val-username"
+                    >{{ form.branch_of_service.label_tag }} <span class="text-danger">*</span>
+                  </label>
+                  <div class="col-lg-6">
+                      {{   form.branch_of_service|attr:"class:form-control"|attr:"placeholder:Enter your address"|attr:"type:text" }}
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-lg-4 col-form-label" for="val-username"
+                    >{{ form.years_of_service.label_tag }} <span class="text-danger">*</span>
+                  </label>
+                  <div class="col-lg-6">
+                      {{   form.years_of_service|attr:"class:form-control" }}
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-lg-4 col-form-label" for="val-username"
+                    >{{ form.date_of_retirement.label_tag }} <span class="text-danger">*</span>
+                  </label>
+                  <div class="col-lg-6">
+                      {{   form.date_of_retirement|attr:"class:form-control"|attr:"type:date" }}
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-lg-4 col-form-label" for="val-username"
+                    >{{ form.additional_information.label_tag }} <span class="text-danger">*</span>
+                  </label>
+                  <div class="col-lg-6">
+                      {{   form.additional_information|attr:"class:form-control"|attr:"placeholder:Enter your address"|attr:"type:text" }}
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-lg-8 ml-auto">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
+                </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+{% endblock main %}

@@ -256,6 +256,7 @@
             <div class="nk-nav-scroll">
                 <ul class="metismenu" id="menu">
                     <!-- <li class="nav-label">Dashboard</li> -->
+                    {% block sidenav %}
                     <li>
                         <a class="has-arrow" href="{% url 'core:admin_dashboard' %}" aria-expanded="false">
                             <i class="icon-speedometer menu-icon"></i>
@@ -292,6 +293,7 @@
                             <span class="nav-text">Log</span>
                         </a>
                     </li>
+                    {% endblock %}
                 </ul>
             </div>
         </div>

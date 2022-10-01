@@ -46,7 +46,7 @@ class Retirement(models.Model):
 	zip_code = models.CharField(max_length=15)
 	phone_number = models.CharField(max_length=15)
 	email = models.EmailField()
-	ceremony_data  = models.DateField()
+	ceremony_date  = models.DateField()
 	rank = models.CharField(max_length=10)
 	branch_of_service = models.CharField(max_length=50)
 	years_of_service = models.PositiveSmallIntegerField()

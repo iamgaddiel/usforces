@@ -22,8 +22,19 @@ class CustomUserCreationForm(UserCreationForm):
 
 class RetirementForm(forms.ModelForm):
     class Meta:
-        models = Retirement
-        # form
+        model = Retirement
+        fields = [
+            'address',
+            'city',
+            'region',
+            'phone_number',
+            'ceremony_date',
+            'rank',
+            'branch_of_service',
+            'years_of_service',
+            'date_of_retirement',
+            'additional_information',
+        ]
 
 
 class UserLoginForm(forms.Form):

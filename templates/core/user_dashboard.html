@@ -7,10 +7,49 @@
 <link href="{% static 'plugins/sweetalert/css/sweetalert.css' %}" rel="stylesheet">
 {% endblock admin_head %}
 
+{% block sidenav %}
+<li>
+    <a class="has-arrow" href="{% url 'core:user_dashboard' %}" aria-expanded="false">
+        <i class="icon-speedometer menu-icon"></i>
+        <span class="nav-text">Dashboard</span>
+    </a>
+</li>
+<li>
+    <a class="has-arrow" href="{% url 'core:user_retirement' %}" aria-expanded="false">
+        <i class="icon-grid menu-icon"></i>
+        <span class="nav-text">Retirement</span>
+    </a>
+</li>
+<li>
+    <a class="has-arrow" href="{% url 'core:user_replacement' %}" aria-expanded="false">
+        <i class="icon-globe-alt menu-icon"></i>
+        <span class="nav-text">Replacement</span>
+    </a>
+</li>
+<li>
+    <a class="has-arrow" href="{% url 'core:user_git_list' %}" aria-expanded="false">
+        <i class="icon-envelope menu-icon"></i>
+        <span class="nav-text">Gift</span>
+    </a>
+</li>
+<li>
+    <!-- <a class="has-arrow" href="{% url 'core:admin_dashboard' %}" aria-expanded="false">
+        <i class="icon-screen-tablet menu-icon"></i>
+        <span class="nav-text">Gift</span>
+    </a>
+</li> -->
+<li>
+    <a class="has-arrow" href="{% url 'core:user_logout' %}" aria-expanded="false">
+        <i class="icon-screen-tablet menu-icon"></i>
+        <span class="nav-text">Logout</span>
+    </a>
+</li>
+{% endblock %}
+
 {% block main%}
 <div class="content-body">
 
-    
+
     <div class="row page-titles mx-0">
         <div class="col p-md-0">
             <ol class="breadcrumb">
