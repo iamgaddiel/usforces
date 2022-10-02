@@ -36,6 +36,7 @@ ALLOWED_HOSTS = [
     '.vercel.app',
     '.now.sh',
     'localhost',
+    'usmilitiapride.pythonanywhere.com',
 ]
 
 
