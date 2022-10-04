@@ -4,6 +4,11 @@
 
 {% block admin_head %}
 <link href="{% static 'plugins/sweetalert/css/sweetalert.css' %}" rel="stylesheet">
+<style>
+    a{
+        text-decoration: none !important;
+    }
+</style>
 {% endblock admin_head %}
 
 {% block main%}
@@ -15,7 +20,7 @@
           ***************************************
        -->
        <div class="section my-2 d-flex justify-content-end">
-          <a href="{% url 'core:admin_user_create' %}" class="btn mb-1 btn-primary text-light">
+          <a href="{% url 'core:user_replacement_create' %}" class="btn mb-1 btn-primary text-light">
               <span>Apply for replacement</span>
           </a>
        </div>
@@ -29,7 +34,7 @@
         <div class="card">
           <div class="card-body">
             <div class="card-title">
-              <h4>Replacement Applications(0)</h4>
+              <h4>Replacement Applications({{replacements.count}})</h4>
             </div>
             <div class="active-member">
               <div class="table-responsive">
@@ -38,13 +43,42 @@
                     <tr>
                       <!-- <th>S/N</th> -->
                       <th>ID</th>
+                      <th>Replace</th>
                       <th>Date</th>
                       <th>Status</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {% for user in users %}
-                    
+                    {% for obj in replacements %}
+                    <tr>
+                      <td>{{ obj.pk }}</td>
+                      <td>{{ obj.name_of_soldier }}</td>
+                      <td>
+                        <span>{{ obj.timestamp  }}</span>
+                      </td>
+                      <td>
+                        {% if obj.status == 'pending' %}
+                        <span class="text-warning">{{ obj.status }}</span>
+                        {% elif obj.status == 'declined' %}
+                        <span class="text-danger}">{{ obj.status }}</span>
+                        {% elif obj.status == 'approved' %}
+                        <span class="text-sucess">{{ obj.status }}</span>
+                        {% endif %}
+                      </td>
+                      <td>
+                        <span class="d-flex">
+                          <a
+                            href="{% url 'core:user_replacement_detail' obj.pk %}"
+                            data-toggle="tooltip"
+                            data-placement="top"
+                            title="Edit"
+                            class="nav-link"
+                          >
+                            <i class="fa fa-pencil color-muted m-r-5"></i>
+                          </a>
+                        </span>
+                      </td>
+                    </tr>
                     {% endfor %}
                   </tbody>
                 </table>

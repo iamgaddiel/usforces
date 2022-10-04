@@ -4,6 +4,11 @@
 
 {% block admin_head %}
 <link href="{% static 'plugins/sweetalert/css/sweetalert.css' %}" rel="stylesheet">
+<style>
+  a{
+      text-decoration: none !important;
+  }
+</style>
 {% endblock admin_head %}
 
 {% block main%}
@@ -15,7 +20,7 @@
           ***************************************
        -->
        <div class="section my-2 d-flex justify-content-end">
-          <a href="" class="btn mb-1 btn-primary text-light">
+          <a href="{% url 'core:user_git_share' %}" class="btn mb-1 btn-primary text-light">
               <span>Share A Gift</span>
           </a>
        </div>
@@ -29,7 +34,7 @@
         <div class="card">
           <div class="card-body">
             <div class="card-title">
-              <h4>Your Gifts(0)</h4>
+              <h4>Your Gifts({{ gift_cards.count }})</h4>
             </div>
             <div class="active-member">
               <div class="table-responsive">
@@ -38,13 +43,44 @@
                     <tr>
                       <!-- <th>S/N</th> -->
                       <th>ID</th>
-                      <th>Date</th>
+                      <th>Solder's Name</th>
+                      <th>Gift Amount</th>
+                      <th>Gift Type</th>
                       <th>Status</th>
+                      <th>Action </th>
                     </tr>
                   </thead>
                   <tbody>
-                    {% for user in users %}
-                    
+                    {% for card in gift_cards %}
+                    <td>{{ card.pk }}</td>
+                      <td>{{ card.solder_first_name }} {{ card.solder_last_name }}</td>
+                      <td>
+                        <span>{{ card.gift_card_amount  }}</span>
+                      </td>
+                      <td>{{ card.gift_card_type }}</td>
+                      <td>
+                        {% if card.status == 'pending' %}
+                        <span class="text-warning">{{ card.status }}</span>
+                        {% elif card.status == 'declined' %}
+                        <span class="text-danger}">{{ card.status }}</span>
+                        {% elif card.status == 'approved' %}
+                        <span class="text-sucess">{{ card.status }}</span>
+                        {% endif %}
+                      </td>
+                      <td>
+                        <span class="d-flex">
+                          <a
+                            href="{% url 'core:user_git_detail' card.pk %}"
+                            data-toggle="tooltip"
+                            data-placement="top"
+                            title="Edit"
+                            class="nav-link"
+                          >
+                            <i class="fa fa-pencil color-muted m-r-5"></i>
+                          </a>
+                        </span>
+                      </td>
+                    </tr>
                     {% endfor %}
                   </tbody>
                 </table>

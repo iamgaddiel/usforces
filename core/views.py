@@ -23,8 +23,8 @@ from django.urls import reverse_lazy
 from django.shortcuts import redirect, resolve_url
 from django.core import serializers
 
-from core.forms import CustomUserCreationForm, RetirementForm, UserCreationForm, UserLoginForm
-from core.models import Retirement, User
+from core.forms import CustomUserCreationForm, GiftCreationForm, ReplacementForm, RetirementForm, UserCreationForm, UserLoginForm
+from core.models import Gift, Replacement, Retirement, User
 from core.utils import get_random_string
 
 
@@ -136,11 +136,16 @@ class AdminUpdateSolider(LoginRequiredMixin):
 
 def user_logout(request):
     logout(request)
-    return redirect('core:user_login')
+    return redirect('core:index')
+
+class UserLogoutView(View):
+    def get(self, *args, **kwargs):
+        self.request.session.flush()
+        return redirect('core:user_login')
 
 
 def user_login(request):
-    template_name = 'core/user_login.html'
+    template_name = 'core/index.html'
     context = { "form": UserLoginForm() }
 
     if request.method == "POST":
@@ -203,6 +208,11 @@ class UserDashboard(TemplateView):
         return cxt
 
 
+
+# ---------------------------------------
+# ----------------[ User Retirement ] ---------
+# ---------------------------------------
+
 class UserRetirementView(ListView):
     model = Retirement
     template_name = 'core/user_retirement.html'
@@ -215,20 +225,15 @@ class UserRetirementCreationView(CreateView):
     success_url = reverse_lazy('core:user_retirement_create')
     form_class = RetirementForm
 
-    def form_valid(self, form: BaseModelForm) -> HttpResponse:
-        user = self.request.session['user']
-        form.instance.first_name = user.first_name
-        form.instance.last_name = user.last_name
-        form.instance.email = user.email
-        form.instance.zip_code = user.zip_code
-        form.instance.user = User.objects.get(pk=user.id).id
-        # form.instance.user = User.objects.get(pk=user.id)/
+    def form_valid(self, form) -> HttpResponse:
+        user = self.request.session.get('user')
+        form.instance.first_name = user.get('first_name')
+        form.instance.last_name = user.get('last_name')
+        form.instance.email = user.get('email')
+        form.instance.zip_code = user.get('zip_code')
+        form.instance.user = User.objects.get(pk=user.get('id'))
         form.save()
         return super().form_valid(form)
-
-    def form_valid(self, form: BaseModelForm) -> HttpResponse:
-        return super().form_valid(form)
-
 
 class UserRetirementDetailView(DetailView):
     model = Retirement
@@ -236,10 +241,32 @@ class UserRetirementDetailView(DetailView):
     template_name = 'core/user_retirement_detail.html'
 
 
+# ---------------------------------------
+# ----------------[ Replacement ] ---------
+# ---------------------------------------
+
 class UserReplacementView(ListView):
-    model = Retirement
+    model = Replacement
     template_name = 'core/user_replacement.html'
-    context_object_name = 'replacement'
+    context_object_name = 'replacements'
+
+
+class UserReplacementCreateView(CreateView):
+    model = Replacement
+    template_name = 'core/user_replacement_create.html'
+    success_url = reverse_lazy('core:user_replacement')
+    form_class = ReplacementForm
+
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        user = self.request.session.get('user')
+        form.instance.user  = User.objects.get(pk=user.get('id'))
+        form.save()
+        return super().form_valid(form)
+
+
+class UserReplacementDetailView(DetailView):
+    model = Retirement
+    template_name = 'core/user_replacement_detail.html'
 
 
 class UserTransferView(ListView):
@@ -247,21 +274,50 @@ class UserTransferView(ListView):
     template_name = 'core/user_transfer.html'
     context_object_name = 'transfer'
 
+
+
+# ---------------------------------------
+# ----------------[ Gift Card ] ---------
+# ---------------------------------------
+
 class UserGiftListView(ListView):
-    model = Retirement
+    model = Gift
     template_name = 'core/user_gift.html'
+    context_object_name = 'gift_cards'
+
+
+class UserShareGiftView(CreateView):
+    model = Gift
+    template_name = 'core/user_gift_create.html'
     context_object_name = 'transfer'
+    success_url = reverse_lazy('core:user_git_list')
+    form_class = GiftCreationForm
+
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        try:
+            user = self.request.session.get('user')
+            form.instance.gift_card_to = User.objects.get(
+                military_id=form.cleaned_data.get('solders_id_number')
+            )
+            form.instance.user  = User.objects.get(pk=user.get('id'))
+            form.save()
+        except User.DoesNotExist:
+            return redirect('core:user_git_share')
+        return super().form_valid(form)
+
+class UserReplacementDetailView(DetailView):
+    model = Gift
+    template_name = 'core/user_gift_detail.html'
+    context_object_name = "gift"
 
 
-class UserShareGiftView(ListView):
-    model = Retirement
-    template_name = 'core/user_gift_share.html'
-    context_object_name = 'transfer'
+class UserSearchResult(View):
+    template_name = 'core/user_search_result.html'
 
+    def post(self, *args, **kwargs):
+        try:
+            pass
+        except:
+            pass
 
-    # success_url = reverse_lazy('core:user_User')
-
-class UserLogoutView(View):
-    def get(self, *args, **kwargs):
-        self.request.session.flush()
-        return redirect('core:user_login')
+        return render(self.request, self.template_name)

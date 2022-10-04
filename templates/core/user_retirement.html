@@ -4,7 +4,16 @@
   href="{% static 'plugins/sweetalert/css/sweetalert.css' %}"
   rel="stylesheet"
 />
-{% endblock admin_head %} {% block main%}
+<style>
+  a{
+      text-decoration: none !important;
+  }
+</style>
+
+{% endblock admin_head %} 
+
+
+{% block main%}
 <div class="content-body">
   <div class="container-fluid mt-3">
     <!-- 
@@ -30,7 +39,7 @@
         <div class="card">
           <div class="card-body">
             <div class="card-title">
-              <h4>Retirements(0)</h4>
+              <h4>Retirements({{ retirements.count }})</h4>
             </div>
             <div class="active-member">
               <div class="table-responsive">
@@ -45,19 +54,25 @@
                     </tr>
                   </thead>
                   <tbody>
-                    {% for app in applications %}
+                    {% for obj in retirements %}
                     <tr>
-                      <td>{{ app.pk }}</td>
+                      <td>{{ obj.pk }}</td>
                       <td>
-                        <span>{{ app.timestamp  }}</span>
+                        <span>{{ obj.timestamp  }}</span>
                       </td>
                       <td>
-                        <span>{{ app.status }}</span>
+                        {% if obj.status == 'pending' %}
+                        <span class="text-warning">{{ obj.status }}</span>
+                        {% elif obj.status == 'declined' %}
+                        <span class="text-danger}">{{ obj.status }}</span>
+                        {% elif obj.status == 'approved' %}
+                        <span class="text-sucess">{{ obj.status }}</span>
+                        {% endif %}
                       </td>
                       <td>
                         <span class="d-flex">
                           <a
-                            href="{% url 'core:user_retirement_detail' app.pk %}"
+                            href="{% url 'core:user_retirement_detail' obj.pk %}"
                             data-toggle="tooltip"
                             data-placement="top"
                             title="Edit"

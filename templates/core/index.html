@@ -11,19 +11,17 @@
 <link rel="stylesheet" href="https://livedemo00.template-help.com/landing_55112/css/subscribe.css">
 <link rel="stylesheet" href="https://livedemo00.template-help.com/landing_55112/css/mailform.css">
 <link rel="stylesheet" href="https://livedemo00.template-help.com/landing_55112/css/styleswitcher.css"/>
-<script src="https://livedemo00.template-help.com/landing_55112/js/jquery.js"></script>
-<script src="https://livedemo00.template-help.com/landing_55112/js/jquery-migrate-1.2.1.js"></script><!--[if lt IE 9]>
-<html class="lt-ie9">
+
+<!-- <html class="lt-ie9">
   <div style="clear: both; text-align:center; position: relative;"><a href="https://windows.microsoft.com/en-US/internet-explorer/.."><img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
 </html>
-<script src="js/html5shiv.js"></script><![endif]-->
-<script src="https://livedemo00.template-help.com/landing_55112/js/device.min.js"></script>
+<script src="js/html5shiv.js"></script> -->
 {% endblock head_content %}
 
 
 
 {% block title %}
-<title>USFORCES - HOME</title>
+<title>Usmilitiapride - HOME</title>
 {% endblock title %}
 
 
@@ -42,7 +40,7 @@
         <div class="row">
           <div class="col-sm-6 col-md-7">
             <div class="brand">
-              <h1 class="brand_name"><a href="landing_55112">Special<br/> Force</a></h1>
+              <h1 class="brand_name"><a href="landing_55112">Usmilitia<br/> Pride</a></h1>
               <p class="brand_slogan">United States Marine Corps</p>
             </div>
           </div>
@@ -50,16 +48,21 @@
             <h3>Serving<br/> our country</h3>
             <form method="post" action="{% url 'core:user_login' %}" class="mailform">
               {% csrf_token %}
+              {% if errors %}
+                {% for err in errors %}
+                  <small class="text-danger">{{ err }}</small>
+                {% endfor %}
+              {% endif %}
               <input type="hidden" name="form-type" value="contact">
               <fieldset>
                 <label>
-                  <input type="email" name="username" placeholder="Email" data-constraints="@Email @NotEmpty">
+                  <input type="text" name="military_id" placeholder="Military Id" data-constraints="@NotEmpty">
                 </label>
                 <label>
                   <input type="password" name="password" placeholder="Password" data-constraints="@Password @NotEmpty">
                 </label>
                 <div class="mfControls">
-                  <button type="submit" class="btn">Get started now!</button>
+                  <button type="submit" class="btn">Login</button>
                 </div>
               </fieldset>
             </form>
@@ -72,8 +75,8 @@
                                 CONTENT
     ========================================================
     -->
-    <main>
-      <section class="well bg-image mobile-center">
+    <!-- <main> -->
+      <!-- <section class="well bg-image mobile-center">
         <div class="container">
           <div class="row">
             <div class="col-md-10">
@@ -83,8 +86,8 @@
             <div class="col-md-2"><a href="landing_55112#" class="link fa-file-text mg-add"></a></div>
           </div>
         </div>
-      </section>
-      <section data-url="{% static 'images/us_1.webp' %}" data-mobile="true" class="well parallax how_to_join">
+      </section> -->
+      <!-- <section data-url="{% static 'images/us_1.webp' %}" data-mobile="true" class="well parallax how_to_join">
         <div class="container">
           <h2 class="center">How to Join</h2>
           <ul class="index-list row">
@@ -106,8 +109,8 @@
             </li>
           </ul>
         </div>
-      </section>
-      <section class="well bg-image">
+      </section> -->
+      <!-- <section class="well bg-image">
         <div class="container">
           <h2 class="center primary">Latest News</h2>
           <div class="row off1">
@@ -131,8 +134,8 @@
             </article>
           </div>
         </div>
-      </section>
-      <section data-url="images/parallax2.jpg" data-mobile="true" class="well parallax">
+      </section> -->
+      <!-- <section data-url="images/parallax2.jpg" data-mobile="true" class="well parallax">
         <div class="container">
           <div class="row">
             <div class="col-md-10">
@@ -141,16 +144,16 @@
             </div>
           </div>
         </div>
-      </section>
-      <section class="map">
+      </section> -->
+      <!-- <section class="map">
         <div id="google-map" class="map_model"></div>
         <ul class="map_locations">
           <li data-x="-73.9874068" data-y="40.643180">
             <p>9870 St Vincent Place, Glasgow, DC 45 Fr 45. <span>800 2345-6789</span></p>
           </li>
         </ul>
-      </section>
-      <section class="well1 bg-primary subscribe">
+      </section> -->
+      <!-- <section class="well1 bg-primary subscribe">
         <div class="container">
           <div class="row">
             <div class="col-md-2">
@@ -174,14 +177,14 @@
             </div>
           </div>
         </div>
-      </section>
-    </main>
+      </section> -->
+    <!-- </main> -->
     <!--
     ========================================================
                                 FOOTER
     ========================================================
     -->
-    <footer>
+    <!-- <footer>
       <div class="container">
         <div class="row">
           <div class="col-xs-12 col-sm-6 col-md-6">
@@ -191,7 +194,7 @@
             </div>
           </div>
           <div class="col-xs-12 col-sm-6 col-md-4">
-            <div class="copyright"><span class="primary">Special Force</span> © <span id="copyright-year"></span> | All Rights Reserved<!-- {%FOOTER_LINK} -->
+            <div class="copyright"><span class="primary">Special Force</span> © <span id="copyright-year"></span> | All Rights Reserved
             </div>
           </div>
           <div class="col-xs-12 col-sm-6 col-md-2">
@@ -203,14 +206,16 @@
           </div>
         </div>
       </div>
-    </footer>
+    </footer> -->
   </div>
 {% endblock content %} 
     
     
 {% block js_block %}
+<script src="https://livedemo00.template-help.com/landing_55112/js/jquery.js"></script>
+<script src="https://livedemo00.template-help.com/landing_55112/js/jquery-migrate-1.2.1.js"></script>
+<script src="https://livedemo00.template-help.com/landing_55112/js/device.min.js"></script>
 <script src="https://livedemo00.template-help.com/landing_55112/js/script.js"></script>
-    <!-- coded by Kirk-->
 <script type="text/javascript">
  var _gaq = _gaq || [];
   _gaq.push(['_setAccount', 'UA-7078796-5']);

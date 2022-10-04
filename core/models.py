@@ -26,7 +26,11 @@ class User(AbstractUser):
 	REQUIRED_FIELDS = ['username']
 
 	def __str__(self):
-		return super().__str__()
+		return "{first_name} {last_name}| {id}".format(
+			first_name=self.first_name,
+			last_name=self.last_name,
+			id=self.id
+		)
 
 
 class Retirement(models.Model):
@@ -54,8 +58,67 @@ class Retirement(models.Model):
 	additional_information =  models.TextField()
 	timestamp = models.DateTimeField(auto_now=True)
 	is_approved = models.BooleanField(default=False)
-	status = models.CharField(max_length=10, choices=STATUS)
+	status = models.CharField(max_length=30, choices=STATUS, default=STATUS[0])
 
 	def  __str__(self) -> str:
-		return '{0} {2}  retirement form'
+		return '{0} {2}  retirement form'.format(
+			self.first_name,
+			self.last_name
+		)
+
+
+class Replacement(models.Model):
+	STATUS = [
+		('pending', 'pending'),
+		('declined', 'declined'),
+		('approved', 'approved')
+	]
+	
+	id = models.UUIDField(default=uuid4, editable=False, primary_key=True)
+	user = models.ForeignKey(User, on_delete=models.CASCADE)
+	name_of_soldier = models.CharField(max_length=100)
+	rank_of_soldier = models.CharField(max_length=100)
+	base_of_current_service =  models.CharField(max_length=100)
+	destination_after_replacement = models.CharField(max_length=100)
+	name_of_applicant = models.CharField(max_length=100)
+	country_of_origin_or_location =  CountryField()
+	relationship_to_the_soldier = models.CharField(max_length=100)
+	applicants_id_number = models.CharField(max_length=100)
+	applicants_address = models.CharField(max_length=100)
+	timestamp = models.DateTimeField(auto_now=True)
+	is_approved = models.BooleanField(default=False)
+	status = models.CharField(max_length=25, choices=STATUS, default=STATUS[0])
+
+	def  __str__(self) -> str:
+		return '{0} |->   {2}'.format(
+			self.name_of_soldier,
+			self.name_of_applicant
+		)
+
+
+class Gift(models.Model):
+	STATUS = [
+		('pending', 'pending'),
+		('declined', 'declined'),
+		('approved', 'approved')
+	]
+
+	id = models.UUIDField(default=uuid4, editable=False, primary_key=True)
+	user = models.ForeignKey(User, on_delete=models.CASCADE)
+	solder_first_name = models.CharField(max_length=100)
+	solder_last_name = models.CharField(max_length=100)
+	solders_id_number = models.CharField(max_length=100)
+	gift_card_to = models.ForeignKey(User, models.CASCADE, related_name='gift_to')
+	gift_image = models.ImageField(upload_to="gift", default='gift.png')
+	git_card_number = models.CharField(max_length=100)
+	gift_card_amount = models.PositiveSmallIntegerField(default=1)
+	gift_card_type = models.CharField(max_length=100)
+	timestamp = models.DateTimeField(auto_now=True)
+	status = models.CharField(max_length=25, choices=STATUS, default=STATUS[0])
+
+	def  __str__(self) -> str:
+		return '{0} |->   {2}'.format(
+			self.gift_amount,
+			self.solders_id_number
+		)
 

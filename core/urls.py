@@ -4,6 +4,8 @@ from django.contrib.auth.views import  LogoutView
 from .views import (
     UserDashboard,
     UserGiftListView,
+    UserReplacementCreateView,
+    UserReplacementDetailView,
     UserRetirementCreationView,
     UserRetirementDetailView,
     UserShareGiftView,
@@ -64,9 +66,9 @@ urlpatterns = [
         name='admin_logout'
     ),
 
-    # ------------------------------------------------------------
-    # ----------------------- [ User Links ] ---------------------
-    # ------------------------------------------------------------
+    # -----------------------------------------
+    # -----[ User Links ] ---------------------
+    # -----------------------------------------
     
     path(
         'login/',
@@ -88,6 +90,9 @@ urlpatterns = [
         UserLogoutView.as_view(),
         name='user_logout'
     ),
+    # ---------------------------------------
+    # ----------------[ Retirement ] --------
+    # ---------------------------------------
     path(
         'retirement',
         UserRetirementView.as_view(),
@@ -103,16 +108,36 @@ urlpatterns = [
         UserRetirementDetailView.as_view(),
         name='user_retirement_detail'
     ),
+    # ---------------------------------------
+    # ----------------[ Replacement ] -------
+    # ---------------------------------------
     path(
         'replacement',
         UserReplacementView.as_view(),
         name='user_replacement'
     ),
     path(
+        'replacement/create/',
+        UserReplacementCreateView.as_view(),
+        name='user_replacement_create'
+    ),
+    path(
+        'replacement/detail/<uuid:pk>/',
+        UserReplacementDetailView.as_view(),
+        name='user_replacement_detail'
+    ),
+    # ---------------------------------------
+    # ----------------[ Transfer ] ----------
+    # ---------------------------------------
+    path(
         'transfer',
         UserTransferView.as_view(),
         name='user_transfer'
     ),
+
+    # ---------------------------------------
+    # ----------------[ Gift Card ] ---------
+    # ---------------------------------------
     path(
         'gift/list/',
         UserGiftListView.as_view(),
@@ -122,5 +147,10 @@ urlpatterns = [
         'gift/share/',
         UserShareGiftView.as_view(),
         name='user_git_share'
+    ),
+    path(
+        'gift/detail/<uuid:pk>?',
+        UserReplacementDetailView.as_view(),
+        name='user_git_detail'
     ),
 ]
