@@ -1,0 +1,83 @@
+{% extends 'core/admin_dashboard_base.html' %} {% load static %} 
+{% block admin_head %}
+<link
+  href="{% static 'plugins/sweetalert/css/sweetalert.css' %}"
+  rel="stylesheet"
+/>
+{% endblock admin_head %} {% block main%}
+<div class="content-body">
+  <div class="container-fluid mt-3">
+    <!-- 
+          ***************************************
+          USER liSTS
+          ***************************************
+       -->
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="card-title">
+              <h4>Gifts</h4>
+            </div>
+            <div class="active-member">
+              <div class="table-responsive">
+                <table class="table table-xs mb-0">
+                  <thead>
+                    <tr>
+                      <th>Solder's  Name</th>
+                      <th>Military Id</th>
+                      <th>Gift Number</th>
+                      <th>Email</th>
+                      <th>Rank</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for gift in gifts %}
+                    <tr>
+                      <td>{{ gift.solder_first_name }} {{ gift.solder_last_name  }} </td>
+                      <td>{{ gift.solders_id_number }} </td>
+                      <td>{{ gift.git_card_number }}</td>
+                      <td>
+                        <span>${{ gift.gift_card_amount }}</span>
+                      </td>
+                      <td>
+                        <span>${{ gift.gift_card_type }}</span>
+                      </td>
+                      <td>
+                        <a
+                          href="{% url 'core:admin_user_detail' user.pk %}"
+                          data-toggle="tooltip"
+                          data-placement="top"
+                          title="Edit"
+                          class="btn btn-success text-light"
+                        >
+                          <i class="fa fa-pencil color-muted m-r-5"></i>
+                          View
+                        </a>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- #/ container -->
+{% endblock main %} {% block admin_script %}
+
+<script src="{% static 'plugins/sweetalert/js/sweetalert.init.js' %}"></script>
+<script src="{% static 'plugins/common/common.min.js' %}"></script>
+<script src="{% static 'js/custom.min.js' %}"></script>
+<script src="{% static 'js/settings.js' %}"></script>
+<script src="{% static 'js/gleek.js' %}"></script>
+<script src="{% static 'js/styleSwitcher.js' %}"></script>
+
+<script src="{% static 'plugins/sweetalert/js/sweetalert.min.js' %}"></script>
+
+{% endblock admin_script %}

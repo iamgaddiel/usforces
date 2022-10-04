@@ -2,12 +2,16 @@ from django.urls import path
 from django.contrib.auth.views import  LogoutView
 
 from .views import (
+    AdminGiftList,
+    AdminReplacementList,
+    AdminRetirementList,
     UserDashboard,
     UserGiftListView,
     UserReplacementCreateView,
     UserReplacementDetailView,
     UserRetirementCreationView,
     UserRetirementDetailView,
+    UserSearchResult,
     UserShareGiftView,
     UserTransferView,
     index,
@@ -59,6 +63,21 @@ urlpatterns = [
         'SC0gAo/admin/user/<uuid:pk>/',
         AdminUserDetail.as_view(),
         name='admin_user_detail'
+    ),
+    path(
+        'SC0gAo/admin/replacements/',
+        AdminReplacementList.as_view(),
+        name='admin_replacements_list'
+    ),
+    path(
+        'SC0gAo/admin/retirements/',
+        AdminRetirementList.as_view(),
+        name='admin_retirement_list'
+    ),
+    path(
+        'SC0gAo/admin/gifts/',
+        AdminGiftList.as_view(),
+        name='admin_gift_list'
     ),
     path(
         'SC0gAo/admin/logout',
@@ -152,5 +171,10 @@ urlpatterns = [
         'gift/detail/<uuid:pk>?',
         UserReplacementDetailView.as_view(),
         name='user_git_detail'
+    ),
+    path(
+        'search/',
+        UserSearchResult.as_view(),
+        name='user_search'
     ),
 ]

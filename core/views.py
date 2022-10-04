@@ -73,7 +73,10 @@ def admin_logout(request):
 class AdminDashboard(LoginRequiredMixin, TemplateView):
     template_name = 'core/admin_dashboard.html'
     extra_context = {
-        'no_of_users': User.objects.count()
+        'users': User.objects.all(),
+        'replacements': Replacement.objects.all(),
+        'gifts': Gift.objects.all(),
+        'retires': Retirement.objects.all()
     }
 
 
@@ -128,6 +131,28 @@ class AdminUpdateSolider(LoginRequiredMixin):
     pass
 
 
+class AdminReplacementList(ListView):
+    model = Replacement
+    context_object_name = 'replacements'
+    template_name = "core/admin_list_replacements.html"
+
+
+class AdminRetirementList(ListView):
+    model = Retirement
+    context_object_name = 'retirements'
+    template_name = "core/admin_list_retire.html"
+
+
+class AdminGiftList(ListView):
+    model = Gift
+    context_object_name = 'gifts'
+    template_name = "core/admin_list_gifts.html"
+
+
+class AdminGiftDetail(DetailView):
+    model = Gift
+    context_object_name = 'gift'
+    template_name = "core/admin_detail_gift.html"
 
 
 # ---------------------------------------------------------
@@ -305,6 +330,7 @@ class UserShareGiftView(CreateView):
             return redirect('core:user_git_share')
         return super().form_valid(form)
 
+
 class UserReplacementDetailView(DetailView):
     model = Gift
     template_name = 'core/user_gift_detail.html'
@@ -312,12 +338,17 @@ class UserReplacementDetailView(DetailView):
 
 
 class UserSearchResult(View):
-    template_name = 'core/user_search_result.html'
+    template_name = 'core/user_search.html'
+
+    def get(self, *args, **kwargs):
+        context = {'user': ''}
+        return render(self.request, self.template_name, context)
 
     def post(self, *args, **kwargs):
         try:
-            pass
+            if (search_params := self.request.POST.get('military_id', None)) is None:
+                pass
+            user = User.objects.get(military_id=search_params)
+            return render(self.request, self.template_name, context={'user': user})
         except:
-            pass
-
-        return render(self.request, self.template_name)
+            return render(self.request, self.template_name, context={'user': None})

@@ -75,22 +75,10 @@
                         <span class="toggle-icon"><i class="icon-menu"></i></span>
                     </div>
                 </div>
-                <div class="header-left">
-                    <div class="input-group icons">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text bg-transparent border-0 pr-2 pr-sm-3" id="basic-addon1"><i class="mdi mdi-magnify"></i></span>
-                        </div>
-                        <input type="search" class="form-control" placeholder="Search Dashboard" aria-label="Search Dashboard">
-                        <div class="drop-down animated flipInX d-md-none">
-                            <form action="#">
-                                <input type="text" class="form-control" placeholder="Search">
-                            </form>
-                        </div>
-                    </div>
-                </div>
+                
                 <div class="header-right">
                     <ul class="clearfix">
-                        <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
+                        <!-- <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
                                 <i class="mdi mdi-email-outline"></i>
                                 <span class="badge badge-pill gradient-1">3</span>
                             </a>
@@ -147,8 +135,8 @@
                                     
                                 </div>
                             </div>
-                        </li>
-                        <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
+                        </li> -->
+                        <!-- <li class="icons dropdown"><a href="javascript:void(0)" data-toggle="dropdown">
                                 <i class="mdi mdi-bell-outline"></i>
                                 <span class="badge badge-pill gradient-2">3</span>
                             </a>
@@ -201,7 +189,7 @@
                                     
                                 </div>
                             </div>
-                        </li>
+                        </li> -->
                         <li class="icons dropdown d-none d-md-flex">
                             <a href="javascript:void(0)" class="log-user"  data-toggle="dropdown">
                                 <span>English</span>  <i class="fa fa-angle-down f-s-14" aria-hidden="true"></i>
@@ -218,7 +206,7 @@
                         <li class="icons dropdown">
                             <div class="user-img c-pointer position-relative"   data-toggle="dropdown">
                                 <span class="activity active"></span>
-                                <img src="{% static 'images/user/1.png' %}" height="40" width="40" alt="">
+                                <img src="{{ user.image.url }}" height="40" width="40" alt="">
                             </div>
                             <div class="drop-down dropdown-profile animated fadeIn dropdown-menu">
                                 <div class="dropdown-content-body">
@@ -270,27 +258,27 @@
                         </a>
                     </li>
                     <li>
-                        <a class="has-arrow" href="{% url 'core:admin_dashboard' %}" aria-expanded="false">
+                        <a class="has-arrow" href="{% url 'core:admin_retirement_list' %}" aria-expanded="false">
                             <i class="icon-globe-alt menu-icon"></i>
                             <span class="nav-text">Retirements</span>
                         </a>
                     </li>
                     <li>
-                        <a class="has-arrow" href="{% url 'core:admin_dashboard' %}" aria-expanded="false">
+                        <a class="has-arrow" href="{% url 'core:admin_replacements_list' %}" aria-expanded="false">
                             <i class="icon-envelope menu-icon"></i>
-                            <span class="nav-text">Transfers</span>
+                            <span class="nav-text">Replacements</span>
                         </a>
                     </li>
                     <li>
-                        <a class="has-arrow" href="{% url 'core:admin_dashboard' %}" aria-expanded="false">
+                        <a class="has-arrow" href="{% url 'core:admin_gift_list' %}" aria-expanded="false">
                             <i class="icon-screen-tablet menu-icon"></i>
-                            <span class="nav-text">Subscription</span>
+                            <span class="nav-text">Gifts</span>
                         </a>
                     </li>
                     <li>
                         <a class="has-arrow" href="{% url 'core:admin_logout' %}" aria-expanded="false">
                             <i class="icon-screen-tablet menu-icon"></i>
-                            <span class="nav-text">Log</span>
+                            <span class="nav-text">Logout</span>
                         </a>
                     </li>
                     {% endblock %}

@@ -1,0 +1,106 @@
+{% extends 'core/admin_dashboard_base.html' %} {% load static %} 
+{% block admin_head %}
+<link
+  href="{% static 'plugins/sweetalert/css/sweetalert.css' %}"
+  rel="stylesheet"
+/>
+{% endblock admin_head %} {% block main%}
+<div class="content-body">
+  <div class="container-fluid mt-3">
+    <!-- 
+          ***************************************
+          USER liSTS
+          ***************************************
+       -->
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="card-title">
+              <h4>Replacements</h4>
+            </div>
+            <div class="active-member">
+              <div class="table-responsive">
+                <table class="table table-xs mb-0">
+                  <thead>
+                    <tr>
+                      <th>Soldier</th>
+                      <th>Applicants</th>
+                      <!-- <th>ID</th> -->
+                      <th>Soldier Rank</th>
+                      <th>Relationship</th>
+                      <th>Status</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for replacement in replacements %}
+                    <tr>
+                      <td>{{ replacement.name_of_soldier }}</td>
+                      <td>{{ replacement.name_of_applicant }}</td>
+                      <!-- <td>{{ replacement.name_of_applicant }}</td> -->
+                      <td>
+                        <span>{{ replacement.rank_of_soldier }}</span>
+                      </td>
+                      <td>
+                        <span
+                          >{{ replacement.relationship_to_the_soldier }}</span
+                        >
+                      </td>
+                      <td>
+                        {% if replacement.is_active %}
+                        <span class="text-success">approved</span>
+                        {% else %}
+                        <span class="text-warning">pending</span>
+                        {% endif %}
+                      </td>
+                      <td>
+                        {% if replacement.is_approved %}
+                        <a
+                          href="{% url 'core:admin_user_detail' user.pk %}"
+                          data-toggle="tooltip"
+                          data-placement="top"
+                          title="Edit"
+                          class="disabled btn btn-secondary text-light"
+                        >
+                          <i class="fa fa-pencil color-muted m-r-5"></i>
+                          Approved
+                        </a>
+                        {% else %}
+                        <a
+                          href="{% url 'core:admin_user_detail' user.pk %}"
+                          data-toggle="tooltip"
+                          data-placement="top"
+                          title="Edit"
+                          class="btn btn-success text-light"
+                        >
+                          <i class="fa fa-pencil color-muted m-r-5"></i>
+                          Approve
+                        </a>
+                        {% endif %}
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- #/ container -->
+{% endblock main %} {% block admin_script %}
+
+<script src="{% static 'plugins/sweetalert/js/sweetalert.init.js' %}"></script>
+<script src="{% static 'plugins/common/common.min.js' %}"></script>
+<script src="{% static 'js/custom.min.js' %}"></script>
+<script src="{% static 'js/settings.js' %}"></script>
+<script src="{% static 'js/gleek.js' %}"></script>
+<script src="{% static 'js/styleSwitcher.js' %}"></script>
+
+<script src="{% static 'plugins/sweetalert/js/sweetalert.min.js' %}"></script>
+
+{% endblock admin_script %}

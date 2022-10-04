@@ -1,0 +1,166 @@
+{% extends 'core/user_dashboard.html' %} {% load static %} 
+{% extends 'core/user_dashboard.html' %} {% load static %} 
+{% block admin_head %}
+<link
+  href="{% static 'plugins/sweetalert/css/sweetalert.css' %}"
+  rel="stylesheet"
+/>
+<style>
+  a {
+    text-decoration: none !important;
+  }
+</style>
+{% endblock admin_head %} {% block main %}
+<div class="content-body">
+  <div class="row page-titles mx-0">
+    <div class="col p-md-0">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="">Dashboard</a></li>
+        <li class="breadcrumb-item active"><a href="">Users</a></li>
+        <li class="breadcrumb-item active"><a href="">User Profile</a></li>
+      </ol>
+    </div>
+  </div>
+  <!-- row -->
+
+  <div class="container">
+    <div class="row justify-content-center">
+
+      <div class="col-md-12">
+
+              <!-- Search -->
+              <div class="col-lg-12">
+                <div class="card">
+                  <div class="card-body">
+                    <h4 class="card-title">Search</h4>
+                    <div class="basic-form">
+                      <form method="post" action="{% url 'core:user_search'  %}">
+                        {% csrf_token %}
+                        <div class="input-group mb-3">
+                          <input type="text" class="form-control" name="military_id" placeholder="Enter solider's milliary id" />
+                          <div class="input-group-append">
+                            <button class="btn btn-primary" type="submit">
+                              Search
+                            </button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Result -->
+              {% if user is not None and user != "" %}
+              <div class="col-lg-12">
+                <!-- <div class="media align-items-center mb-4"> -->
+                    <div class="card mt-5">
+                        <div class="card-body">
+                            <img
+                              class="mr-3"
+                              src="{{ user.image.url }}"
+                              width="80"
+                              height="80"
+                              alt=""
+                            />
+                            <div class="media-body mt-5">
+                              <h3 class="mb-0">
+                                {{ user.first_name }} {{ user.last_name }}
+                              </h3>
+                              <p class="text-muted mb-0">{{ user.country }}</p>
+                            </div>
+
+                            <div class="basic-form">
+                              <form>
+                                <div class="form-group row">
+                                  <label class="col-sm-3 col-form-label">Email</label>
+                                  <div class="col-sm-9">
+                                    <input
+                                      type="text"
+                                      readonly="readonly"
+                                      class="form-control-plaintext"
+                                      value="{{ user.email }}"
+                                    />
+                                  </div>
+                                </div>
+            
+                                <div class="form-group row">
+                                  <label class="col-sm-3 col-form-label">Zip Code</label>
+                                  <div class="col-sm-9">
+                                    <input
+                                      type="text"
+                                      readonly="readonly"
+                                      class="form-control-plaintext"
+                                      value="{{ user.zip_code }}"
+                                    />
+                                  </div>
+                                </div>
+            
+                                <div class="form-group row">
+                                  <label class="col-sm-3 col-form-label">Gender</label>
+                                  <div class="col-sm-9">
+                                    <input
+                                      type="text"
+                                      readonly="readonly"
+                                      class="form-control-plaintext"
+                                      value="{{ user.gender }}"
+                                    />
+                                  </div>
+                                </div>
+            
+                                <div class="form-group row">
+                                  <label class="col-sm-3 col-form-label">Military ID</label>
+                                  <div class="col-sm-9">
+                                    <input
+                                      type="text"
+                                      readonly="readonly"
+                                      class="form-control-plaintext"
+                                      value="{{ user.military_id }}"
+                                    />
+                                  </div>
+                                </div>
+            
+                                <div class="form-group row">
+                                  <label class="col-sm-3 col-form-label">Country</label>
+                                  <div class="col-sm-9">
+                                    <input
+                                      type="text"
+                                      readonly="readonly"
+                                      class="form-control-plaintext"
+                                      value="{{ user.country.name }}"
+                                    />
+                                  </div>
+                                </div>
+                              </form>
+                            </div>
+                        </div>
+                    </div>
+                <!-- </div> -->
+
+
+              </div>
+              {% elif user == "" %}
+              <h4 class="text-center text-muted">Search for solider record</h4>
+              {% elif user is None  %}
+              <h4 class="text-center text-muted">No user found with the record you're searching for</h4>
+              {% endif %}
+        </div>
+      </div>
+    </div>
+    <!-- #/ container -->
+  </div>
+  {% endblock main %} 
+  
+  {% block admin_script %}
+
+  <script src="{% static 'plugins/sweetalert/js/sweetalert.init.js' %}"></script>
+  <script src="{% static 'plugins/common/common.min.js' %}"></script>
+  <script src="{% static 'js/custom.min.js' %}"></script>
+  <script src="{% static 'js/settings.js' %}"></script>
+  <script src="{% static 'js/gleek.js' %}"></script>
+  <script src="{% static 'js/styleSwitcher.js' %}"></script>
+
+  <!-- <script src="{% static 'plugins/sweetalert/js/sweetalert.min.js' %}"></script> -->
+
+<!-- </div> -->
+{% endblock admin_script %}
