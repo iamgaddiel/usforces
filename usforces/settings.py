@@ -37,11 +37,11 @@ ALLOWED_HOSTS = [
     '.now.sh',
     'localhost',
     'usmilitiapride.pythonanywhere.com',
-    ' usmilitiapride.com'
+    'usmilitiapride.com'
 ]
 
 
-# Application definition
+# Application defin"""  """ition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
