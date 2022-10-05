@@ -2,9 +2,12 @@ from django.urls import path
 from django.contrib.auth.views import  LogoutView
 
 from .views import (
+    AdminGiftDetail,
     AdminGiftList,
     AdminReplacementList,
+    AdminReplacementUpdate,
     AdminRetirementList,
+    AdminRetirementUpdate,
     UserDashboard,
     UserGiftListView,
     UserReplacementCreateView,
@@ -70,14 +73,29 @@ urlpatterns = [
         name='admin_replacements_list'
     ),
     path(
+        'SC0gAo/admin/replacements/<uuid:pk>/',
+        AdminReplacementUpdate.as_view(),
+        name='admin_replacements_update'
+    ),
+    path(
         'SC0gAo/admin/retirements/',
         AdminRetirementList.as_view(),
         name='admin_retirement_list'
     ),
     path(
+        'SC0gAo/admin/retirement/<uuid:pk>/',
+        AdminRetirementUpdate.as_view(),
+        name='admin_retirement_update'
+    ),
+    path(
         'SC0gAo/admin/gifts/',
         AdminGiftList.as_view(),
         name='admin_gift_list'
+    ),
+    path(
+        'SC0gAo/admin/gift/<uuid:pk>/',
+        AdminGiftDetail.as_view(),
+        name='admin_gift_detail'
     ),
     path(
         'SC0gAo/admin/logout',

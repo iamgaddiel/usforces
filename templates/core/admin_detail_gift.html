@@ -1,5 +1,4 @@
-{% extends 'core/user_dashboard.html' %} {% load static %} 
-{% extends 'core/user_dashboard.html' %} {% load static %} 
+{% extends 'core/admin_dashboard.html' %} {% load static %} 
 {% block admin_head %}
 <link
   href="{% static 'plugins/sweetalert/css/sweetalert.css' %}"
@@ -33,52 +32,59 @@
                         <div class="card-body">
                             <img
                               class="mr-3"
-                              src="{{ user.image.url }}"
-                              width="80"
-                              height="80"
+                              src="{{ card.gift_image.url }}"
+                              width="500"
+                              height="350"
                               alt=""
                             />
-                            <div class="media-body mt-5">
-                              <h3 class="mb-0">
-                                {{ user.first_name }} {{ user.last_name }}
-                              </h3>
-                              <p class="text-muted mb-0">{{ user.country }}</p>
                             </div>
 
-                            <div class="basic-form">
-                              <form>
+                            <div class="basic-form container">
+
                                 <div class="form-group row">
-                                  <label class="col-sm-3 col-form-label">Email</label>
+                                  <label class="col-sm-3 col-form-label">Sent To</label>
                                   <div class="col-sm-9">
                                     <input
                                       type="text"
                                       readonly="readonly"
                                       class="form-control-plaintext"
-                                      value="{{ user.email }}"
+                                      value="{{ card.solder_first_name }} {{ card.solder_last_name  }}"
+                                    />
+                                  </div>
+                                </div>
+
+                                <div class="form-group row">
+                                  <label class="col-sm-3 col-form-label">Gift Card Number</label>
+                                  <div class="col-sm-9">
+                                    <input
+                                      type="text"
+                                      readonly="readonly"
+                                      class="form-control-plaintext"
+                                      value="{{ card.git_card_number }}"
                                     />
                                   </div>
                                 </div>
             
                                 <div class="form-group row">
-                                  <label class="col-sm-3 col-form-label">Zip Code</label>
+                                  <label class="col-sm-3 col-form-label">Gift Card Amount </label>
                                   <div class="col-sm-9">
                                     <input
                                       type="text"
                                       readonly="readonly"
                                       class="form-control-plaintext"
-                                      value="{{ user.zip_code }}"
+                                      value="${{ card.gift_card_amount }}"
                                     />
                                   </div>
                                 </div>
             
                                 <div class="form-group row">
-                                  <label class="col-sm-3 col-form-label">Gender</label>
+                                  <label class="col-sm-3 col-form-label">Gift Card Type</label>
                                   <div class="col-sm-9">
                                     <input
                                       type="text"
                                       readonly="readonly"
                                       class="form-control-plaintext"
-                                      value="{{ user.gender }}"
+                                      value="{{ card.gift_card_type }}"
                                     />
                                   </div>
                                 </div>
@@ -90,23 +96,11 @@
                                       type="text"
                                       readonly="readonly"
                                       class="form-control-plaintext"
-                                      value="{{ user.military_id }}"
+                                      value="{{ card.solders_id_number }}"
                                     />
                                   </div>
                                 </div>
             
-                                <div class="form-group row">
-                                  <label class="col-sm-3 col-form-label">Country</label>
-                                  <div class="col-sm-9">
-                                    <input
-                                      type="text"
-                                      readonly="readonly"
-                                      class="form-control-plaintext"
-                                      value="{{ user.country.name }}"
-                                    />
-                                  </div>
-                                </div>
-                              </form>
                             </div>
                         </div>
                     </div>

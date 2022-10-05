@@ -6,7 +6,7 @@ from django.forms import BaseModelForm
 
 from django.http import HttpResponse
 from django.forms.models import model_to_dict
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.views.generic import (
     TemplateView,
     DetailView,
@@ -137,10 +137,28 @@ class AdminReplacementList(ListView):
     template_name = "core/admin_list_replacements.html"
 
 
+
+class AdminReplacementUpdate(View):
+    def get(self, *args, **kwargs):
+        obj = get_object_or_404(Replacement, pk=self.kwargs.get('pk'))
+        obj.is_approved = True
+        obj.save()
+        return redirect('core:admin_replacements_list')
+
+
+
 class AdminRetirementList(ListView):
     model = Retirement
     context_object_name = 'retirements'
     template_name = "core/admin_list_retire.html"
+
+
+class AdminRetirementUpdate(View):
+    def get(self, *args, **kwargs):
+        obj = get_object_or_404(Retirement, pk=self.kwargs.get('pk'))
+        obj.is_approved = True
+        obj.save()
+        return redirect('core:admin_retirement_list')
 
 
 class AdminGiftList(ListView):
@@ -151,7 +169,7 @@ class AdminGiftList(ListView):
 
 class AdminGiftDetail(DetailView):
     model = Gift
-    context_object_name = 'gift'
+    context_object_name = 'card'
     template_name = "core/admin_detail_gift.html"
 
 

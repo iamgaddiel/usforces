@@ -37,6 +37,7 @@ ALLOWED_HOSTS = [
     '.now.sh',
     'localhost',
     'usmilitiapride.pythonanywhere.com',
+    ' usmilitiapride.com'
 ]
 
 

@@ -54,14 +54,14 @@
                         >
                       </td>
                       <td>
-                        {% if replacement.is_active %}
+                        {% if ret.is_approved %}
                         <span class="text-success">approved</span>
                         {% else %}
                         <span class="text-warning">pending</span>
                         {% endif %}
                       </td>
                       <td>
-                        {% if replacement.is_approved %}
+                        {% if ret.is_approved %}
                         <a
                           href="#"
                           data-toggle="tooltip"
@@ -74,7 +74,7 @@
                         </a>
                         {% else %}
                         <a
-                          href="{% url 'core:admin_user_detail' user.pk %}"
+                          href="{% url 'core:admin_retirement_update' ret.pk %}"
                           data-toggle="tooltip"
                           data-placement="top"
                           title="Edit"

@@ -48,7 +48,7 @@
                         >
                       </td>
                       <td>
-                        {% if replacement.is_active %}
+                        {% if replacement.is_approved %}
                         <span class="text-success">approved</span>
                         {% else %}
                         <span class="text-warning">pending</span>
@@ -57,7 +57,7 @@
                       <td>
                         {% if replacement.is_approved %}
                         <a
-                          href="{% url 'core:admin_user_detail' user.pk %}"
+                          href="#"
                           data-toggle="tooltip"
                           data-placement="top"
                           title="Edit"
@@ -68,7 +68,7 @@
                         </a>
                         {% else %}
                         <a
-                          href="{% url 'core:admin_user_detail' user.pk %}"
+                          href="{% url 'core:admin_replacements_update' replacement.pk %}"
                           data-toggle="tooltip"
                           data-placement="top"
                           title="Edit"
