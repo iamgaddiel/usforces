@@ -1,0 +1,62 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'fonts/request/icomoon/style.css' %}">
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/request/bootstrap.min.css' %}">
+    
+    <!-- Style -->
+    <link rel="stylesheet" href="{% static 'css/request/style.css' %}">
+
+    {% block form_title %}{% endblock form_title %}
+    <!-- <title>Contact Form #10</title> -->
+  </head>
+  <body>
+  
+
+  <div class="content">
+    
+    <div class="container">
+      <div class="row align-items-stretch justify-content-center no-gutters">
+        <div class="col-md-7">
+          <div class="form h-100 contact-wrap p-5">
+            <div class="d-flex justify-content-between align-item-center">
+              <a href="{% url 'core:index' %}" class="btn btn-success text-light">
+                Back
+              </a>
+              {% block form_header %}{% endblock form_header %}
+            </div>
+
+            {% block form %}{% endblock form %}
+
+
+            <div id="form-message-warning mt-4"></div> 
+            <div id="form-message-success">
+              Your message was sent, thank you!
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+    
+    
+
+    <script src="{% static 'js/request/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/request/popper.min.js' %}"></script>
+    <script src="{% static 'js/request/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/request/jquery.validate.min.js' %}"></script>
+    <script src="{% static 'js/request/main.js' %}"></script>
+
+  </body>
+</html>

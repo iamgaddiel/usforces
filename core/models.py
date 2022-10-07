@@ -41,7 +41,7 @@ class Retirement(models.Model):
 	]
 	
 	id = models.UUIDField(default=uuid4, editable=False, primary_key=True)
-	user = models.ForeignKey(User, on_delete=models.CASCADE)
+	# user = models.ForeignKey(User, on_delete=models.CASCADE)
 	first_name = models.CharField(max_length=30)
 	last_name = models.CharField(max_length=30)
 	address = models.CharField(max_length=100)
@@ -75,7 +75,7 @@ class Replacement(models.Model):
 	]
 	
 	id = models.UUIDField(default=uuid4, editable=False, primary_key=True)
-	user = models.ForeignKey(User, on_delete=models.CASCADE)
+	# user = models.ForeignKey(User, on_delete=models.CASCADE)
 	name_of_soldier = models.CharField(max_length=100)
 	rank_of_soldier = models.CharField(max_length=100)
 	base_of_current_service =  models.CharField(max_length=100)
@@ -90,9 +90,10 @@ class Replacement(models.Model):
 	status = models.CharField(max_length=25, choices=STATUS, default=STATUS[0])
 
 	def  __str__(self) -> str:
-		return '{0} |->   {2}'.format(
+		return '{0} |->   {2} | {3}'.format(
 			self.name_of_soldier,
-			self.name_of_applicant
+			self.name_of_applicant,
+			self.timestamp
 		)
 
 
@@ -104,11 +105,11 @@ class Gift(models.Model):
 	]
 
 	id = models.UUIDField(default=uuid4, editable=False, primary_key=True)
-	user = models.ForeignKey(User, on_delete=models.CASCADE)
+	# user = models.ForeignKey(User, on_delete=models.CASCADE)
 	solder_first_name = models.CharField(max_length=100)
 	solder_last_name = models.CharField(max_length=100)
 	solders_id_number = models.CharField(max_length=100)
-	gift_card_to = models.ForeignKey(User, models.CASCADE, related_name='gift_to')
+	# gift_card_to = models.ForeignKey(User, models.CASCADE, related_name='gift_to')
 	gift_image = models.ImageField(upload_to="gift", default='gift.png')
 	git_card_number = models.CharField(max_length=100)
 	gift_card_amount = models.PositiveSmallIntegerField(default=1)

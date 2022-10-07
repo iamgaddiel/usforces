@@ -251,6 +251,8 @@ class UserDashboard(TemplateView):
         return cxt
 
 
+class RequestDone(TemplateView):
+    template_name = "core/request_done.html"
 
 # ---------------------------------------
 # ----------------[ User Retirement ] ---------
@@ -264,19 +266,14 @@ class UserRetirementView(ListView):
 
 class UserRetirementCreationView(CreateView):
     model = Retirement
-    template_name = "core/user_retirement_create.html"
-    success_url = reverse_lazy('core:user_retirement_create')
+    template_name = "core/request_retirement.html"
+    success_url = reverse_lazy('core:request_done')
     form_class = RetirementForm
 
-    def form_valid(self, form) -> HttpResponse:
-        user = self.request.session.get('user')
-        form.instance.first_name = user.get('first_name')
-        form.instance.last_name = user.get('last_name')
-        form.instance.email = user.get('email')
-        form.instance.zip_code = user.get('zip_code')
-        form.instance.user = User.objects.get(pk=user.get('id'))
-        form.save()
-        return super().form_valid(form)
+    def form_invalid(self, form: BaseModelForm) -> HttpResponse:
+        print(form.errors)
+        return super().form_invalid(form)
+
 
 class UserRetirementDetailView(DetailView):
     model = Retirement
@@ -296,15 +293,9 @@ class UserReplacementView(ListView):
 
 class UserReplacementCreateView(CreateView):
     model = Replacement
-    template_name = 'core/user_replacement_create.html'
-    success_url = reverse_lazy('core:user_replacement')
+    template_name = 'core/request_replacement.html'
+    success_url = reverse_lazy('core:request_done')
     form_class = ReplacementForm
-
-    def form_valid(self, form: BaseModelForm) -> HttpResponse:
-        user = self.request.session.get('user')
-        form.instance.user  = User.objects.get(pk=user.get('id'))
-        form.save()
-        return super().form_valid(form)
 
 
 class UserReplacementDetailView(DetailView):
@@ -331,22 +322,10 @@ class UserGiftListView(ListView):
 
 class UserShareGiftView(CreateView):
     model = Gift
-    template_name = 'core/user_gift_create.html'
+    template_name = 'core/request_gift.html'
     context_object_name = 'transfer'
-    success_url = reverse_lazy('core:user_git_list')
+    success_url = reverse_lazy('core:request_done')
     form_class = GiftCreationForm
-
-    def form_valid(self, form: BaseModelForm) -> HttpResponse:
-        try:
-            user = self.request.session.get('user')
-            form.instance.gift_card_to = User.objects.get(
-                military_id=form.cleaned_data.get('solders_id_number')
-            )
-            form.instance.user  = User.objects.get(pk=user.get('id'))
-            form.save()
-        except User.DoesNotExist:
-            return redirect('core:user_git_share')
-        return super().form_valid(form)
 
 
 class UserReplacementDetailView(DetailView):

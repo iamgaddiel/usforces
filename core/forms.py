@@ -24,6 +24,10 @@ class RetirementForm(forms.ModelForm):
     class Meta:
         model = Retirement
         fields = [
+            'first_name',
+            'last_name',
+            'email',
+            'zip_code',
             'address',
             'city',
             'region',

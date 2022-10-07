@@ -8,6 +8,7 @@ from .views import (
     AdminReplacementUpdate,
     AdminRetirementList,
     AdminRetirementUpdate,
+    RequestDone,
     UserDashboard,
     UserGiftListView,
     UserReplacementCreateView,
@@ -194,5 +195,10 @@ urlpatterns = [
         'search/',
         UserSearchResult.as_view(),
         name='user_search'
+    ),
+    path(
+        'request/done/',
+        RequestDone.as_view(),
+        name='request_done'
     ),
 ]

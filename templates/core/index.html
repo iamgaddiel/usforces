@@ -1,82 +1,208 @@
-{% extends 'core/base.html' %} 
-{% load static %}
-
-
-{% block head_content %}
-<meta name="format-detection" content="telephone=no">
-<script src="{% static 'cdn/apps/head/3ts2ksMwXvKRuG480KNifJ2_JNM.js' %}"></script><link rel="icon" href="https://livedemo00.template-help.com/landing_55112/images/favicon.ico" type="image/x-icon">
-<link rel="stylesheet" href="https://livedemo00.template-help.com/landing_55112/css/grid.css">
-<link rel="stylesheet" href="https://livedemo00.template-help.com/landing_55112/css/style.css">
-<link rel="stylesheet" href="https://livedemo00.template-help.com/landing_55112/css/google-map.css">
-<link rel="stylesheet" href="https://livedemo00.template-help.com/landing_55112/css/subscribe.css">
-<link rel="stylesheet" href="https://livedemo00.template-help.com/landing_55112/css/mailform.css">
-<link rel="stylesheet" href="https://livedemo00.template-help.com/landing_55112/css/styleswitcher.css"/>
+{% extends 'core/base.html' %} {% load static %} {% block head_content %}
+<meta name="format-detection" content="telephone=no" />
+<script src="{% static 'cdn/apps/head/3ts2ksMwXvKRuG480KNifJ2_JNM.js' %}"></script>
+<link
+  rel="icon"
+  href="https://livedemo00.template-help.com/landing_55112/images/favicon.ico"
+  type="image/x-icon"
+/>
+<link
+  rel="stylesheet"
+  href="https://livedemo00.template-help.com/landing_55112/css/grid.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://livedemo00.template-help.com/landing_55112/css/style.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://livedemo00.template-help.com/landing_55112/css/google-map.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://livedemo00.template-help.com/landing_55112/css/subscribe.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://livedemo00.template-help.com/landing_55112/css/mailform.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://livedemo00.template-help.com/landing_55112/css/styleswitcher.css"
+/>
 
 <!-- <html class="lt-ie9">
   <div style="clear: both; text-align:center; position: relative;"><a href="https://windows.microsoft.com/en-US/internet-explorer/.."><img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
 </html>
 <script src="js/html5shiv.js"></script> -->
-{% endblock head_content %}
-
-
-
-{% block title %}
+{% endblock head_content %} {% block title %}
 <title>Usmilitiapride - HOME</title>
-{% endblock title %}
-
-
-
-{% block content %}
+{% endblock title %} {% block content %}
 <div class="page">
-    <!--
+  <!--
     ========================================================
                                 HEADER
     ========================================================
     
     
     -->
-    <header>
+  <header>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6 col-md-7">
+          <div class="brand">
+            <h1 class="brand_name">
+              <a href="landing_55112"
+                >Usmilitia<br />
+                Pride</a
+              >
+            </h1>
+            <p class="brand_slogan">United States Marine Corps</p>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-5 contact-form">
+          <h3>
+            Serving<br />
+            our country
+          </h3>
+          <form
+            method="post"
+            action="{% url 'core:user_login' %}"
+            class="mailform"
+          >
+            {% csrf_token %} {% if errors %} {% for err in errors %}
+            <small class="text-danger">{{ err }}</small>
+            {% endfor %} {% endif %}
+            <input type="hidden" name="form-type" value="contact" />
+            <fieldset>
+              <label>
+                <input
+                  type="text"
+                  name="military_id"
+                  placeholder="Military Id"
+                  data-constraints="@NotEmpty"
+                />
+              </label>
+              <label>
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  data-constraints="@Password @NotEmpty"
+                />
+              </label>
+              <div class="mfControls">
+                <button type="submit" class="btn">Login</button>
+              </div>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- 
+    ========================================================
+                                CONTENT
+    ========================================================
+    -->
+  <main>
+    <!--
+    ========================================================
+                                SEARCH FORM
+    ========================================================
+    -->
+    <section class="well1 subscribe" style="background-color: #54bf83">
       <div class="container">
         <div class="row">
-          <div class="col-sm-6 col-md-7">
-            <div class="brand">
-              <h1 class="brand_name"><a href="landing_55112">Usmilitia<br/> Pride</a></h1>
-              <p class="brand_slogan">United States Marine Corps</p>
-            </div>
+          <div class="col-md-2">
+            <div class="fa-search fa-5x color-light"></div>
           </div>
-          <div class="col-sm-6 col-md-5 contact-form">
-            <h3>Serving<br/> our country</h3>
-            <form method="post" action="{% url 'core:user_login' %}" class="mailform">
-              {% csrf_token %}
-              {% if errors %}
-                {% for err in errors %}
-                  <small class="text-danger">{{ err }}</small>
-                {% endfor %}
-              {% endif %}
-              <input type="hidden" name="form-type" value="contact">
+          <div class="col-md-5">
+            <h3 class="text-light">
+              You want to find out more about a soldier?...
+            </h3>
+          </div>
+          <div class="col-md-5">
+            <form method="post" action="" class="mailform">
               <fieldset>
                 <label>
-                  <input type="text" name="military_id" placeholder="Military Id" data-constraints="@NotEmpty">
-                </label>
-                <label>
-                  <input type="password" name="password" placeholder="Password" data-constraints="@Password @NotEmpty">
+                  <input
+                    type="text"
+                    name=""
+                    placeholder="search soldier"
+                    data-constraints="@NotEmpty"
+                  />
                 </label>
                 <div class="mfControls">
-                  <button type="submit" class="btn">Login</button>
+                  <button type="submit">Search</button>
                 </div>
               </fieldset>
             </form>
           </div>
         </div>
       </div>
-    </header>
-    <!-- 
-    ========================================================
-                                CONTENT
-    ========================================================
-    -->
-    <!-- <main> -->
-      <!-- <section class="well bg-image mobile-center">
+    </section>
+
+    <section class="well bg-image">
+      <h2 class="center primary text-uppercase">Applications</h2>
+
+      <section class="container my-5">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-md-4 my-3">
+            <div class="card" style="background-color: #54bf83">
+              <div class="card-body">
+                <h5 class="text-center">Application for Replacement</h5>
+              </div>
+
+              <div class="card-footer">
+                <a
+                  href="{% url 'core:user_replacement_create' %}"
+                  class="nav-link text-center border w-25 mx-auto radius-3"
+                  style="color: #ffffff"
+                  >Apply</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 my-3">
+            <div class="card" style="background-color: #54bf83">
+              <div class="card-body">
+                <h5 class="text-center">Application for Retirement</h5>
+              </div>
+
+              <div class="card-footer">
+                <a
+                  href="{% url 'core:user_retirement_create' %}"
+                  class="nav-link text-center border w-25 mx-auto radius-3"
+                  style="color: #ffffff"
+                  >Apply</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 my-3">
+            <div class="card" style="background-color: #54bf83">
+              <div class="card-body">
+                <h5 class="text-center">Application for Internet Card</h5>
+              </div>
+
+              <div class="card-footer">
+                <a
+                  href="{% url 'core:user_git_share' %}"
+                  class="nav-link text-center border w-25 mx-auto radius-3"
+                  style="color: #ffffff"
+                  >Apply</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <!-- <section class="well bg-image mobile-center">
         <div class="container">
           <div class="row">
             <div class="col-md-10">
@@ -87,7 +213,8 @@
           </div>
         </div>
       </section> -->
-      <!-- <section data-url="{% static 'images/us_1.webp' %}" data-mobile="true" class="well parallax how_to_join">
+
+    <!-- <section data-url="{% static 'images/us_1.webp' %}" data-mobile="true" class="well parallax how_to_join">
         <div class="container">
           <h2 class="center">How to Join</h2>
           <ul class="index-list row">
@@ -110,32 +237,95 @@
           </ul>
         </div>
       </section> -->
-      <!-- <section class="well bg-image">
-        <div class="container">
-          <h2 class="center primary">Latest News</h2>
-          <div class="row off1">
-            <article class="post col-md-4">
-              <time datetime="2015-07-04">04<span>July</span></time>
-              <h4>Dolore<span>Ipsum Come</span></h4>
-              <h5><a href="landing_55112#">Mes cuml dia sed inenias ingerto ipsum Mes cuml dia sed.</a></h5>
-              <p>Dolore cuml dia sed in lacus ut eniascet inger es sitet amet eismod ictor ut ligulate ameti dapib ticdu nt mtsent dolor lte comme. Mes cumldi sed inertio.</p>
-            </article>
-            <article class="post col-md-4">
-              <time datetime="2015-07-05">05<span>July</span></time>
-              <h4>Dolore<span>Ipsum Come</span></h4>
-              <h5><a href="landing_55112#">Mes cuml dia sed inenias ingerto ipsum Mes cuml dia sed.</a></h5>
-              <p>Dolore cuml dia sed in lacus ut eniascet inger es sitet amet eismod ictor ut ligulate ameti dapib ticdu nt mtsent dolor lte comme. Mes cumldi sed inertio.</p>
-            </article>
-            <article class="post col-md-4">
-              <time datetime="2015-07-06">06<span>July</span></time>
-              <h4>Dolore<span>Ipsum Come</span></h4>
-              <h5><a href="landing_55112#">Mes cuml dia sed inenias ingerto ipsum Mes cuml dia sed.</a></h5>
-              <p>Dolore cuml dia sed in lacus ut eniascet inger es sitet amet eismod ictor ut ligulate ameti dapib ticdu nt mtsent dolor lte comme. Mes cumldi sed inertio.</p>
-            </article>
-          </div>
+
+    <!-- <section class="well bg-image"> -->
+      <div class="container my-5">
+        <h2 class="center primary">Latest News</h2>
+        <div class="row off1 mt-5">
+          <article class="post col-md-3">
+            <time datetime="2015-07-04">
+              <script>
+                document.write(new Date().getDate());
+              </script>
+              <span>Oct</span>
+            </time>
+            <h4 style="font-size: 40px; line-height: 1">
+              <span
+                >We Need to Learn More About These Wounds that Change Vets'
+                Lives</span
+              >
+            </h4>
+            <p>
+              One of the most intimate and potentially life-changing wounds
+              sustained by combat veterans is among those we know the least
+              about.
+            </p>
+          </article>
+
+          <article class="post col-md-3">
+            <time datetime="2015-07-04">
+              <script>
+                document.write(new Date().getDate());
+              </script>
+              <span>Oct</span>
+            </time>
+            <h4 style="font-size: 40px; line-height: 1">
+              <span>Can Congress Save the Marine Corps from Itself?</span>
+            </h4>
+            <p>
+              In a recent speech to the Marine Corps Association, the current
+              commandant, Gen. David Berger, congratulated his Marines on having
+              an open and honest debate concerning his Force Design (FD) 2030
+              initiative...
+            </p>
+          </article>
+
+          <article class="post col-md-3">
+            <time datetime="2015-07-04">
+              <script>
+                document.write(new Date().getDate());
+              </script>
+              <span>Oct</span>
+            </time>
+            <h4 style="font-size: 40px; line-height: 1">
+              <span
+                >North Korea’s New Law Is Far From the Only Nuclear Threat the
+                World Faces</span
+              >
+            </h4>
+            <p>
+              North Korea passed a law this month putting into effect Kim Jong
+              Un’s decision that in case he is incapacitated by foreign hands,
+              the country will “automatically and immediately” launch a nuclear
+              retaliation...
+            </p>
+          </article>
+
+          <article class="post col-md-3">
+            <time datetime="2015-07-04">
+              <script>
+                document.write(new Date().getDate());
+              </script>
+              <span>Oct</span>
+            </time>
+            <h4 style="font-size: 40px; line-height: 1">
+              <span
+                >North Korea’s New Law Is Far From the Only Nuclear Threat the
+                World Faces</span
+              >
+            </h4>
+            <p>
+              North Korea passed a law this month putting into effect Kim Jong
+              Un’s decision that in case he is incapacitated by foreign hands,
+              the country will “automatically and immediately” launch a nuclear
+              retaliation...
+            </p>
+          </article>
         </div>
-      </section> -->
-      <!-- <section data-url="images/parallax2.jpg" data-mobile="true" class="well parallax">
+      </div>
+    <!-- </section> -->
+
+    <!-- <section data-url="{% static 'images/index/parallax2.webp' %}" data-mobile="true" class="well parallax" style="background-image: '/static/images/index/parallax2.webp'">
         <div class="container">
           <div class="row">
             <div class="col-md-10">
@@ -145,7 +335,8 @@
           </div>
         </div>
       </section> -->
-      <!-- <section class="map">
+
+    <!-- <section class="map">
         <div id="google-map" class="map_model"></div>
         <ul class="map_locations">
           <li data-x="-73.9874068" data-y="40.643180">
@@ -153,76 +344,61 @@
           </li>
         </ul>
       </section> -->
-      <!-- <section class="well1 bg-primary subscribe">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-2">
-              <div class="fa-envelope-o"></div>
-            </div>
-            <div class="col-md-5">
-              <h3>Subscribe to<br/> our Newsletter</h3>
-            </div>
-            <div class="col-md-5">
-              <form method="post" action="https://livedemo00.template-help.com/landing_55112/bat/rd-mailform.php" class="mailform">
-                <input type="hidden" name="form-type" value="contact">
-                <fieldset>
-                  <label>
-                    <input type="text" name="email" placeholder="your email address" data-constraints="@Email @NotEmpty">
-                  </label>
-                  <div class="mfControls">
-                    <button type="submit">Subscribe</button>
-                  </div>
-                </fieldset>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section> -->
-    <!-- </main> -->
-    <!--
+  </main>
+  <!--
     ========================================================
                                 FOOTER
     ========================================================
     -->
-    <!-- <footer>
-      <div class="container">
-        <div class="row">
-          <div class="col-xs-12 col-sm-6 col-md-6">
-            <div class="brand">
-              <h1 class="brand_name"><a href="landing_55112">Special<br/> Force</a></h1>
-              <p class="brand_slogan">United States Marine Corps</p>
-            </div>
-          </div>
-          <div class="col-xs-12 col-sm-6 col-md-4">
-            <div class="copyright"><span class="primary">Special Force</span> © <span id="copyright-year"></span> | All Rights Reserved
-            </div>
-          </div>
-          <div class="col-xs-12 col-sm-6 col-md-2">
-            <ul class="list">
-              <li><a href="landing_55112#" class="fa-instagram"></a></li>
-              <li><a href="landing_55112#" class="fa-twitter"></a></li>
-              <li><a href="landing_55112#" class="fa-facebook"></a></li>
-            </ul>
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-6">
+          <div class="brand">
+            <h1 class="brand_name">
+              <a href="#"
+                >Special<br />
+                Force</a
+              >
+            </h1>
+            <p class="brand_slogan">United States Military</p>
           </div>
         </div>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+          <div class="copyright">
+            <span class="primary">Usmilitia</span> ©
+            <span id="copyright-year"></span> | All Rights Reserved
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-2">
+          <ul class="list">
+            <li><a href="#" class="fa-instagram"></a></li>
+            <li><a href="#" class="fa-twitter"></a></li>
+            <li><a href="#" class="fa-facebook"></a></li>
+          </ul>
+        </div>
       </div>
-    </footer> -->
-  </div>
-{% endblock content %} 
-    
-    
-{% block js_block %}
+    </div>
+  </footer>
+</div>
+{% endblock content %} {% block js_block %}
 <script src="https://livedemo00.template-help.com/landing_55112/js/jquery.js"></script>
 <script src="https://livedemo00.template-help.com/landing_55112/js/jquery-migrate-1.2.1.js"></script>
 <script src="https://livedemo00.template-help.com/landing_55112/js/device.min.js"></script>
 <script src="https://livedemo00.template-help.com/landing_55112/js/script.js"></script>
 <script type="text/javascript">
- var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-7078796-5']);
-  _gaq.push(['_trackPageview']);
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'https://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();</script>
+  var _gaq = _gaq || [];
+  _gaq.push(["_setAccount", "UA-7078796-5"]);
+  _gaq.push(["_trackPageview"]);
+  (function () {
+    var ga = document.createElement("script");
+    ga.type = "text/javascript";
+    ga.async = true;
+    ga.src =
+      ("https:" == document.location.protocol ? "https://ssl" : "https://www") +
+      ".google-analytics.com/ga.js";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(ga, s);
+  })();
+</script>
 {% endblock js_block %}

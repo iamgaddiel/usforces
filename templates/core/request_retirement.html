@@ -1,0 +1,127 @@
+{% extends 'core/request_base.html' %}
+{% load widget_tweaks %}
+
+{%  block form_title %}
+<title>Usmilitia | Retirement Form </title>
+{% endblock %}
+
+{% block form_header %}
+<h3 class="text-center">Retirement Form</h3>
+{% endblock form_header %}
+
+{% block form %}
+
+<form class="my-5" method="post"  enctype="multipart/form-data">
+  {% csrf_token %}
+  
+  {% if form.errors %}
+    {% for error in form.errors %}
+    <small class="text-danger">{{ errors }}</small>
+    {% endfor %}
+  {% endif %}
+
+    <div class="row">
+      <div class="col-md-6 form-group mb-3">
+        <label for="" class="col-form-label">{{ form.first_name.label_tag }} *</label>
+        {{   form.first_name|attr:"class:form-control"|attr:"placeholder:Enter First Name"|attr:"type:text" }}
+      </div>
+      <div class="col-md-6 form-group mb-3">
+        <label for="" class="col-form-label">{{ form.last_name.label_tag }} *</label>
+        {{   form.last_name|attr:"class:form-control"|attr:"placeholder:Enter Last name"|attr:"type:text" }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 form-group mb-3">
+        <label for="" class="col-form-label">{{ form.email.label_tag }} *</label>
+        {{   form.email|attr:"class:form-control"|attr:"placeholder:Enter email"|attr:"type:email" }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 form-group mb-3">
+        <label for="" class="col-form-label">{{ form.zip_code.label_tag }} *</label>
+        {{   form.zip_code|attr:"class:form-control"|attr:"placeholder:Enter your zipcode"|attr:"type:text" }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 form-group mb-3">
+        <label for="" class="col-form-label">{{ form.address.label_tag }} *</label>
+        {{   form.address|attr:"class:form-control"|attr:"placeholder:Enter your address"|attr:"type:text" }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 form-group mb-3">
+        <label for="budget" class="col-form-label">{{ form.city.label_tag }} </label>
+        {{   form.city|attr:"class:form-control"|attr:"type:text" }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 form-group mb-3">
+        <label for="budget" class="col-form-label">{{ form.region.label_tag }} </label>
+        {{   form.region|attr:"class:form-control"|attr:"type:text" }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 form-group mb-3">
+        <label for="budget" class="col-form-label">{{ form.phone_number.label_tag }} </label>
+        {{   form.phone_number|attr:"class:form-control"|attr:"type:phone" }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 form-group mb-3">
+        <label for="budget" class="col-form-label">{{ form.ceremony_date.label_tag }} </label>
+        {{   form.ceremony_date|attr:"class:form-control"|attr:"type:date" }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 form-group mb-3">
+        <label for="budget" class="col-form-label">{{ form.rank.label_tag }} </label>
+        {{   form.rank|attr:"class:form-control"|attr:"type:text" }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 form-group mb-3">
+        <label for="budget" class="col-form-label">{{ form.branch_of_service.label_tag }} </label>
+        {{   form.branch_of_service|attr:"class:form-control"|attr:"type:text" }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 form-group mb-3">
+        <label for="budget" class="col-form-label">{{ form.years_of_service.label_tag }} </label>
+        {{   form.years_of_service|attr:"class:form-control"|attr:"type:number"|attr:"min:1" }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 form-group mb-3">
+        <label for="budget" class="col-form-label">{{ form.date_of_retirement.label_tag }} </label>
+        {{   form.date_of_retirement|attr:"class:form-control"|attr:"type:date" }}
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-12 form-group mb-3">
+        <label for="budget" class="col-form-label">{{ form.additional_information.label_tag }} </label>
+        {{   form.additional_information|attr:"class:form-control"|attr:"type:date" }}
+      </div>
+    </div>
+
+
+    <div class="row justify-content-center">
+      <div class="col-md-5 form-group text-center">
+        <input type="submit" value="Apply" class="btn btn-block btn-success rounded-0 py-2 px-4">
+        <span class="submitting"></span>
+      </div>
+    </div>
+  </form>
+{% endblock form %}

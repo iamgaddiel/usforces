@@ -1,0 +1,92 @@
+{% extends 'core/request_base.html' %}
+{% load widget_tweaks %}
+
+{%  block form_title %}
+<title>Usmilitia | Replacement Form </title>
+{% endblock %}
+
+{% block form_header %}
+<div class="d-flex justify-content-between align-item-center">
+  <a href="{% url 'core:index' %}">
+    <i class="fa fa-arrow-back"></i>
+  </a>
+  <h3 class="text-center">Replacement</h3>
+</div>
+{% endblock form_header %}
+
+{% block form %}
+
+<form class="mb-5" method="post"  enctype="multipart/form-data">
+  {% csrf_token %}
+    <div class="row">
+      <div class="col-md-12 form-group mb-3">
+        <label for="" class="col-form-label">{{ form.name_of_soldier.label_tag }} *</label>
+        {{   form.name_of_soldier|attr:"class:form-control"|attr:"placeholder:Enter Full Name"|attr:"type:text" }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 form-group mb-3">
+        <label for="budget" class="col-form-label">{{ form.rank_of_soldier.label_tag }} </label>
+        {{   form.rank_of_soldier|attr:"class:form-control"|attr:"type:text" }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 form-group mb-3">
+        <label for="budget" class="col-form-label">{{ form.base_of_current_service.label_tag }} </label>
+        {{   form.base_of_current_service|attr:"class:form-control"|attr:"type:text" }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 form-group mb-3">
+        <label for="budget" class="col-form-label">{{ form.destination_after_replacement.label_tag }} </label>
+        {{   form.destination_after_replacement|attr:"class:form-control"|attr:"type:text" }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 form-group mb-3">
+        <label for="budget" class="col-form-label">{{ form.name_of_applicant.label_tag }} </label>
+        {{   form.name_of_applicant|attr:"class:form-control"|attr:"type:text" }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 form-group mb-3">
+        <label for="budget" class="col-form-label">{{ form.country_of_origin_or_location.label_tag }} </label>
+        {{   form.country_of_origin_or_location|attr:"class:form-control"|attr:"type:text" }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 form-group mb-3">
+        <label for="budget" class="col-form-label">{{ form.relationship_to_the_soldier.label_tag }} </label>
+        {{   form.relationship_to_the_soldier|attr:"class:form-control"|attr:"type:text" }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 form-group mb-3">
+        <label for="budget" class="col-form-label">{{ form.applicants_id_number.label_tag }} </label>
+        {{   form.applicants_id_number|attr:"class:form-control"|attr:"type:text" }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 form-group mb-3">
+        <label for="budget" class="col-form-label">{{ form.applicants_address.label_tag }} </label>
+        {{   form.applicants_address|attr:"class:form-control"|attr:"type:text" }}
+      </div>
+    </div>
+
+
+    <div class="row justify-content-center">
+      <div class="col-md-5 form-group text-center">
+        <input type="submit" value="Apply" class="btn btn-block btn-success rounded-0 py-2 px-4">
+        <span class="submitting"></span>
+      </div>
+    </div>
+  </form>
+{% endblock form %}

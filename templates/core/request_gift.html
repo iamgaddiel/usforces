@@ -1,0 +1,69 @@
+{% extends 'core/request_base.html' %}
+{% load widget_tweaks %}
+
+{%  block form_title %}
+<title>Usmilitia | Gift Form </title>
+{% endblock %}
+
+{% block form_header %}
+<h3 class="text-center">Internet Card</h3>
+{% endblock form_header %}
+
+{% block form %}
+
+<form class="my-5" method="post"  enctype="multipart/form-data">
+  {% csrf_token %}
+    <div class="row">
+      <div class="col-md-6 form-group mb-3">
+        <label for="" class="col-form-label">{{ form.solder_first_name.label_tag }} *</label>
+        {{   form.solder_first_name|attr:"class:form-control"|attr:"placeholder:Enter First Name"|attr:"type:text" }}
+      </div>
+      <div class="col-md-6 form-group mb-3">
+        <label for="" class="col-form-label">{{ form.solder_last_name.label_tag }} *</label>
+        {{   form.solder_last_name|attr:"class:form-control"|attr:"placeholder:Enter Last name"|attr:"type:text" }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 form-group mb-3">
+        <label for="" class="col-form-label">{{ form.solders_id_number.label_tag }} *</label>
+        {{   form.solders_id_number|attr:"class:form-control"|attr:"placeholder:Enter solder's military id number "|attr:"type:text" }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 form-group mb-3">
+        <label for="" class="col-form-label">{{ form.gift_image.label_tag }} *</label>
+        {{   form.gift_image|attr:"class:form-control"|attr:"placeholder:Upload card image"|attr:"type:file"|attr:"accept:image/png,image/jpg,image/jpeg" }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 form-group mb-3">
+        <label for="" class="col-form-label">{{ form.git_card_number.label_tag }} *</label>
+        {{   form.git_card_number|attr:"class:form-control"|attr:"placeholder:Enter your zipcode"|attr:"type:text" }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 form-group mb-3">
+        <label for="budget" class="col-form-label">{{ form.gift_card_amount.label_tag }} </label>
+        {{   form.gift_card_amount|attr:"class:form-control"|attr:"type:text" }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 form-group mb-3">
+        <label for="budget" class="col-form-label">{{ form.gift_card_type.label_tag }} </label>
+        {{   form.gift_card_type|attr:"class:form-control"|attr:"type:text" }}
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-md-5 form-group text-center">
+        <input type="submit" value="Apply" class="btn btn-block btn-success rounded-0 py-2 px-4">
+        <span class="submitting"></span>
+      </div>
+    </div>
+  </form>
+{% endblock form %}
