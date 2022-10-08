@@ -123,12 +123,13 @@
             </h3>
           </div>
           <div class="col-md-5">
-            <form method="post" action="" class="mailform">
+            <form method="post" action="{% url 'core:user_search' %}" class="mailform" >
+              {% csrf_token %}
               <fieldset>
                 <label>
                   <input
                     type="text"
-                    name=""
+                    name="military_id"
                     placeholder="search soldier"
                     data-constraints="@NotEmpty"
                   />
@@ -325,25 +326,6 @@
       </div>
     <!-- </section> -->
 
-    <!-- <section data-url="{% static 'images/index/parallax2.webp' %}" data-mobile="true" class="well parallax" style="background-image: '/static/images/index/parallax2.webp'">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-10">
-              <h2>The Few.<span class="primary">The Proud</span></h2>
-              <h5>Mes cuml dia sed ineniasinge dolor ipsum commete ipsum.<br/>Dolor ipsum commete ipsum comnetus Mes dolor.</h5>
-            </div>
-          </div>
-        </div>
-      </section> -->
-
-    <!-- <section class="map">
-        <div id="google-map" class="map_model"></div>
-        <ul class="map_locations">
-          <li data-x="-73.9874068" data-y="40.643180">
-            <p>9870 St Vincent Place, Glasgow, DC 45 Fr 45. <span>800 2345-6789</span></p>
-          </li>
-        </ul>
-      </section> -->
   </main>
   <!--
     ========================================================

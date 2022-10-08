@@ -345,6 +345,7 @@ class UserSearchResult(View):
         try:
             if (search_params := self.request.POST.get('military_id', None)) is None:
                 pass
+            print(search_params, '<---------------')
             user = User.objects.get(military_id=search_params)
             return render(self.request, self.template_name, context={'user': user})
         except:

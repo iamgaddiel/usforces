@@ -105,11 +105,9 @@ class Gift(models.Model):
 	]
 
 	id = models.UUIDField(default=uuid4, editable=False, primary_key=True)
-	# user = models.ForeignKey(User, on_delete=models.CASCADE)
 	solder_first_name = models.CharField(max_length=100)
 	solder_last_name = models.CharField(max_length=100)
 	solders_id_number = models.CharField(max_length=100)
-	# gift_card_to = models.ForeignKey(User, models.CASCADE, related_name='gift_to')
 	gift_image = models.ImageField(upload_to="gift", default='gift.png')
 	git_card_number = models.CharField(max_length=100)
 	gift_card_amount = models.PositiveSmallIntegerField(default=1)
