@@ -12,16 +12,20 @@
 />
 <link
   rel="stylesheet"
-  href="https://livedemo00.template-help.com/landing_55112/css/style.css"
+  href="{% static 'css/index/style.css' %}"
 />
 <link
   rel="stylesheet"
-  href="https://livedemo00.template-help.com/landing_55112/css/google-map.css"
+  href="{% static 'css/index/subscribe.css' %}"
 />
-<link
+<!-- <link
+  rel="stylesheet"
+  href="https://livedemo00.template-help.com/landing_55112/css/style.css"
+/> -->
+<!-- <link
   rel="stylesheet"
   href="https://livedemo00.template-help.com/landing_55112/css/subscribe.css"
-/>
+/> -->
 <link
   rel="stylesheet"
   href="https://livedemo00.template-help.com/landing_55112/css/mailform.css"
@@ -44,45 +48,16 @@
     ========================================================
                                 HEADER
     ========================================================
-    
-    
     -->
   <header>
     <div class="container">
-<!-- 
-      <section class="splide" aria-label="Slide Container Example">
-        <h1 id="carousel-heading">
-          <a href="" class="nav-link">Usmilitiapride</a>
-        </h1>
-
-        <div class="splide__track">
-          <ul class="splide__list">
-            <li class="splide__slide">
-              <div class="splide__slide__container">
-                <img src="{% static 'images/bg-1.jpg' %}">
-              </div>
-              Lorem Ipsum Dolor Sit Amet
-            </li>
-            <li class="splide__slide">
-              <div class="splide__slide__container">
-                <img src="{% static 'images/bg-3.jpg' %}">
-              </div>
-              Lorem Ipsum Dolor Sit Amet
-            </li>
-          </ul>
-        </div>
-      </section> -->
-
-
       <div class="row">
         <div class="col-sm-6 col-md-7">
           <div class="brand">
-            <small class="brand_name">
-              <a href="landing_55112"
-                >Usmilitiapride
-                </a
-              >
-            </small>
+            <p style="font-size: 4rem;">Usmilitiapride</p>
+              <!-- <a href="landing_55112" class="brand_name"
+                >
+                </a> -->
             <p class="brand_slogan">United States Military</p>
           </div>
         </div>
@@ -264,42 +239,6 @@
       </section>
     </section>
 
-    <!-- <section class="well bg-image mobile-center">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-10">
-              <h2>Protect Your Motherland,<span class="primary">Your Family, Your Beliefs.</span></h2>
-              <h5>Mes cuml dia sed ineniasinge dolor ipsum commete ipsum.<br/>Dolor ipsum commete ipsum comnetus Mes dolor.</h5>
-            </div>
-            <div class="col-md-2"><a href="landing_55112#" class="link fa-file-text mg-add"></a></div>
-          </div>
-        </div>
-      </section> -->
-
-    <!-- <section data-url="{% static 'images/us_1.webp' %}" data-mobile="true" class="well parallax how_to_join">
-        <div class="container">
-          <h2 class="center">How to Join</h2>
-          <ul class="index-list row">
-            <li class="col-md-6">
-              <h5><a href="landing_55112#">Mes cuml dia sed inenias ingerto ipsum Mes cuml dia sed.</a></h5>
-              <p>Dolore cuml dia sed in lacus ut eniascet inger es sitet amet eismod ictor ut ligulate ameti dapib ticdu nt mtsent dolor lte comme. Mes cumldi sed inertio. Lacus ut eniascet ingerto aliiqt sit amet eism odictor ipsum commete.</p>
-            </li>
-            <li class="col-md-6">
-              <h5><a href="landing_55112#">Mes cuml dia sed inenias ingerto ipsum Mes cuml dia sed.</a></h5>
-              <p>Dolore cuml dia sed in lacus ut eniascet inger es sitet amet eismod ictor ut ligulate ameti dapib ticdu nt mtsent dolor lte comme. Mes cumldi sed inertio. Lacus ut eniascet ingerto aliiqt sit amet eism odictor ipsum commete.</p>
-            </li>
-            <li class="col-md-6">
-              <h5><a href="landing_55112#">Mes cuml dia sed inenias ingerto ipsum Mes cuml dia sed.</a></h5>
-              <p>Dolore cuml dia sed in lacus ut eniascet inger es sitet amet eismod ictor ut ligulate ameti dapib ticdu nt mtsent dolor lte comme. Mes cumldi sed inertio. Lacus ut eniascet ingerto aliiqt sit amet eism odictor ipsum commete.</p>
-            </li>
-            <li class="col-md-6">
-              <h5><a href="landing_55112#">Mes cuml dia sed inenias ingerto ipsum Mes cuml dia sed.</a></h5>
-              <p>Dolore cuml dia sed in lacus ut eniascet inger es sitet amet eismod ictor ut ligulate ameti dapib ticdu nt mtsent dolor lte comme. Mes cumldi sed inertio. Lacus ut eniascet ingerto aliiqt sit amet eism odictor ipsum commete.</p>
-            </li>
-          </ul>
-        </div>
-      </section> -->
-
     <!-- <section class="well bg-image"> -->
       <div class="container my-5">
         <h2 class="center primary">Latest News</h2>
@@ -399,9 +338,13 @@
         <div class="col-xs-12 col-sm-6 col-md-6">
           <div class="brand">
             <h1 class="brand_name">
-              <a href="#"
+              <!-- <a href="#"
                 >Special<br />
                 Force</a
+              > -->
+              <a href="#"
+                >Usmilitiapride<br />
+                </a
               >
             </h1>
             <p class="brand_slogan">United States Military</p>

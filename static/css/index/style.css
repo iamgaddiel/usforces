@@ -171,15 +171,16 @@ h5+p {
 
 .brand:before {
     position: absolute;
-    top: 13px;
-    left: 0;
+    top: -200px;
+    left: 50%;
     content: "";
     display: inline-block;
     width: 169px;
     height: 169px;
     text-align: center;
     color: #fff;
-    background: #54bf83 url(../images/index/logo.webp);
+    background: #54bf83 url(/static/images/military-rank.png);
+    /* background: #54bf83 url(../images/index/logo.webp); */
     background-size: contain;
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
@@ -203,7 +204,7 @@ h5+p {
 }
 
 .bg-image {
-    background: url(../images/index/page-1_bgimg02.webp);
+    background: url(/static/images/index/page-1_bgimg02.webp);
     background-size: cover;
     color: #fff
 }
@@ -536,9 +537,10 @@ h5+p {
 header {
     padding-top: 174px;
     padding-bottom: 183px;
-    background: url(../images/bg-2.jpg) center no-repeat;
+    background: url('/static/images/bg-3.jpg') center no-repeat;
     /* background: url(../images/page-1_bgimg01.jpg) center no-repeat; */
     background-size: cover;
+    background-position: center;
     color: #fff
 }
 
@@ -629,7 +631,7 @@ main h5 br {
 footer {
     padding-top: 212px;
     padding-bottom: 176px;
-    background: url(../images/page-1_bgimg02.jpg) center no-repeat;
+    background: url(/static/images/bg-1.jpg) center no-repeat;
     background-size: cover
 }
 
