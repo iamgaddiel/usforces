@@ -1,0 +1,55 @@
+{% extends 'core/request_base.html' %}
+{%  load static %}
+{% load widget_tweaks %}
+
+{%  block form_title %}
+<title>Usmilitia | Gift Form </title>
+{% endblock %}
+
+{% block form_header %}
+<h3 class="text-center">Check Status</h3>
+{% endblock form_header %}
+
+{% block form %}
+<style>
+  .result_image{
+    width: 100px;
+    height: 100px;
+    margin: auto;
+  }
+  .result_image img{
+    width: 100%;
+    height: auto;
+  }
+</style>
+<form class="my-5" method="post"  enctype="multipart/form-data">
+  {% csrf_token %}
+    <div class="row">
+      <div class="col-md-12 form-group mb-3">
+        <label for="" class="col-form-label">{{ form.code.label_tag }} *</label>
+        {{   form.code|attr:"class:form-control"|attr:"placeholder:78b29d7f-90d9-4b71-8079-06402359806d"|attr:"type:text" }}
+      </div>
+      <div class="col-md-12 form-group mb-3">
+        <label for="" class="col-form-label">{{ form.category.label_tag }} *</label>
+        {{   form.category|attr:"class:form-control"|attr:"placeholder:Enter Last name"|attr:"type:text" }}
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-md-5 form-group text-center">
+        <input type="submit" value="Check Status" class="btn btn-block btn-success rounded-0 py-2 px-4">
+        <span class="submitting"></span>
+      </div>
+    </div>
+
+    {% if obj == ""  %}
+        <h3 class="text-muted text-center">{{ obj }}</h3>
+    {% elif obj.is_approved %}
+        <div class="result_image"><img src="{% static 'images/7efs.gif' %}" alt=""></div>
+    {% elif not obj.is_approved  %}
+      <h3 class="text-muted text-center">Not yet approved</h3>
+    {% elif obj is None %}
+        <h3 class="text-muted text-center">Invalid code entered</h3>
+    {% endif %}
+  </form>
+{% endblock form %}

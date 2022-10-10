@@ -77,3 +77,12 @@ class UserLoginForm(forms.Form):
     password = forms.PasswordInput()
 
 
+class CheckStatusForm(forms.Form):
+    CATEGORIES =(
+        ("Vacation", "Vacation"),
+        ("Retirement", "Retirement"),
+        ("Replacement", "Replacement"),
+        ("Gift", "Gift"),
+    )
+    code = forms.CharField(max_length=50, required=True)
+    category = forms.ChoiceField(choices=CATEGORIES)

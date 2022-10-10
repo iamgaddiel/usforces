@@ -23,7 +23,7 @@ from django.urls import reverse_lazy
 from django.shortcuts import redirect, resolve_url
 from django.core import serializers
 
-from core.forms import CustomUserCreationForm, GiftCreationForm, ReplacementForm, RetirementForm, UserCreationForm, UserLoginForm
+from core.forms import CheckStatusForm, CustomUserCreationForm, GiftCreationForm, ReplacementForm, RetirementForm, UserCreationForm, UserLoginForm
 from core.models import Gift, Replacement, Retirement, User
 from core.utils import get_random_string
 
@@ -34,6 +34,45 @@ def index(request):
     return render(request, template_name)
 
 
+def search_code_status(request):
+    template_name = "core/request_check_status.html"
+    context = {'form': CheckStatusForm, "obj": ""}
+
+    if request.method == "POST":
+        code = request.POST.get('code', None)
+        category = request.POST.get('category', None)
+
+        if (code and category) is None:
+            pass
+
+        match(category):
+            case "replacement":
+                try:
+                    obj = Replacement.objects.get(id=code)
+                    return render(request, template_name, context={'obj': obj})
+                except Replacement.DoesNotExist:
+                    return render(request, template_name, context={'obj': None})
+
+            case "retirement":
+                try:
+                    obj = Retirement.objects.get(id=code)
+                    return render(request, template_name, context={'obj': obj})
+                except Retirement.DoesNotExist:
+                    return render(request, template_name, context={'obj': None})
+
+            # case "vacation":
+            #      try:
+            #         obj = Replacement.objects.get(id=code)
+            #         return render(request, template_name, context={'obj': obj})
+            #     except Replacement.DoesNotExist:
+            #         return render(request, template_name, context={'obj': None})
+
+    return render(request, template_name, context)
+
+
+# ---------------------------------------------------------
+# ----------------- [ Admin User Section ] ----------------  
+# ---------------------------------------------------------
 class AdminLoginView(LoginView):
     template_name = 'core/admin_login.html'
 
@@ -59,12 +98,6 @@ class AdminLoginView(LoginView):
         return super().post(request, *args, **kwargs)
 
 
-
-
-
-# ---------------------------------------------------------
-# ----------------- [ Admin User Section ] ----------------  
-# ---------------------------------------------------------
 def admin_logout(request):
     logout(request)
     return redirect('core:admin_login')
@@ -345,7 +378,6 @@ class UserSearchResult(View):
         try:
             if (search_params := self.request.POST.get('military_id', None)) is None:
                 pass
-            print(search_params, '<---------------')
             user = User.objects.get(military_id=search_params)
             return render(self.request, self.template_name, context={'user': user})
         except:

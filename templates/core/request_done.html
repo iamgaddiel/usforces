@@ -1,9 +1,9 @@
-<a href="https://colorlib.com/wp/templates/"
-  ><img
-    src="https://colorlib.com/wp/wp-content/uploads/sites/2/colorlib-push-logo.png"
+{% load static %}
+<img
+    src="{% static 'images/7efs.gif' %}"
     alt="Colorlib logo"
-/></a>
-<h1 style="text-align: center">Your application as been sent successfully!</h1>
+/>
+<h1 style="text-align: center">Your application as been sent successfully! <br> You'll receive a mail on approval of your request</h1>
 <p style="text-align: center">
   Go back home
   <strong><a href="{% url 'core:index' %}">Home</a></strong>.

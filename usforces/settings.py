@@ -168,3 +168,10 @@ LOGIN_REDIRECT_URL = 'core:admin_dashboard'
 # LOGIN_REDIRECT_URL = 'core:admin_dashboard'
 
 LOGIN_URL = 'core:admin_login'
+
+
+# EMAIL
+EMAIL_HOST_USER = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = env('EMAIL_PORT')
+EMAIL_USE_SSL = True

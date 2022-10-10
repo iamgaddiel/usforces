@@ -26,6 +26,7 @@ from .views import (
     AdminUserDelete,
     AdminUserDetail,
     admin_logout,
+    search_code_status,
     user_logout,
     user_login,
     UserLogoutView,
@@ -200,5 +201,10 @@ urlpatterns = [
         'request/done/',
         RequestDone.as_view(),
         name='request_done'
+    ),
+    path(
+        'request/check/',
+        search_code_status,
+        name='request_check'
     ),
 ]
