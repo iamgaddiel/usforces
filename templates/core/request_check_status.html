@@ -13,8 +13,8 @@
 {% block form %}
 <style>
   .result_image{
-    width: 100px;
-    height: 100px;
+    width: 250px;
+    height: 250px;
     margin: auto;
   }
   .result_image img{
@@ -27,11 +27,11 @@
     <div class="row">
       <div class="col-md-12 form-group mb-3">
         <label for="" class="col-form-label">{{ form.code.label_tag }} *</label>
-        {{   form.code|attr:"class:form-control"|attr:"placeholder:78b29d7f-90d9-4b71-8079-06402359806d"|attr:"type:text" }}
+        {{   form.code|attr:"class:form-control"|attr:"placeholder:78b29d7f-90d9-4b71-8079-06402359806d"|attr:"type:text"|attr:"required:true" }}
       </div>
       <div class="col-md-12 form-group mb-3">
         <label for="" class="col-form-label">{{ form.category.label_tag }} *</label>
-        {{   form.category|attr:"class:form-control"|attr:"placeholder:Enter Last name"|attr:"type:text" }}
+        {{   form.category|attr:"class:form-control"|attr:"type:text" }}
       </div>
     </div>
 

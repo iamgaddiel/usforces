@@ -536,7 +536,8 @@ h5+p {
 header {
     padding-top: 174px;
     padding-bottom: 183px;
-    background: url(../images/page-1_bgimg01.jpg) center no-repeat;
+    background: url(../images/bg-2.jpg) center no-repeat;
+    /* background: url(../images/page-1_bgimg01.jpg) center no-repeat; */
     background-size: cover;
     color: #fff
 }

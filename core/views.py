@@ -39,33 +39,36 @@ def search_code_status(request):
     context = {'form': CheckStatusForm, "obj": ""}
 
     if request.method == "POST":
-        code = request.POST.get('code', None)
-        category = request.POST.get('category', None)
+        
 
-        if (code and category) is None:
-            pass
+        if (form :=  CheckStatusForm(request.POST)).is_valid():
+            code = request.POST.get('code', None)
+            category = request.POST.get('category', None)
 
-        match(category):
-            case "replacement":
-                try:
-                    obj = Replacement.objects.get(id=code)
-                    return render(request, template_name, context={'obj': obj})
-                except Replacement.DoesNotExist:
-                    return render(request, template_name, context={'obj': None})
+            if (code and category) is None:
+                pass
 
-            case "retirement":
-                try:
-                    obj = Retirement.objects.get(id=code)
-                    return render(request, template_name, context={'obj': obj})
-                except Retirement.DoesNotExist:
-                    return render(request, template_name, context={'obj': None})
+            match(category):
+                case "replacement":
+                    try:
+                        obj = Replacement.objects.get(id=code)
+                        return render(request, template_name, context={'form': form, 'obj': obj })
+                    except Replacement.DoesNotExist:
+                        return render(request, template_name, context={'form': form, 'obj': None })
 
-            # case "vacation":
-            #      try:
-            #         obj = Replacement.objects.get(id=code)
-            #         return render(request, template_name, context={'obj': obj})
-            #     except Replacement.DoesNotExist:
-            #         return render(request, template_name, context={'obj': None})
+                case "retirement":
+                    try:
+                        obj = Retirement.objects.get(id=code)
+                        return render(request, template_name, context={'form': form, 'obj': obj})
+                    except Retirement.DoesNotExist:
+                        return render(request, template_name, context={'form': form, 'obj': None})
+
+                # case "vacation":
+                #      try:
+                #         obj = Replacement.objects.get(id=code)
+                #         return render(request, template_name, context={'obj': obj})
+                #     except Replacement.DoesNotExist:
+                #         return render(request, template_name, context={'obj': None})
 
     return render(request, template_name, context)
 

@@ -30,6 +30,7 @@
   rel="stylesheet"
   href="https://livedemo00.template-help.com/landing_55112/css/styleswitcher.css"
 />
+<link rel="stylesheet" href="{% static 'vendors/splide/dist/css/splide.min.css' %}">
 
 <!-- <html class="lt-ie9">
   <div style="clear: both; text-align:center; position: relative;"><a href="https://windows.microsoft.com/en-US/internet-explorer/.."><img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
@@ -48,16 +49,41 @@
     -->
   <header>
     <div class="container">
+<!-- 
+      <section class="splide" aria-label="Slide Container Example">
+        <h1 id="carousel-heading">
+          <a href="" class="nav-link">Usmilitiapride</a>
+        </h1>
+
+        <div class="splide__track">
+          <ul class="splide__list">
+            <li class="splide__slide">
+              <div class="splide__slide__container">
+                <img src="{% static 'images/bg-1.jpg' %}">
+              </div>
+              Lorem Ipsum Dolor Sit Amet
+            </li>
+            <li class="splide__slide">
+              <div class="splide__slide__container">
+                <img src="{% static 'images/bg-3.jpg' %}">
+              </div>
+              Lorem Ipsum Dolor Sit Amet
+            </li>
+          </ul>
+        </div>
+      </section> -->
+
+
       <div class="row">
         <div class="col-sm-6 col-md-7">
           <div class="brand">
-            <h1 class="brand_name">
+            <small class="brand_name">
               <a href="landing_55112"
-                >Usmilitia<br />
-                Pride</a
+                >Usmilitiapride
+                </a
               >
-            </h1>
-            <p class="brand_slogan">United States Marine Corps</p>
+            </small>
+            <p class="brand_slogan">United States Military</p>
           </div>
         </div>
         <div class="col-sm-6 col-md-5 contact-form">
@@ -98,6 +124,7 @@
           </form>
         </div>
       </div>
+
     </div>
   </header>
   <!-- 
@@ -149,7 +176,7 @@
 
       <section class="container my-5">
         <div class="row justify-content-center align-items-center">
-          <div class="col-md-4 my-3">
+          <div class="col-md-3 my-3">
             <div class="card" style="background-color: #54bf83">
               <div class="card-body">
                 <h5 class="text-center">Application for Replacement</h5>
@@ -158,7 +185,7 @@
               <div class="card-footer">
                 <a
                   href="{% url 'core:user_replacement_create' %}"
-                  class="nav-link text-center border w-25 mx-auto radius-3"
+                  class="nav-link text-center border w-50 mx-auto radius-3"
                   style="color: #ffffff"
                   >Apply</a
                 >
@@ -166,7 +193,7 @@
             </div>
           </div>
 
-          <div class="col-md-4 my-3">
+          <div class="col-md-3 my-3">
             <div class="card" style="background-color: #54bf83">
               <div class="card-body">
                 <h5 class="text-center">Application for Retirement</h5>
@@ -175,7 +202,7 @@
               <div class="card-footer">
                 <a
                   href="{% url 'core:user_retirement_create' %}"
-                  class="nav-link text-center border w-25 mx-auto radius-3"
+                  class="nav-link text-center border w-50 mx-auto radius-3"
                   style="color: #ffffff"
                   >Apply</a
                 >
@@ -183,7 +210,7 @@
             </div>
           </div>
 
-          <div class="col-md-4 my-3">
+          <div class="col-md-3 my-3">
             <div class="card" style="background-color: #54bf83">
               <div class="card-body">
                 <h5 class="text-center">Application for Internet Card</h5>
@@ -192,7 +219,7 @@
               <div class="card-footer">
                 <a
                   href="{% url 'core:user_git_share' %}"
-                  class="nav-link text-center border w-25 mx-auto radius-3"
+                  class="nav-link text-center border w-50 mx-auto radius-3"
                   style="color: #ffffff"
                   >Apply</a
                 >
@@ -201,7 +228,7 @@
           </div>
 
 
-          <div class="col-md-4 my-3">
+          <div class="col-md-3 my-3">
             <div class="card" style="background-color: #54bf83">
               <div class="card-body">
                 <h5 class="text-center">Application for Vacation </h5>
@@ -210,7 +237,7 @@
               <div class="card-footer">
                 <a
                   href=""
-                  class="nav-link text-center border w-25 mx-auto radius-3"
+                  class="nav-link text-center border w-50 mx-auto radius-3"
                   style="color: #ffffff"
                   >Apply</a
                 >
@@ -398,6 +425,18 @@
   </footer>
 </div>
 {% endblock content %} {% block js_block %}
+
+  <!-- SCript -->
+  <script>
+      let splide = new Splide('.splide', {
+          direction: 'ltr',
+          height: '100vh',
+          perPage: 1,
+      })
+
+      splide.mount()
+  </script>
+
 <script src="https://livedemo00.template-help.com/landing_55112/js/jquery.js"></script>
 <script src="https://livedemo00.template-help.com/landing_55112/js/jquery-migrate-1.2.1.js"></script>
 <script src="https://livedemo00.template-help.com/landing_55112/js/device.min.js"></script>

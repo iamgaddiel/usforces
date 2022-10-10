@@ -79,10 +79,10 @@ class UserLoginForm(forms.Form):
 
 class CheckStatusForm(forms.Form):
     CATEGORIES =(
-        ("Vacation", "Vacation"),
-        ("Retirement", "Retirement"),
-        ("Replacement", "Replacement"),
-        ("Gift", "Gift"),
+        ("vacation", "Vacation"),
+        ("retirement", "Retirement"),
+        ("replacement", "Replacement"),
+        ("gift", "Gift"),
     )
     code = forms.CharField(max_length=50, required=True)
     category = forms.ChoiceField(choices=CATEGORIES)
