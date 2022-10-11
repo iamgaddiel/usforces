@@ -32,7 +32,7 @@ from core.utils import get_random_string
 
 def index(request):
     template_name = 'core/index.html'
-    context = { 'news': News.objects.all() }
+    context = { 'news': News.objects.all()[:4] }
     if request.session.has_key('CATEGORY_ID') and request.session.has_key('CATEGORY_NAME'):
         del request.session['CATEGORY_ID']
         del request.session['CATEGORY_NAME']
