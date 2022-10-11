@@ -1,18 +1,34 @@
 {% load static %}
-<img
-    src="{% static 'images/7efs.gif' %}"
-    alt="Colorlib logo"
-/>
-<h1 style="text-align: center">Your application as been sent successfully! <br> You'll receive a mail on approval of your request</h1>
-<p style="text-align: center">
-  Go back home
-  <strong><a href="{% url 'core:index' %}">Home</a></strong>.
-</p>
-
 <style>
+  .container{
+    padding: 0 15rem;
+  }
+  .img-container {
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+    margin: auto;
+  }
   img {
-    margin: 0 auto;
-    display: block;
-    margin-top: 20%;
+    width: 100%;
+    height: auto;
   }
 </style>
+
+<div class="container">
+  <div class="img-container">
+    <img src="{% static 'images/7efs.gif' %}" alt="Colorlib logo" />
+  </div>
+  .
+  <h3 style="text-align: center; color: #6a6a6a;">
+   {{ CATEGORY_NAME }} application successfully! <br />
+    copy the code below as you will not see the code anymore if you leave this
+    page, use the code to check for the status of your application
+  </h3>
+  <h2 style="text-align: center">{{ CATEGORY_ID }}</h2>
+  <p style="text-align: center">
+    Go back home
+    <strong><a href="{% url 'core:index' %}">Home</a></strong
+    >.
+  </p>
+</div>

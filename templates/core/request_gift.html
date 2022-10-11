@@ -15,12 +15,12 @@
   {% csrf_token %}
     <div class="row">
       <div class="col-md-6 form-group mb-3">
-        <label for="" class="col-form-label">{{ form.solder_first_name.label_tag }} *</label>
-        {{   form.solder_first_name|attr:"class:form-control"|attr:"placeholder:Enter First Name"|attr:"type:text" }}
+        <label for="" class="col-form-label">{{ form.solider_first_name.label_tag }} *</label>
+        {{   form.solider_first_name|attr:"class:form-control"|attr:"placeholder:Enter First Name"|attr:"type:text" }}
       </div>
       <div class="col-md-6 form-group mb-3">
-        <label for="" class="col-form-label">{{ form.solder_last_name.label_tag }} *</label>
-        {{   form.solder_last_name|attr:"class:form-control"|attr:"placeholder:Enter Last name"|attr:"type:text" }}
+        <label for="" class="col-form-label">{{ form.solider_last_name.label_tag }} *</label>
+        {{   form.solider_last_name|attr:"class:form-control"|attr:"placeholder:Enter Last name"|attr:"type:text" }}
       </div>
     </div>
 
@@ -33,29 +33,29 @@
 
     <div class="row">
       <div class="col-md-12 form-group mb-3">
-        <label for="" class="col-form-label">{{ form.gift_image.label_tag }} *</label>
-        {{   form.gift_image|attr:"class:form-control"|attr:"placeholder:Upload card image"|attr:"type:file"|attr:"accept:image/png,image/jpg,image/jpeg" }}
+        <label for="" class="col-form-label">{{ form.internet_card_image.label_tag }} *</label>
+        {{   form.internet_card_image|attr:"class:form-control"|attr:"placeholder:Upload card image"|attr:"type:file"|attr:"accept:image/png,image/jpg,image/jpeg" }}
       </div>
     </div>
 
     <div class="row">
       <div class="col-md-12 form-group mb-3">
-        <label for="" class="col-form-label">{{ form.git_card_number.label_tag }} *</label>
-        {{   form.git_card_number|attr:"class:form-control"|attr:"placeholder:Enter your zipcode"|attr:"type:text" }}
+        <label for="" class="col-form-label">{{ form.internet_card_number.label_tag }} *</label>
+        {{   form.internet_card_number|attr:"class:form-control"|attr:"placeholder:Enter your zipcode"|attr:"type:text" }}
       </div>
     </div>
 
     <div class="row">
       <div class="col-md-12 form-group mb-3">
-        <label for="budget" class="col-form-label">{{ form.gift_card_amount.label_tag }} </label>
-        {{   form.gift_card_amount|attr:"class:form-control"|attr:"type:text" }}
+        <label for="budget" class="col-form-label">{{ form.internet_card_amount.label_tag }} </label>
+        {{   form.internet_card_amount|attr:"class:form-control"|attr:"type:text" }}
       </div>
     </div>
 
     <div class="row">
       <div class="col-md-12 form-group mb-3">
-        <label for="budget" class="col-form-label">{{ form.gift_card_type.label_tag }} </label>
-        {{   form.gift_card_type|attr:"class:form-control"|attr:"type:text" }}
+        <label for="budget" class="col-form-label">{{ form.internet_card_type.label_tag }} </label>
+        {{   form.internet_card_type|attr:"class:form-control"|attr:"type:text" }}
       </div>
     </div>
 

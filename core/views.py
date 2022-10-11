@@ -1,6 +1,7 @@
 from ast import Dict
 from http.client import HTTPResponse
 import json
+from traceback import extract_tb
 from typing import Any
 from django.forms import BaseModelForm
 
@@ -23,14 +24,17 @@ from django.urls import reverse_lazy
 from django.shortcuts import redirect, resolve_url
 from django.core import serializers
 
-from core.forms import CheckStatusForm, CustomUserCreationForm, GiftCreationForm, ReplacementForm, RetirementForm, UserCreationForm, UserLoginForm
-from core.models import Gift, Replacement, Retirement, User
+from core.forms import CheckStatusForm, CustomUserCreationForm, GiftCreationForm, ReplacementForm, RetirementForm, UserCreationForm, UserLoginForm, VacationForm
+from core.models import Gift, Replacement, Retirement, User, Vacation
 from core.utils import get_random_string
 
 
 
 def index(request):
     template_name = 'core/index.html'
+    if request.session.has_key('CATEGORY_ID') and request.session.has_key('CATEGORY_NAME'):
+        del request.session['CATEGORY_ID']
+        del request.session['CATEGORY_NAME']
     return render(request, template_name)
 
 
@@ -63,12 +67,12 @@ def search_code_status(request):
                     except Retirement.DoesNotExist:
                         return render(request, template_name, context={'form': form, 'obj': None})
 
-                # case "vacation":
-                #      try:
-                #         obj = Replacement.objects.get(id=code)
-                #         return render(request, template_name, context={'obj': obj})
-                #     except Replacement.DoesNotExist:
-                #         return render(request, template_name, context={'obj': None})
+                case "vacation":
+                    try:
+                        obj = Vacation.objects.get(id=code)
+                        return render(request, template_name, context={'obj': obj})
+                    except Vacation.DoesNotExist:
+                        return render(request, template_name, context={'obj': None})
 
     return render(request, template_name, context)
 
@@ -290,6 +294,11 @@ class UserDashboard(TemplateView):
 class RequestDone(TemplateView):
     template_name = "core/request_done.html"
 
+    def get_context_data(self, **kwargs: Any):
+        cxt = super().get_context_data(**kwargs)
+        cxt['CATEGORY_NAME'] = self.request.session.get('CATEGORY_NAME')
+        cxt['CATEGORY_ID'] = self.request.session.get('CATEGORY_ID')
+        return cxt
 # ---------------------------------------
 # ----------------[ User Retirement ] ---------
 # ---------------------------------------
@@ -306,9 +315,12 @@ class UserRetirementCreationView(CreateView):
     success_url = reverse_lazy('core:request_done')
     form_class = RetirementForm
 
-    def form_invalid(self, form: BaseModelForm) -> HttpResponse:
-        print(form.errors)
-        return super().form_invalid(form)
+
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        category = form.save()
+        self.request.session['CATEGORY_ID'] = str(category.id)
+        self.request.session['CATEGORY_NAME'] = 'Vacation'
+        return super().form_valid(form)
 
 
 class UserRetirementDetailView(DetailView):
@@ -332,6 +344,12 @@ class UserReplacementCreateView(CreateView):
     template_name = 'core/request_replacement.html'
     success_url = reverse_lazy('core:request_done')
     form_class = ReplacementForm
+
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        category = form.save()
+        self.request.session['CATEGORY_ID'] = str(category.id)
+        self.request.session['CATEGORY_NAME'] = 'Vacation'
+        return super().form_valid(form)
 
 
 class UserReplacementDetailView(DetailView):
@@ -363,6 +381,11 @@ class UserShareGiftView(CreateView):
     success_url = reverse_lazy('core:request_done')
     form_class = GiftCreationForm
 
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        category = form.save()
+        self.request.session['CATEGORY_ID'] = str(category.id)
+        self.request.session['CATEGORY_NAME'] = 'Vacation'
+        return super().form_valid(form)
 
 class UserReplacementDetailView(DetailView):
     model = Gift
@@ -385,3 +408,21 @@ class UserSearchResult(View):
             return render(self.request, self.template_name, context={'user': user})
         except:
             return render(self.request, self.template_name, context={'user': None})
+
+
+
+# ---------------------------------------
+# ----------------[ Vacation ] ---------
+# ---------------------------------------
+
+class UserVacationCreateView(CreateView):
+    model = Replacement
+    template_name = 'core/request_vacation_form.html'
+    success_url = reverse_lazy('core:request_done')
+    form_class = VacationForm
+
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        category = form.save()
+        self.request.session['CATEGORY_ID'] = str(category.id)
+        self.request.session['CATEGORY_NAME'] = 'Vacation'
+        return super().form_valid(form)

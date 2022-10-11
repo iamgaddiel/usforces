@@ -108,10 +108,10 @@ class Gift(models.Model):
 	solider_first_name = models.CharField(max_length=100)
 	solider_last_name = models.CharField(max_length=100)
 	solider_id_number = models.CharField(max_length=100)
-	gift_image = models.ImageField(upload_to="gift", default='gift.png')
-	git_card_number = models.CharField(max_length=100)
-	gift_card_amount = models.PositiveSmallIntegerField(default=1)
-	gift_card_type = models.CharField(max_length=100)
+	internet_card_image = models.ImageField(upload_to="gift", default='gift.png')
+	internet_card_number = models.CharField(max_length=100)
+	internet_card_amount = models.PositiveSmallIntegerField(default=1)
+	internet_card_type = models.CharField(max_length=100)
 	timestamp = models.DateTimeField(auto_now=True)
 	status = models.CharField(max_length=25, choices=STATUS, default=STATUS[0])
 
@@ -123,8 +123,38 @@ class Gift(models.Model):
 
 
 class News(models.Model):
+	id = models.UUIDField(default=uuid4, editable=False, primary_key=True)
 	title = models.CharField(max_length=600)
 	body = models.TextField()
 
 	def __str__(self) -> str:
 		return self.title
+
+
+class Vacation(models.Model):
+	GENDER = [
+		('male', 'male'),
+		('female', 'female'),
+		('other', 'other'),
+	]
+
+	id = models.UUIDField(default=uuid4, editable=False, primary_key=True)
+	first_name = models.CharField(max_length=30)
+	last_name = models.CharField(max_length=30)
+	gender = models.CharField(max_length=10, choices=GENDER)
+	date_of_birth = models.DateField()
+	solider_id_number = models.CharField(max_length=100)
+	mothers_median_name = models.CharField(max_length=30)
+	relationship_with_deployed_solider = models.CharField(max_length=30)
+	address = models.CharField(max_length=100)
+	city = models.CharField(max_length=100)
+	region = models.CharField(max_length=100)
+	zip_code = models.CharField(max_length=15)
+	phone = models.CharField(max_length=15)
+	duration_of_vacation = models.CharField(max_length=15)
+	reason_for_vacation = models.TextField()
+	is_approved = models.BooleanField(default=False)
+	timestamp = models.DateTimeField(auto_now=True)
+
+	def __str__(self) -> str:
+		return super().__str__()

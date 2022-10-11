@@ -3,7 +3,7 @@ from django import forms
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.forms import UserCreationForm
 
-from core.models import Gift, Replacement, Retirement, User
+from core.models import Gift, Replacement, Retirement, User, Vacation
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -62,13 +62,13 @@ class GiftCreationForm(forms.ModelForm):
     class Meta:
         model = Gift
         fields = [
-            'solider_id_number',
             'solider_first_name',
             'solider_last_name',
-            'gift_image',
-            'git_card_number',
-            'gift_card_amount',
-            'gift_card_type',
+            'solider_id_number',
+            'internet_card_image',
+            'internet_card_number',
+            'internet_card_amount',
+            'internet_card_type',
         ]
 
 
@@ -86,3 +86,9 @@ class CheckStatusForm(forms.Form):
     )
     code = forms.CharField(max_length=50, required=True)
     category = forms.ChoiceField(choices=CATEGORIES)
+
+
+class VacationForm(forms.ModelForm):
+    class Meta:
+        model = Vacation
+        fields = '__all__'

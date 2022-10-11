@@ -18,6 +18,7 @@ from .views import (
     UserSearchResult,
     UserShareGiftView,
     UserTransferView,
+    UserVacationCreateView,
     index,
     AdminDashboard,
     AdminLoginView,
@@ -206,5 +207,10 @@ urlpatterns = [
         'request/check/',
         search_code_status,
         name='request_check'
+    ),
+    path(
+        'request/vacation/',
+        UserVacationCreateView.as_view(),
+        name='request_vacation'
     ),
 ]

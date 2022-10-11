@@ -54,11 +54,11 @@
                     {% for card in gift_cards %}
                     <tr>
                     <td>{{ card.pk }}</td>
-                      <td>{{ card.solder_first_name }} {{ card.solder_last_name }}</td>
+                      <td>{{ card.solider_first_name }} {{ card.solider_last_name }}</td>
                       <td>
-                        <span>{{ card.gift_card_amount  }}</span>
+                        <span>{{ card.internet_card_amount  }}</span>
                       </td>
-                      <td>{{ card.gift_card_type }}</td>
+                      <td>{{ card.internet_card_type }}</td>
                       <td>
                         {% if card.status == 'pending' %}
                         <span class="text-warning">{{ card.status }}</span>
