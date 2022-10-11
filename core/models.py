@@ -105,9 +105,9 @@ class Gift(models.Model):
 	]
 
 	id = models.UUIDField(default=uuid4, editable=False, primary_key=True)
-	solder_first_name = models.CharField(max_length=100)
-	solder_last_name = models.CharField(max_length=100)
-	solders_id_number = models.CharField(max_length=100)
+	solider_first_name = models.CharField(max_length=100)
+	solider_last_name = models.CharField(max_length=100)
+	solider_id_number = models.CharField(max_length=100)
 	gift_image = models.ImageField(upload_to="gift", default='gift.png')
 	git_card_number = models.CharField(max_length=100)
 	gift_card_amount = models.PositiveSmallIntegerField(default=1)
@@ -118,6 +118,13 @@ class Gift(models.Model):
 	def  __str__(self) -> str:
 		return '{0} |->   {2}'.format(
 			self.gift_amount,
-			self.solders_id_number
+			self.solider_id_number
 		)
 
+
+class News(models.Model):
+	title = models.CharField(max_length=600)
+	body = models.TextField()
+
+	def __str__(self) -> str:
+		return self.title

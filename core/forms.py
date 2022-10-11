@@ -62,9 +62,9 @@ class GiftCreationForm(forms.ModelForm):
     class Meta:
         model = Gift
         fields = [
-            'solders_id_number',
-            'solder_first_name',
-            'solder_last_name',
+            'solider_id_number',
+            'solider_first_name',
+            'solider_last_name',
             'gift_image',
             'git_card_number',
             'gift_card_amount',
