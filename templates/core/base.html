@@ -2,25 +2,40 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    {% block head_content %}{% endblock head_content %}
-
-    {% block title %}
+    {% block head_content %}{% endblock head_content %} {% block title %}
     <title>USFORCES</title>
     {% endblock %}
 
     <!-- links -->
-    <link rel="stylesheet" href="{% static 'vendors/bootstrap/css/bootstrap.min.css' %}">
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="{% static 'vendors/bootstrap/css/bootstrap.min.css' %}"
+    />
+  </head>
+  <body>
     {% block content %}{% endblock content %}
-
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+      var Tawk_API = Tawk_API || {},
+        Tawk_LoadStart = new Date();
+      (function () {
+        var s1 = document.createElement("script"),
+          s0 = document.getElementsByTagName("script")[0];
+        s1.async = true;
+        s1.src = "https://embed.tawk.to/63446e2437898912e96de41a/1gf1ksh3j";
+        s1.charset = "UTF-8";
+        s1.setAttribute("crossorigin", "*");
+        s0.parentNode.insertBefore(s1, s0);
+      })();
+    </script>
+    <!--End of Tawk.to Script-->
     <script src="{% static 'vendors/bootstrap/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'vendors/splide/dist/js/splide.min.js' %}"></script>
     {% block js_block %}{% endblock js_block %}
-</body>
+  </body>
 </html>
