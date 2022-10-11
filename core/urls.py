@@ -1,16 +1,23 @@
 from django.urls import path
 from django.contrib.auth.views import  LogoutView
 
+from core.models import GiftCardRequest
+
 from .views import (
+    AdminGiftApplicationList,
+    AdminGiftApplicationUpdate,
     AdminGiftDetail,
     AdminGiftList,
     AdminReplacementList,
     AdminReplacementUpdate,
     AdminRetirementList,
     AdminRetirementUpdate,
+    AdminVacationList,
+    AdminVacationUpdate,
     RequestDone,
     UserDashboard,
     UserGiftListView,
+    UserGiftRequestView,
     UserReplacementCreateView,
     UserReplacementDetailView,
     UserRetirementCreationView,
@@ -104,6 +111,26 @@ urlpatterns = [
         'SC0gAo/admin/logout',
         admin_logout,
         name='admin_logout'
+    ),
+    path(
+        'SC0gAo/admin/vacation/list',
+        AdminVacationList.as_view(),
+        name='admin_vacation_list'
+    ),
+    path(
+        'SC0gAo/admin/vacation/<uuid:pk>/',
+        AdminVacationUpdate.as_view(),
+        name='admin_vacation_update'
+    ),
+    path(
+        'SC0gAo/admin/card/requests/',
+        AdminGiftApplicationList.as_view(),
+        name='admin_card_requests_list'
+    ),
+    path(
+        'SC0gAo/admin/card/requests/<uuid:pk>/',
+        AdminGiftApplicationUpdate.as_view(),
+        name='admin_card_requests_update'
     ),
 
     # -----------------------------------------
@@ -212,5 +239,10 @@ urlpatterns = [
         'request/vacation/',
         UserVacationCreateView.as_view(),
         name='request_vacation'
+    ),
+    path(
+        'request/card/order/',
+        UserGiftRequestView.as_view(),
+        name='request_card_order'
     ),
 ]

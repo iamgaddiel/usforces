@@ -24,8 +24,8 @@ from django.urls import reverse_lazy
 from django.shortcuts import redirect, resolve_url
 from django.core import serializers
 
-from core.forms import CheckStatusForm, CustomUserCreationForm, GiftCreationForm, ReplacementForm, RetirementForm, UserCreationForm, UserLoginForm, VacationForm
-from core.models import Gift, Replacement, Retirement, User, Vacation
+from core.forms import CheckStatusForm, CustomUserCreationForm, GiftCardRequestForm, GiftCreationForm, ReplacementForm, RetirementForm, UserCreationForm, UserLoginForm, VacationForm
+from core.models import Gift, GiftCardRequest, Replacement, Retirement, User, Vacation
 from core.utils import get_random_string
 
 
@@ -46,7 +46,7 @@ def search_code_status(request):
         
 
         if (form :=  CheckStatusForm(request.POST)).is_valid():
-            code = request.POST.get('code', None)
+            code = request.POST.get('code', None).strip()
             category = request.POST.get('category', None)
 
             if (code and category) is None:
@@ -70,9 +70,16 @@ def search_code_status(request):
                 case "vacation":
                     try:
                         obj = Vacation.objects.get(id=code)
-                        return render(request, template_name, context={'obj': obj})
+                        return render(request, template_name, context={'form': form, 'obj': obj})
                     except Vacation.DoesNotExist:
-                        return render(request, template_name, context={'obj': None})
+                        return render(request, template_name, context={'form': form, 'obj': None})
+
+                case "card_purchase":
+                    try:
+                        obj = GiftCardRequest.objects.get(id=code)
+                        return render(request, template_name, context={'form': form, 'obj': obj})
+                    except GiftCardRequest.DoesNotExist:
+                        return render(request, template_name, context={'form': form, 'obj': None})
 
     return render(request, template_name, context)
 
@@ -116,7 +123,7 @@ class AdminDashboard(LoginRequiredMixin, TemplateView):
         'users': User.objects.all(),
         'replacements': Replacement.objects.all(),
         'gifts': Gift.objects.all(),
-        'retires': Retirement.objects.all()
+        'retirement': Retirement.objects.all()
     }
 
 
@@ -177,14 +184,12 @@ class AdminReplacementList(ListView):
     template_name = "core/admin_list_replacements.html"
 
 
-
 class AdminReplacementUpdate(View):
     def get(self, *args, **kwargs):
         obj = get_object_or_404(Replacement, pk=self.kwargs.get('pk'))
         obj.is_approved = True
         obj.save()
         return redirect('core:admin_replacements_list')
-
 
 
 class AdminRetirementList(ListView):
@@ -211,6 +216,34 @@ class AdminGiftDetail(DetailView):
     model = Gift
     context_object_name = 'card'
     template_name = "core/admin_detail_gift.html"
+
+
+class AdminGiftApplicationList(ListView):
+    model = GiftCardRequest
+    context_object_name = 'gifts'
+    template_name = "core/admin_list_gift_order.html"
+
+
+class AdminGiftApplicationUpdate(View):
+    def get(self, *args, **kwargs):
+        obj = get_object_or_404(GiftCardRequest, pk=self.kwargs.get('pk'))
+        obj.is_approved = True
+        obj.save()
+        return redirect('core:admin_card_requests_list')
+
+
+class AdminVacationList(ListView):
+    model = Vacation
+    context_object_name = 'vacations'
+    template_name = "core/admin_list_vacation.html"
+
+
+class AdminVacationUpdate(View):
+    def get(self, *args, **kwargs):
+        obj = get_object_or_404(Vacation, pk=self.kwargs.get('pk'))
+        obj.is_approved = True
+        obj.save()
+        return redirect('core:admin_vacation_list')
 
 
 # ---------------------------------------------------------
@@ -408,6 +441,19 @@ class UserSearchResult(View):
             return render(self.request, self.template_name, context={'user': user})
         except:
             return render(self.request, self.template_name, context={'user': None})
+
+
+class UserGiftRequestView(CreateView):
+    model = GiftCardRequest
+    template_name = 'core/request_gift application.html'
+    success_url = reverse_lazy('core:request_done')
+    form_class = GiftCardRequestForm
+
+    def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        category = form.save()
+        self.request.session['CATEGORY_ID'] = str(category.id)
+        self.request.session['CATEGORY_NAME'] = 'Internet card request'
+        return super().form_valid(form)
 
 
 

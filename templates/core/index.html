@@ -108,6 +108,7 @@
     ========================================================
     -->
   <main>
+
     <!--
     ========================================================
                                 SEARCH FORM
@@ -193,7 +194,7 @@
 
               <div class="card-footer">
                 <a
-                  href="{% url 'core:user_git_share' %}"
+                  href="{% url 'core:request_card_order' %}"
                   class="nav-link text-center border w-50 mx-auto radius-3"
                   style="color: #ffffff"
                   >Apply</a
@@ -239,11 +240,29 @@
       </section>
     </section>
 
-          <!--
+    <!--
     ========================================================
-                                 UPload Internet Card
+                                SEARCH FORM
     ========================================================
     -->
+    <section class="well1 subscribe" style="background-color: #54bf83">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-2">
+            <div class="fa-heart fa-5x color-light"></div>
+          </div>
+          <div class="col-md-6">
+            <h3 class="text-light">
+              Soldiers are faced with difficulties everyday... <br>a gift can help keep their spirits alive.
+            </h3>
+            <a href="{% url 'core:user_git_share' %}" class="btn btn-dark">Gift a solider</a>
+            <div class="mfControls">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
 
       <!--
     ========================================================

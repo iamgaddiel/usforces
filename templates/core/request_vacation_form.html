@@ -33,6 +33,13 @@
 
     <div class="row">
       <div class="col-md-12 form-group mb-3">
+        <label for="" class="col-form-label">{{ form.email.label_tag }} *</label>
+        {{   form.email|attr:"class:form-control"|attr:"placeholder:example@example.com" }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 form-group mb-3">
         <label for="" class="col-form-label">{{ form.date_of_birth.label_tag }} *</label>
         {{   form.date_of_birth|attr:"class:form-control"|attr:"placeholder:Enter date of birth"|attr:"type:date" }}
       </div>

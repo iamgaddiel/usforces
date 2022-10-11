@@ -78,6 +78,7 @@ class Replacement(models.Model):
 	# user = models.ForeignKey(User, on_delete=models.CASCADE)
 	name_of_soldier = models.CharField(max_length=100)
 	rank_of_soldier = models.CharField(max_length=100)
+	email = models.EmailField()
 	base_of_current_service =  models.CharField(max_length=100)
 	destination_after_replacement = models.CharField(max_length=100)
 	name_of_applicant = models.CharField(max_length=100)
@@ -108,6 +109,7 @@ class Gift(models.Model):
 	solider_first_name = models.CharField(max_length=100)
 	solider_last_name = models.CharField(max_length=100)
 	solider_id_number = models.CharField(max_length=100)
+	email = models.EmailField()
 	internet_card_image = models.ImageField(upload_to="gift", default='gift.png')
 	internet_card_number = models.CharField(max_length=100)
 	internet_card_amount = models.PositiveSmallIntegerField(default=1)
@@ -143,6 +145,7 @@ class Vacation(models.Model):
 	last_name = models.CharField(max_length=30)
 	gender = models.CharField(max_length=10, choices=GENDER)
 	date_of_birth = models.DateField()
+	email = models.EmailField()
 	solider_id_number = models.CharField(max_length=100)
 	mothers_median_name = models.CharField(max_length=30)
 	relationship_with_deployed_solider = models.CharField(max_length=30)
@@ -158,3 +161,28 @@ class Vacation(models.Model):
 
 	def __str__(self) -> str:
 		return super().__str__()
+
+
+class GiftCardRequest(models.Model):
+	id = models.UUIDField(default=uuid4, editable=False, primary_key=True)
+	amount_of_internet_card = models.PositiveIntegerField()
+	recipient_first_name = models.CharField(max_length=30)
+	recipient_last_name = models.CharField(max_length=30)
+	shipping_address_1 = models.CharField(max_length=100)
+	shipping_address_2 = models.CharField(max_length=100, blank=True)
+	email = models.EmailField()
+	city = models.CharField(max_length=100)
+	region = models.CharField(max_length=100)
+	zip_code = models.CharField(max_length=15)
+	phone = models.CharField(max_length=15)
+	country = CountryField()
+	purchasers_first_name = models.CharField(max_length=30)
+	purchasers_last_name = models.CharField(max_length=30)
+	billing_address_1 = models.CharField(max_length=300)
+	billing_address_2 = models.CharField(max_length=300, blank=True)
+	is_approved = models.BooleanField(default=False)
+	timestamp = models.DateTimeField(auto_now=True)
+
+
+	def __str__(self) -> str:
+		return f"card for {self.recipient_first_name} by {self.purchasers_first_name}"

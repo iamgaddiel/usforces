@@ -1,0 +1,124 @@
+{% extends 'core/request_base.html' %}
+{% load widget_tweaks %}
+
+{%  block form_title %}
+<title>Usmilitia | Gift Form </title>
+{% endblock %}
+
+{% block form_header %}
+<h3 class="text-center">Internet Card Application</h3>
+{% endblock form_header %}
+
+{% block form %}
+
+<form class="my-5" method="post"  enctype="multipart/form-data">
+  {% csrf_token %}
+    <div class="row">
+      <div class="col-md-6 form-group mb-3">
+        <label for="" class="col-form-label">{{ form.recipient_first_name.label_tag }} *</label>
+        {{   form.recipient_first_name|attr:"class:form-control"|attr:"placeholder:Enter First Name"|attr:"type:text" }}
+      </div>
+      <div class="col-md-6 form-group mb-3">
+        <label for="" class="col-form-label">{{ form.recipient_last_name.label_tag }} *</label>
+        {{   form.recipient_last_name|attr:"class:form-control"|attr:"placeholder:Enter Last name"|attr:"type:text" }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 form-group mb-3">
+        <label for="" class="col-form-label">{{ form.amount_of_internet_card.label_tag }} *</label>
+        {{   form.amount_of_internet_card|attr:"class:form-control"|attr:"type:text" }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 form-group mb-3">
+        <label for="" class="col-form-label">{{ form.shipping_address_1.label_tag }} *</label>
+        {{   form.shipping_address_1|attr:"class:form-control"|attr:"type:text" }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 form-group mb-3">
+        <label for="" class="col-form-label">{{ form.shipping_address_2.label_tag }} *</label>
+        {{   form.shipping_address_2|attr:"class:form-control"|attr:"type:text" }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 form-group mb-3">
+        <label for="" class="col-form-label">{{ form.email.label_tag }} *</label>
+        {{   form.email|attr:"class:form-control"|attr:"placeholder:example@example.com" }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 form-group mb-3">
+        <label for="" class="col-form-label">{{ form.city.label_tag }} *</label>
+        {{   form.city|attr:"class:form-control"|attr:"type:text" }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 form-group mb-3">
+        <label for="budget" class="col-form-label">{{ form.region.label_tag }} </label>
+        {{   form.region|attr:"class:form-control"|attr:"type:text" }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 form-group mb-3">
+        <label for="budget" class="col-form-label">{{ form.zip_code.label_tag }} </label>
+        {{   form.zip_code|attr:"class:form-control"|attr:"type:text" }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 form-group mb-3">
+        <label for="budget" class="col-form-label">{{ form.phone.label_tag }} </label>
+        {{   form.phone|attr:"class:form-control"|attr:"type:text" }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 form-group mb-3">
+        <label for="budget" class="col-form-label">{{ form.country.label_tag }} </label>
+        {{   form.country|attr:"class:form-control"|attr:"type:text" }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 form-group mb-3">
+        <label for="budget" class="col-form-label">{{ form.purchasers_first_name.label_tag }} </label>
+        {{   form.purchasers_first_name|attr:"class:form-control"|attr:"type:text" }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 form-group mb-3">
+        <label for="budget" class="col-form-label">{{ form.purchasers_last_name.label_tag }} </label>
+        {{   form.purchasers_last_name|attr:"class:form-control"|attr:"type:text" }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 form-group mb-3">
+        <label for="budget" class="col-form-label">{{ form.billing_address_1.label_tag }} </label>
+        {{   form.billing_address_1|attr:"class:form-control"|attr:"type:text" }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 form-group mb-3">
+        <label for="budget" class="col-form-label">{{ form.billing_address_2.label_tag }} </label>
+        {{   form.billing_address_2|attr:"class:form-control"|attr:"type:text" }}
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-md-5 form-group text-center">
+        <input type="submit" value="Apply" class="btn btn-block btn-success rounded-0 py-2 px-4">
+        <span class="submitting"></span>
+      </div>
+    </div>
+  </form>
+{% endblock form %}
