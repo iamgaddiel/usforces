@@ -18,6 +18,8 @@
     />
   </head>
   <body>
+    <div id="ytWidget"></div>
+
     {% block content %}{% endblock content %}
     <!--Start of Tawk.to Script-->
     <script type="text/javascript">
@@ -34,6 +36,14 @@
       })();
     </script>
     <!--End of Tawk.to Script-->
+
+    <!-- Translate -->
+    <script
+      src="https://translate.yandex.net/website-widget/v1/widget.js?widgetId=ytWidget&pageLang=en&widgetTheme=light&autoMode=true"
+      type="text/javascript"
+    ></script>
+    <!-- End translate -->
+
     <script src="{% static 'vendors/bootstrap/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'vendors/splide/dist/js/splide.min.js' %}"></script>
     {% block js_block %}{% endblock js_block %}
