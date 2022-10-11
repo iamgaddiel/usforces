@@ -1,0 +1,89 @@
+{% extends 'core/admin_dashboard_base.html' %} 
+{% load static %} 
+{% load widget_tweaks %}
+
+
+{% block main%}
+<div class="content-body">
+  <div class="row page-titles mx-0">
+    <div class="col p-md-0">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Dashboard</a></li>
+            <li class="breadcrumb-item active"><a href="javascript:void(0)">Home</a></li>
+        </ol>
+    </div>
+  </div>
+  <!-- row -->
+  
+  <div class="container-fluid">
+    <!-- 
+          ***************************************
+          ADD SOLIDER BUTTON
+          ***************************************
+       -->
+    <section class="my-2 d-flex justify-content-start">
+      <a
+        href="{% url 'core:admin_card_news_list' %}"
+        class="btn mb-1 btn-primary text-light"
+      >
+        <span>Back</span>
+      </a>
+    </section>
+  
+    <div class="row justify-content-center">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="form-validation">
+              <form class="form-valide" method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+  
+                  <div class="form-group row">
+                     {% if form.errors %}
+                      {% for error in form.errors %}
+                          <div class="alert alert-danger" role="alert">
+                              <small class="text-dark">{{ error }}</small>
+                          </div>
+                      {% endfor %}
+                     {% endif %}
+                    </div>
+  
+    
+                <!-- Username -->
+                <div class="form-group row">
+                  <label class="col-lg-4 col-form-label" for="val-username"
+                    >Title <span class="text-danger">*</span>
+                  </label>
+                  <div class="col-lg-6">
+                      {{   form.title|attr:"class:form-control"|attr:"placeholder:Enter a username"|attr:"type:text"|attr:"required" }}
+                  </div>
+                </div>
+  
+  
+                <!-- Email -->
+                <div class="form-group row">
+                  <label class="col-lg-4 col-form-label" for="val-username"
+                    >Body <span class="text-danger">*</span>
+                  </label>
+                  <div class="col-lg-6">
+                      {{   form.body|attr:"class:form-control"|attr:"Enter news content..."|attr:"required" }}
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-lg-8 ml-auto">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+{% endblock main %}

@@ -24,18 +24,19 @@ from django.urls import reverse_lazy
 from django.shortcuts import redirect, resolve_url
 from django.core import serializers
 
-from core.forms import CheckStatusForm, CustomUserCreationForm, GiftCardRequestForm, GiftCreationForm, ReplacementForm, RetirementForm, UserCreationForm, UserLoginForm, VacationForm
-from core.models import Gift, GiftCardRequest, Replacement, Retirement, User, Vacation
+from core.forms import CheckStatusForm, CustomUserCreationForm, GiftCardRequestForm, GiftCreationForm, NewsCreationForm, ReplacementForm, RetirementForm, UserCreationForm, UserLoginForm, VacationForm
+from core.models import Gift, GiftCardRequest, News, Replacement, Retirement, User, Vacation
 from core.utils import get_random_string
 
 
 
 def index(request):
     template_name = 'core/index.html'
+    context = { 'news': News.objects.all() }
     if request.session.has_key('CATEGORY_ID') and request.session.has_key('CATEGORY_NAME'):
         del request.session['CATEGORY_ID']
         del request.session['CATEGORY_NAME']
-    return render(request, template_name)
+    return render(request, template_name, context)
 
 
 def search_code_status(request):
@@ -147,16 +148,6 @@ class AdminUserCreate(LoginRequiredMixin, CreateView):
             form.cleaned_data.get('username'),
             get_random_string(8)
         )
-        # password = form.cleaned_data.get('password')
-        # password2 = form.cleaned_data.get('password')
-
-        # if password != password2:
-        #     context = { 'error': 'passwords do not match'}
-        #     return render(self.request, self.template_name, context)
-            
-        # user = form.save()
-        # user.set_password(password)
-        # user.save()
         return super().form_valid(form)
 
 
@@ -246,6 +237,29 @@ class AdminVacationUpdate(View):
         return redirect('core:admin_vacation_list')
 
 
+class AdminNewsListView(ListView):
+    model = News
+    context_object_name = 'news'
+    template_name = "core/admin_list_news.html"
+
+
+class AdminNewsCreateView(CreateView):
+    model = News
+    template_name = "core/admin_news_create.html"
+    success_url = reverse_lazy("core:admin_card_news_list")
+    form_class = NewsCreationForm
+
+
+class AdminNewsDetailView(DetailView):
+    model = News
+    template_name = "core/admin_news_detail.html"
+    context_object_name = "news"
+
+
+class AdminNewsDeleteView(View):
+    def get(self, *args, **kwargs):
+        News.objects.get(pk=self.kwargs.get('pk')).delete()
+        return redirect('core:admin_card_news_list')
 # ---------------------------------------------------------
 # ----------------- [User Section ] ---------------------  
 # ---------------------------------------------------------
@@ -278,13 +292,6 @@ def user_login(request):
                 context = { 'error': 'Incorrect password' }
                 return render(request, template_name, context)
 
-            # if (user := authenticate(request, email=user_query.email, password=password)) is None:
-            #     context = { 'error': 'Authentication Failed' }
-            #     return render(request, template_name, context)
-
-
-            # Assign user instance to session
-            # login(request, user_query)
             user_obj = {
                 'username': user_query.username,
                 'id': str(user_query.pk),

@@ -3,7 +3,7 @@ from django import forms
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.forms import UserCreationForm
 
-from core.models import Gift, GiftCardRequest, Replacement, Retirement, User, Vacation
+from core.models import Gift, GiftCardRequest, News, Replacement, Retirement, User, Vacation
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -48,6 +48,7 @@ class ReplacementForm(forms.ModelForm):
         fields = [
             'name_of_soldier',
             'rank_of_soldier',
+            'email',
             'base_of_current_service',
             'destination_after_replacement',
             'name_of_applicant',
@@ -98,3 +99,10 @@ class GiftCardRequestForm(forms.ModelForm):
     class Meta:
         model = GiftCardRequest
         fields = '__all__'
+
+
+class NewsCreationForm(forms.ModelForm):
+    class Meta:
+        model = News
+        fields = '__all__'
+

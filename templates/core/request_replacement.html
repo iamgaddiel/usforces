@@ -27,6 +27,13 @@
 
     <div class="row">
       <div class="col-md-12 form-group mb-3">
+        <label for="" class="col-form-label">{{ form.email.label_tag }} *</label>
+        {{   form.email|attr:"class:form-control"|attr:"placeholder:example@example.com"|attr:"type:text" }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 form-group mb-3">
         <label for="budget" class="col-form-label">{{ form.rank_of_soldier.label_tag }} </label>
         {{   form.rank_of_soldier|attr:"class:form-control"|attr:"type:text" }}
       </div>

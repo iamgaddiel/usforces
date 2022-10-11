@@ -225,13 +225,12 @@
         </div>
 
         <div class="row my-5 justify-content-center align-items-center">
-          <div class="col">
+          <div class="col-12">
             <a
               href="{% url 'core:request_check' %}"
-              class="nav-link btn bnt-succss text-center border  mx-auto radius-3"
+              class="nav-link btn bnt-succss text-center border w-sm-75 w-md= mx-auto radius-3"
               style="color: #ffffff"
-              >Check  Status</a
-            >
+              >check  application status</a>
             </div>
           </div>
         </div>
@@ -273,6 +272,7 @@
       <div class="container my-5">
         <h2 class="center primary">Latest News</h2>
         <div class="row off1 mt-5">
+          {% for new in news %}
           <article class="post col-md-3">
             <time datetime="2015-07-04">
               <script>
@@ -281,77 +281,13 @@
               <span>Oct</span>
             </time>
             <h4 style="font-size: 40px; line-height: 1">
-              <span
-                >We Need to Learn More About These Wounds that Change Vets'
-                Lives</span
+              <span>{{ new.title }}</span
               >
             </h4>
-            <p>
-              One of the most intimate and potentially life-changing wounds
-              sustained by combat veterans is among those we know the least
-              about.
-            </p>
+            <p>{{ new.body }}</p>
           </article>
+          {% endfor %}
 
-          <article class="post col-md-3">
-            <time datetime="2015-07-04">
-              <script>
-                document.write(new Date().getDate());
-              </script>
-              <span>Oct</span>
-            </time>
-            <h4 style="font-size: 40px; line-height: 1">
-              <span>Can Congress Save the Marine Corps from Itself?</span>
-            </h4>
-            <p>
-              In a recent speech to the Marine Corps Association, the current
-              commandant, Gen. David Berger, congratulated his Marines on having
-              an open and honest debate concerning his Force Design (FD) 2030
-              initiative...
-            </p>
-          </article>
-
-          <article class="post col-md-3">
-            <time datetime="2015-07-04">
-              <script>
-                document.write(new Date().getDate());
-              </script>
-              <span>Oct</span>
-            </time>
-            <h4 style="font-size: 40px; line-height: 1">
-              <span
-                >North Korea’s New Law Is Far From the Only Nuclear Threat the
-                World Faces</span
-              >
-            </h4>
-            <p>
-              North Korea passed a law this month putting into effect Kim Jong
-              Un’s decision that in case he is incapacitated by foreign hands,
-              the country will “automatically and immediately” launch a nuclear
-              retaliation...
-            </p>
-          </article>
-
-          <article class="post col-md-3">
-            <time datetime="2015-07-04">
-              <script>
-                document.write(new Date().getDate());
-              </script>
-              <span>Oct</span>
-            </time>
-            <h4 style="font-size: 40px; line-height: 1">
-              <span
-                >North Korea’s New Law Is Far From the Only Nuclear Threat the
-                World Faces</span
-              >
-            </h4>
-            <p>
-              North Korea passed a law this month putting into effect Kim Jong
-              Un’s decision that in case he is incapacitated by foreign hands,
-              the country will “automatically and immediately” launch a nuclear
-              retaliation...
-            </p>
-          </article>
         </div>
       </div>
     <!-- </section> -->
@@ -363,7 +299,7 @@
     ========================================================
     -->
     <section class="footer_grid container my-5 py-5">
-      <div class="row justify-content-center align-items-center gap-4">
+      <div class="row justify-content-center align-items-center">
         
         <div class="col-sm-12 col-md-2">
           <div class="grid_photo">
@@ -409,12 +345,6 @@
 
         <div class="col-sm-12 col-md-2">
           <div class="grid_photo">
-            <img src="{% static 'images/soldiers/img8.jpg' %}" alt="">
-          </div>
-        </div>
-
-        <div class="col-sm-12 col-md-2">
-          <div class="grid_photo">
             <img src="{% static 'images/soldiers/img9.jpg' %}" alt="">
           </div>
         </div>
@@ -422,12 +352,6 @@
         <div class="col-sm-12 col-md-2">
           <div class="grid_photo">
             <img src="{% static 'images/soldiers/img10.jpg' %}" alt="">
-          </div>
-        </div>
-
-        <div class="col-sm-12 col-md-2">
-          <div class="grid_photo">
-            <img src="{% static 'images/soldiers/img11.jpg' %}" alt="">
           </div>
         </div>
 
@@ -441,7 +365,11 @@
     </section>
 
 
-
+<section class="container my-5">
+  <p class="text-center text-muted text-bold" style="font-size: 1.3rem">
+    <strong>For more enquirers, report about a soldiers misconduct report to Usmilitia@joshost.com </strong>
+  </p>
+</section>
 
   </main>
   <!--

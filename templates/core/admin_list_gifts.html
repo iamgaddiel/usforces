@@ -31,6 +31,7 @@
                     <tr>
                       <th>Solder's  Name</th>
                       <th>Military Id</th>
+                      <th>Email</th>
                       <th>Gift Number</th>
                       <th>Amount</th>
                       <th>Action</th>
@@ -39,14 +40,15 @@
                   <tbody>
                     {% for gift in gifts %}
                     <tr>
-                      <td>{{ gift.solder_first_name }} {{ gift.solder_last_name  }} </td>
-                      <td>{{ gift.solders_id_number }} </td>
-                      <td>{{ gift.git_card_number }}</td>
+                      <td>{{ gift.solider_first_name }} {{ gift.solder_last_name  }} </td>
+                      <td>{{ gift.solider_last_name }} </td>
+                      <td>{{ gift.email }}</td>
+                      <td>{{ gift.internet_card_number }}</td>
                       <td>
-                        <span>${{ gift.gift_card_amount }}</span>
+                        <span>${{ gift.internet_card_amount }}</span>
                       </td>
                       <td>
-                        <span>${{ gift.gift_card_type }}</span>
+                        <span>{{ gift.internet_card_type }}</span>
                       </td>
                       <td>
                         <a

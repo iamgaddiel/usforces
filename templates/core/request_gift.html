@@ -26,8 +26,15 @@
 
     <div class="row">
       <div class="col-md-12 form-group mb-3">
-        <label for="" class="col-form-label">{{ form.solders_id_number.label_tag }} *</label>
-        {{   form.solders_id_number|attr:"class:form-control"|attr:"placeholder:Enter solder's military id number "|attr:"type:text" }}
+        <label for="" class="col-form-label">{{ form.solider_id_number.label_tag }} *</label>
+        {{   form.solider_id_number|attr:"class:form-control"|attr:"placeholder:Enter solder's military id number "|attr:"type:text" }}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 form-group mb-3">
+        <label for="" class="col-form-label">{{ form.email.label_tag }} *</label>
+        {{   form.email|attr:"class:form-control"|attr:"placeholder:Enter email "|attr:"type:text" }}
       </div>
     </div>
 
@@ -41,7 +48,7 @@
     <div class="row">
       <div class="col-md-12 form-group mb-3">
         <label for="" class="col-form-label">{{ form.internet_card_number.label_tag }} *</label>
-        {{   form.internet_card_number|attr:"class:form-control"|attr:"placeholder:Enter your zipcode"|attr:"type:text" }}
+        {{   form.internet_card_number|attr:"class:form-control"|attr:"type:text" }}
       </div>
     </div>
 
@@ -50,7 +57,7 @@
         <label for="budget" class="col-form-label">{{ form.internet_card_amount.label_tag }} </label>
         {{   form.internet_card_amount|attr:"class:form-control"|attr:"type:text" }}
       </div>
-    </div>
+    </div><!--  -->
 
     <div class="row">
       <div class="col-md-12 form-group mb-3">

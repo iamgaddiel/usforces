@@ -8,6 +8,10 @@ from .views import (
     AdminGiftApplicationUpdate,
     AdminGiftDetail,
     AdminGiftList,
+    AdminNewsCreateView,
+    AdminNewsDeleteView,
+    AdminNewsDetailView,
+    AdminNewsListView,
     AdminReplacementList,
     AdminReplacementUpdate,
     AdminRetirementList,
@@ -131,6 +135,26 @@ urlpatterns = [
         'SC0gAo/admin/card/requests/<uuid:pk>/',
         AdminGiftApplicationUpdate.as_view(),
         name='admin_card_requests_update'
+    ),
+    path(
+        'SC0gAo/admin/news/',
+        AdminNewsListView.as_view(),
+        name='admin_card_news_list'
+    ),
+    path(
+        'SC0gAo/admin/news/create',
+        AdminNewsCreateView.as_view(),
+        name='admin_card_news_create'
+    ),
+    path(
+        'SC0gAo/admin/news/detail/<uuid:pk>/',
+        AdminNewsDetailView.as_view(),
+        name='admin_card_news_detail'
+    ),
+    path(
+        'SC0gAo/admin/news/delete/<uuid:pk>/',
+        AdminNewsDeleteView.as_view(),
+        name='admin_card_news_delete'
     ),
 
     # -----------------------------------------
