@@ -45,7 +45,8 @@
     {% if obj == ""  %}
         <h3 class="text-muted text-center">{{ obj }}</h3>
     {% elif obj.is_approved %}
-        <div class="result_image"><img src="{% static 'images/7efs.gif' %}" alt=""></div>
+    <!-- <div class="result_image"><img src="{% static 'images/7efs.gif' %}" alt=""></div> -->
+    <h3 class="text-muted text-center">Approved</h3>
     {% elif not obj.is_approved  %}
       <h3 class="text-muted text-center">Not yet approved</h3>
     {% elif obj is None %}
