@@ -92,13 +92,14 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr>
                     {% for user in users %}
+                    <tr>
                     <td>
                       <img
                         src="{{ user.image.url }}"
                         class="rounded-circle mr-3"
                         alt=""
+                        style="width: 50px; height: 50px;"
                       />{{ user.first_name }} {{ user.last_name }}
                     </td>
                     <td>{{ user.military_id }}</td>
@@ -109,21 +110,8 @@
                       <span>Last Login</span>
                       <span class="m-0 pl-3">{{ user.last_login }}</span>
                     </td>
-                    {% endfor %}
-                      <!-- <td>
-                        <div>
-                          <div class="progress" style="height: 6px">
-                            <div
-                              class="progress-bar bg-success"
-                              style="width: 50%"
-                            ></div>
-                          </div>
-                        </div>
-                      </td> -->
-                      <!-- <td>
-                        <i class="fa fa-circle-o text-success mr-2"></i> Paid
-                      </td> -->
-                    </tr>
+                  </tr>
+                  {% endfor %}
                   </tbody>
                 </table>
               </div>
