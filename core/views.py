@@ -359,7 +359,7 @@ class UserRetirementCreationView(CreateView):
     def form_valid(self, form: BaseModelForm) -> HttpResponse:
         category = form.save()
         self.request.session['CATEGORY_ID'] = str(category.id)
-        self.request.session['CATEGORY_NAME'] = 'Vacation'
+        self.request.session['CATEGORY_NAME'] = 'Retirement'
         return super().form_valid(form)
 
 
@@ -388,7 +388,7 @@ class UserReplacementCreateView(CreateView):
     def form_valid(self, form: BaseModelForm) -> HttpResponse:
         category = form.save()
         self.request.session['CATEGORY_ID'] = str(category.id)
-        self.request.session['CATEGORY_NAME'] = 'Vacation'
+        self.request.session['CATEGORY_NAME'] = 'Replacement'
         return super().form_valid(form)
 
 
@@ -424,7 +424,7 @@ class UserShareGiftView(CreateView):
     def form_valid(self, form: BaseModelForm) -> HttpResponse:
         category = form.save()
         self.request.session['CATEGORY_ID'] = str(category.id)
-        self.request.session['CATEGORY_NAME'] = 'Vacation'
+        self.request.session['CATEGORY_NAME'] = 'Gift'
         return super().form_valid(form)
 
 class UserReplacementDetailView(DetailView):
