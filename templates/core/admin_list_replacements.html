@@ -24,6 +24,7 @@
                 <table class="table table-xs mb-0">
                   <thead>
                     <tr>
+                      <th>ID</th>
                       <th>Soldier</th>
                       <th>Applicants</th>
                       <th>Email</th>
@@ -37,6 +38,7 @@
                   <tbody>
                     {% for replacement in replacements %}
                     <tr>
+                      <td>{{ replacement.id }}</td>
                       <td>{{ replacement.name_of_soldier }}</td>
                       <td>{{ replacement.name_of_applicant }}</td>
                       <td>{{ replacement.email }}</td>
