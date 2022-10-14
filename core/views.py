@@ -456,12 +456,21 @@ class UserGiftRequestView(CreateView):
     success_url = reverse_lazy('core:request_done')
     form_class = GiftCardRequestForm
 
+    def get_context_data(self, *args, **kwargs):
+        ctx = super().get_context_data(*args, **kwargs)
+        ctx['amount'] = self.kwargs.get('amount')
+        print(self.kwargs, '<-------------')
+        return ctx
+
     def form_valid(self, form: BaseModelForm) -> HttpResponse:
         category = form.save()
         self.request.session['CATEGORY_ID'] = str(category.id)
         self.request.session['CATEGORY_NAME'] = 'Internet card request'
         return super().form_valid(form)
 
+
+class UserGiftRequestChoiceView(TemplateView):
+    template_name = "core/request_card_choice.html"
 
 
 # ---------------------------------------

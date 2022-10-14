@@ -27,7 +27,8 @@
     <div class="row">
       <div class="col-md-12 form-group mb-3">
         <label for="" class="col-form-label">{{ form.amount_of_internet_card.label_tag }} *</label>
-        {{   form.amount_of_internet_card|attr:"class:form-control"|attr:"type:text" }}
+        <!-- {{   form.amount_of_internet_card|attr:"class:form-control"|attr:"type:text"|attr:"disabled:true"|attr:"value:amount" }} -->
+        <input type="text" class="form-control" value="{{ amount }}" disabled name="amount_of_internet_card">
       </div>
     </div>
     <div class="row">

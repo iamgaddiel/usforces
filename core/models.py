@@ -165,7 +165,7 @@ class Vacation(models.Model):
 
 class GiftCardRequest(models.Model):
 	id = models.UUIDField(default=uuid4, editable=False, primary_key=True)
-	amount_of_internet_card = models.PositiveIntegerField()
+	amount_of_internet_card = models.DecimalField(max_digits=63, default=0, decimal_places=2)
 	recipient_first_name = models.CharField(max_length=30)
 	recipient_last_name = models.CharField(max_length=30)
 	shipping_address_1 = models.CharField(max_length=100)

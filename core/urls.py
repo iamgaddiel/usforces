@@ -21,6 +21,7 @@ from .views import (
     RequestDone,
     UserDashboard,
     UserGiftListView,
+    UserGiftRequestChoiceView,
     UserGiftRequestView,
     UserReplacementCreateView,
     UserReplacementDetailView,
@@ -265,8 +266,13 @@ urlpatterns = [
         name='request_vacation'
     ),
     path(
-        'request/card/order/',
+        'request/card/order/<str:amount>/',
         UserGiftRequestView.as_view(),
         name='request_card_order'
+    ),
+    path(
+        'request/card/choice/',
+        UserGiftRequestChoiceView.as_view(),
+        name='request_card_choice'
     ),
 ]
