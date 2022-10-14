@@ -17,7 +17,7 @@
                             <h1 class="error-text text-primary">{{ user.first_name}} {{ user.last_name }}</h1>
                             <h4 class="mt-4 text-danger"><i class="fa fa-thumbs-down text-danger"></i> Want to continue with delete operation? </h4>
                             <p>You are about the delete the account of the user above</p>
-                            <form class="mt-5 mb-5">
+                            <form class="mt-5 mb-5" method="POST">
                                 {% csrf_token %}
                                 <div class="text-center mb-4 mt-4">
                                     <a href="{% url 'core:admin_users' %}" class="btn btn-outline-primary">Cancel</a>
