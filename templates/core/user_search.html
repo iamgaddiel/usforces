@@ -124,7 +124,7 @@
   </div>
 
   <div class="row justify-content-center">
-    <div class="col-md-4 form-group mb-3">
+    <div class="col-md-6 form-group mb-3">
       <label for="" class="col-form-label">Marital Status</label>
       <input
         type="text"
@@ -133,7 +133,7 @@
         value="{{ user.marital_status  }}"
       />
     </div>
-    <div class="col-md-4 form-group mb-3">
+    <div class="col-md-6 form-group mb-3">
       <label for="" class="col-form-label">Children</label>
       <input
         type="text"
@@ -142,8 +142,8 @@
         value="{{ user.number_of_children }}"
       />
     </div>
-    <div class="col-md-4 form-group mb-3">
-      <label for="" class="col-form-label">Marital Status</label>
+    <div class="col-md-12 form-group mb-3">
+      <label for="" class="col-form-label">Partners Name</label>
       <input
         type="text"
         readonly="readonly"
@@ -175,7 +175,7 @@
   </div>
 
   <div class="row justify-content-center">
-    <div class="col-md-3 form-group mb-3">
+    <div class="col-md-6 form-group mb-3">
       <label for="" class="col-form-label">Rank</label>
       <input
         type="text"
@@ -184,7 +184,7 @@
         value="{{ user.rank }}"
       />
     </div>
-    <div class="col-md-3 form-group mb-3">
+    <div class="col-md-6 form-group mb-3">
       <label for="budget" class="col-form-label">Deployment Status</label>
       <input
         type="text"
@@ -193,16 +193,16 @@
         value="{{ user.deployment_status }}"
       />
     </div>
-    <div class="col-md-3 form-group mb-3">
+    <div class="col-md-6 form-group mb-3">
       <label for="budget" class="col-form-label">Deployment Country</label>
       <input
         type="text"
         readonly="readonly"
         class="form-control-plaintext"
-        value="{{ user.deployment_country }}"
+        value="{{ user.deployment_country.name }}"
       />
     </div>
-    <div class="col-md-3 form-group mb-3">
+    <div class="col-md-6 form-group mb-3">
       <label for="budget" class="col-form-label">Base</label>
       <input
         type="text"
@@ -214,58 +214,29 @@
   </div>
 
   <div class="row justify-content-center">
-    <div class="col-md-3 form-group mb-3">
+    <div class="col-md-12 form-group mb-3">
       <label for="" class="col-form-label">Pay Grade</label>
       <input
         type="text"
         readonly="readonly"
         class="form-control-plaintext"
         value="{{ user.pay_grade }}"
-      />
-    </div>
-    <div class="col-md-3 form-group mb-3">
-      <label for="budget" class="col-form-label">Deployment Status</label>
-      <input
-        type="text"
-        readonly="readonly"
-        class="form-control-plaintext"
-        value="{{ user.deployment_status }}"
-      />
-    </div>
-    <div class="col-md-3 form-group mb-3">
-      <label for="budget" class="col-form-label">Deployment Country</label>
-      <input
-        type="text"
-        readonly="readonly"
-        class="form-control-plaintext"
-        value="{{ user.deployment_country }}"
-      />
-    </div>
-    <div class="col-md-3 form-group mb-3">
-      <label for="budget" class="col-form-label">Base</label>
-      <input
-        type="text"
-        readonly="readonly"
-        class="form-control-plaintext"
-        value="{{ user.base }}"
-      />
+      /
     </div>
   </div>
 
-  <div class="row justify-content-center">
-    <div class="col-md-3 form-group mb-3">
-      <label for="" class="col-form-label">Remarks</label>
-      {{ remarks|safe }}
+  <!-- <div class="row justify-content-center">
+    <div class="col-md-12 form-group mb-3">
+      <label for="budget" class="col-form-label">Remarks</label>
+      {{ user.remarks }}
     </div>
-  </div>
+  </div> -->
 
   <div class="row justify-content-center">
-    <div class="col-md-5 form-group text-center">
-      <a
-        href="{% url 'core:index' %}"
-        class="btn btn-block btn-success rounded-0 py-2 px-4 text-bold"
-        >Done</a
-      >
+    <div class="col-md-12 form-group text-center">
+      <a href="{% url 'core:index' %}" class="btn btn-success text-light  rounded-0 py-2 px-4">
+        Done
+      </a>
       <span class="submitting"></span>
     </div>
   </div>

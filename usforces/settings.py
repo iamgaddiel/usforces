@@ -57,7 +57,7 @@ INSTALLED_APPS = [
     # Third Party
     'django_countries',
     'widget_tweaks',
-    # 'django_summernote'
+    'django_quill'
 ]
 
 MIDDLEWARE = [

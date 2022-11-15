@@ -1,6 +1,7 @@
 from uuid import uuid4
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from django_quill.fields import QuillField
 
 from django_countries.fields import CountryField
 
