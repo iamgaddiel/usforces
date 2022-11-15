@@ -33,12 +33,23 @@
                         </div>
 
                         <h4>About Me</h4>
-                        <ul class="card-profile__info">
+                        <ul class="card-profile__info pl-o">
                             <li class="mb-1"><strong class="text-dark mr-4">Mobile</strong> <span>01793931609</span></li>
                             <li class="mb-1"><strong class="text-dark mr-4">Email</strong> <span>{{ user.email }}</span></li>
                             <li class="mb-1"><strong class="text-dark mr-4">Military ID</strong> <span>{{ user.military_id }}</span></li>
                             <li class="mb-1"><strong class="text-dark mr-4">Gender</strong> <span>{{ user.gender }}</span></li>
-                            <li class="mb-1"><strong class="text-dark mr-4">Zip Code </strong> <span>{{ user.zip_code }}</span></li>
+                            <li class="mb-1"><strong class="text-dark mr-4">Date Of Birth </strong> <span>{{ user.date_of_birth }}</span></li>
+                            <li class="mb-1"><strong class="text-dark mr-4">State </strong> <span>{{ user.state }}</span></li>
+                            <li class="mb-1"><strong class="text-dark mr-4">Height </strong> <span>{{ user.height }}</span></li>
+                            <li class="mb-1"><strong class="text-dark mr-4">Weight </strong> <span>{{ user.weight }}</span></li>
+                            <li class="mb-1"><strong class="text-dark mr-4">Marital Status </strong> <span>{{ user.marital_status.tag }}</span></li>
+                            <li class="mb-1"><strong class="text-dark mr-4">Rank </strong> <span>{{ user.rank }}</span></li>
+                            <li class="mb-1"><strong class="text-dark mr-4">Number of  Children </strong> <span>{{ user.number_of_children }}</span></li>
+                            <li class="mb-1"><strong class="text-dark mr-4">Deployment Status </strong> <span>{{ user.deployment_status }}</span></li>
+                            <li class="mb-1"><strong class="text-dark mr-4">Deployment Country </strong> <span>{{ user.deployment_country }}</span></li>
+                            <li class="mb-1"><strong class="text-dark mr-4">Base </strong> <span>{{ user.base }}</span></li>
+                            <li class="mb-1"><strong class="text-dark mr-4">Pay Grade</strong> <span>{{ user.pay_grade }}</span></li>
+                            <li class="mb-1"><strong class="text-dark mr-4">Remarks</strong> <span>{{ user.remarks }}</span></li>
                         </ul>
                     </div>`
                 </div>  

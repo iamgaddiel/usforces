@@ -15,6 +15,7 @@ django-countries = {extras = ["pyuca"], version = "*"}
 django-widget-tweaks = "*"
 mysqlclient = "*"
 pymysql = "*"
+django-summernote = "*"
 
 [dev-packages]
 

@@ -13,14 +13,66 @@ class User(AbstractUser):
 		('other', 'other'),
 	]
 
+	MARITAL_STATUS = [
+		('single', 'single'),
+		('married', 'married'),
+	]
+
+	DEPLOYMENT_STATUS = [
+		('undeployed', 'undeployed'),
+		('processing', 'processing'),
+		('deployed', 'deployed'),
+	]
+
+	MILITERY_RANKS = [
+		('E-1', 'E-1'),
+		('E-2', 'E-2'),
+		('E-3', 'E-3'),
+		('E-4', 'E-4'),
+		('E-5', 'E-5'),
+		('E-6', 'E-6'),
+		('E-7', 'E-7'),
+		('E-8', 'E-8'),
+		('E-9', 'E-9'),
+		('O-1E', 'O-1E'),
+		('O-2E', 'O-2E'),
+		('O-3E', 'O-3E'),
+		('O-4', 'O-4'),
+		('O-5', 'O-5'),
+		('O-6', 'O-6'),
+		('O-7', 'O-7'),
+		('O-8', 'O-8'),
+		('O-9', 'O-9'),
+		('O-10', 'O-10'),
+		('W-1', 'W-1'),
+		('W-2', 'W-2'),
+		('W-3', 'W-3'),
+		('W-4', 'W-4'),
+		('W-5', 'W-5'),
+	]
+
 	
 	id = models.UUIDField(default=uuid4, editable=False, primary_key=True)
 	email = models.EmailField(unique=True)
+	partners_name = models.CharField(max_length=200, blank=True)
+	date_of_birth = models.DateField(null=True)
+	state = models.CharField(max_length=200, null=True)
+	height = models.DecimalField(decimal_places=2, max_digits=3, blank=True, null=True)
+	weight = models.DecimalField(decimal_places=2, max_digits=3, blank=True, null=True)
+	marital_status = models.CharField(max_length=10, choices=MARITAL_STATUS, default='single')
 	military_id = models.CharField(max_length=20, unique=True)
+	rank = models.CharField(max_length=5, null=True)
 	country = CountryField()
 	gender = models.CharField(max_length=10, choices=GENDER)
 	image = models.ImageField(upload_to='profile_image', default='main.png')
 	zip_code = models.CharField(max_length=15)
+	number_of_children = models.PositiveIntegerField(default=0)
+	deployment_status = models.CharField(max_length=50, choices=DEPLOYMENT_STATUS, default=DEPLOYMENT_STATUS[0])
+	deployment_country = CountryField(null=True)
+	base = models.CharField(max_length=250, null=True)
+	pay_grade = models.PositiveIntegerField(blank=True, null=True)
+	remarks = models.TextField(null=True)
+
 
 	USERNAME_FIELD = 'email'
 	REQUIRED_FIELDS = ['username']
@@ -31,7 +83,13 @@ class User(AbstractUser):
 			last_name=self.last_name,
 			id=self.id
 		)
+class Operations(models.Model):
+	id = models.UUIDField(default=uuid4, editable=False, primary_key=True)
+	operation = models.TextField()
+	user = models.ForeignKey(User, on_delete=models.CASCADE)
 
+	def __str__(self) -> str:
+		return self.user.username
 
 class Retirement(models.Model):
 	STATUS = [

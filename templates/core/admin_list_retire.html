@@ -24,6 +24,7 @@
                 <table class="table table-xs mb-0">
                   <thead>
                     <tr>
+                      <th>Retirement Code</th>
                       <th>First Name</th>
                       <th>Last Name</th>
                       <th>Phone</th>
@@ -37,6 +38,7 @@
                   <tbody>
                     {% for ret in retirements %}
                     <tr>
+                      <td>{{ ret.id }} </td>
                       <td>{{ ret.first_name }} </td>
                       <td>{{ ret.last_name }} </td>
                       <td>{{ ret.phone_number }}</td>

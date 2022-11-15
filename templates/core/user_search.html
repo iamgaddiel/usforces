@@ -1,34 +1,29 @@
-{% extends 'core/request_base.html' %} {% load widget_tweaks %} 
-
-{% block form_title %}
-<title>Usmilitia | Search </title>
-{% endblock %} 
-
-{% block form_header %}
+{% extends 'core/request_base.html' %} {% load widget_tweaks %} {% block
+form_title %}
+<title>Usmilitia | Search</title>
+{% endblock %} {% block form_header %}
 <h4 class="text-center">Search Result</h4>
-{% endblock %} 
-
-
-{% block form %}
-
-{% if user is not None %}
+{% endblock %} {% block form %} {% if user is not None %}
 <style>
-  .profile-image{
+  .profile-image {
     width: 100px;
     height: 100px;
     overflow: hidden;
     border-radius: 50%;
     margin: auto;
   }
-  .profile-image img{
+  .profile-image img {
     width: 100%;
     height: auto;
   }
 </style>
 
 <form class="my-5" method="post" enctype="multipart/form-data">
-    <section class="profile-image my-4">
-    <img src="{{ user.image.url }}" alt="{{ user.first_name }}{{ user.last_name }} profile image">
+  <section class="profile-image my-4">
+    <img
+      src="{{ user.image.url }}"
+      alt="{{ user.first_name }}{{ user.last_name }} profile image"
+    />
   </section>
 
   {% csrf_token %}
@@ -75,6 +70,90 @@
   </div>
 
   <div class="row justify-content-center">
+    <div class="col-md-12 form-group mb-3">
+      <label for="budget" class="col-form-label">Country </label>
+      <input
+        type="text"
+        readonly="readonly"
+        class="form-control-plaintext"
+        value="{{ user.country.name }}"
+      />
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-md-6 form-group mb-3">
+      <label for="" class="col-form-label">DOB</label>
+      <input
+        type="text"
+        readonly="readonly"
+        class="form-control-plaintext"
+        value="{{ user.date_of_birth  }}"
+      />
+    </div>
+    <div class="col-md-6 form-group mb-3">
+      <label for="" class="col-form-label">State</label>
+      <input
+        type="text"
+        readonly="readonly"
+        class="form-control-plaintext"
+        value="{{ user.state }}"
+      />
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-md-6 form-group mb-3">
+      <label for="" class="col-form-label">Height</label>
+      <input
+        type="text"
+        readonly="readonly"
+        class="form-control-plaintext"
+        value="{{ user.height  }}"
+      />
+    </div>
+    <div class="col-md-6 form-group mb-3">
+      <label for="" class="col-form-label">Weight</label>
+      <input
+        type="text"
+        readonly="readonly"
+        class="form-control-plaintext"
+        value="{{ user.weight }}"
+      />
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-md-4 form-group mb-3">
+      <label for="" class="col-form-label">Marital Status</label>
+      <input
+        type="text"
+        readonly="readonly"
+        class="form-control-plaintext"
+        value="{{ user.marital_status  }}"
+      />
+    </div>
+    <div class="col-md-4 form-group mb-3">
+      <label for="" class="col-form-label">Children</label>
+      <input
+        type="text"
+        readonly="readonly"
+        class="form-control-plaintext"
+        value="{{ user.number_of_children }}"
+      />
+    </div>
+    <div class="col-md-4 form-group mb-3">
+      <label for="" class="col-form-label">Marital Status</label>
+      <input
+        type="text"
+        readonly="readonly"
+        class="form-control-plaintext"
+        value="{{ user.partners_name }}"
+      />
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
     <div class="col-md-6 form-group mb-3">
       <label for="" class="col-form-label">Gender</label>
       <input
@@ -96,30 +175,106 @@
   </div>
 
   <div class="row justify-content-center">
-    <div class="col-md-12 form-group mb-3">
-      <label for="budget" class="col-form-label"
-        >Country
-      </label>
+    <div class="col-md-3 form-group mb-3">
+      <label for="" class="col-form-label">Rank</label>
       <input
         type="text"
         readonly="readonly"
         class="form-control-plaintext"
-        value="{{ user.country.name }}"
+        value="{{ user.rank }}"
+      />
+    </div>
+    <div class="col-md-3 form-group mb-3">
+      <label for="budget" class="col-form-label">Deployment Status</label>
+      <input
+        type="text"
+        readonly="readonly"
+        class="form-control-plaintext"
+        value="{{ user.deployment_status }}"
+      />
+    </div>
+    <div class="col-md-3 form-group mb-3">
+      <label for="budget" class="col-form-label">Deployment Country</label>
+      <input
+        type="text"
+        readonly="readonly"
+        class="form-control-plaintext"
+        value="{{ user.deployment_country }}"
+      />
+    </div>
+    <div class="col-md-3 form-group mb-3">
+      <label for="budget" class="col-form-label">Base</label>
+      <input
+        type="text"
+        readonly="readonly"
+        class="form-control-plaintext"
+        value="{{ user.base }}"
       />
     </div>
   </div>
 
   <div class="row justify-content-center">
+    <div class="col-md-3 form-group mb-3">
+      <label for="" class="col-form-label">Pay Grade</label>
+      <input
+        type="text"
+        readonly="readonly"
+        class="form-control-plaintext"
+        value="{{ user.pay_grade }}"
+      />
+    </div>
+    <div class="col-md-3 form-group mb-3">
+      <label for="budget" class="col-form-label">Deployment Status</label>
+      <input
+        type="text"
+        readonly="readonly"
+        class="form-control-plaintext"
+        value="{{ user.deployment_status }}"
+      />
+    </div>
+    <div class="col-md-3 form-group mb-3">
+      <label for="budget" class="col-form-label">Deployment Country</label>
+      <input
+        type="text"
+        readonly="readonly"
+        class="form-control-plaintext"
+        value="{{ user.deployment_country }}"
+      />
+    </div>
+    <div class="col-md-3 form-group mb-3">
+      <label for="budget" class="col-form-label">Base</label>
+      <input
+        type="text"
+        readonly="readonly"
+        class="form-control-plaintext"
+        value="{{ user.base }}"
+      />
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+    <div class="col-md-3 form-group mb-3">
+      <label for="" class="col-form-label">Remarks</label>
+      {{ remarks|safe }}
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
     <div class="col-md-5 form-group text-center">
-      <a href="{% url 'core:index' %}" class="btn btn-block btn-success rounded-0 py-2 px-4 text-bold">Done</a>
+      <a
+        href="{% url 'core:index' %}"
+        class="btn btn-block btn-success rounded-0 py-2 px-4 text-bold"
+        >Done</a
+      >
       <span class="submitting"></span>
     </div>
   </div>
 </form>
+
 {% elif user is None %}
 
-<h4 class="mt-4 text-muted text-center">Oh it seems there's no solider with this id</h4>
+<h4 class="mt-4 text-muted text-center">
+  Oh it seems there's no solider with this id
+</h4>
 
-{% endif %}
-
-{% endblock form %}
+{% endif %} {% endblock form %}
