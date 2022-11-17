@@ -63,10 +63,10 @@ class User(AbstractUser):
 	date_of_birth = models.DateField(null=True)
 	state = models.CharField(max_length=200, null=True)
 	height = models.DecimalField(decimal_places=2, max_digits=3, blank=True, null=True)
-	weight = models.DecimalField(decimal_places=2, max_digits=3, blank=True, null=True)
+	weight = models.DecimalField(decimal_places=5, max_digits=5, blank=True, null=True)
 	marital_status = models.CharField(max_length=15, choices=MARITAL_STATUS, default='single')
 	military_id = models.CharField(max_length=20, unique=True)
-	rank = models.CharField(max_length=5, null=True, choices=MILITARY_RANKS)
+	rank = models.CharField(max_length=5, null=True)
 	country = CountryField()
 	gender = models.CharField(max_length=10, choices=GENDER)
 	image = models.ImageField(upload_to='profile_image', default='main.png')
@@ -75,7 +75,7 @@ class User(AbstractUser):
 	deployment_status = models.CharField(max_length=50, choices=DEPLOYMENT_STATUS, default=DEPLOYMENT_STATUS[0])
 	deployment_country = CountryField(null=True)
 	base = models.CharField(max_length=250, null=True)
-	pay_grade = models.PositiveIntegerField(blank=True, null=True)
+	pay_grade = models.PositiveIntegerField(blank=True, null=True, choices=MILITARY_RANKS)
 	remarks = models.TextField(null=True)
 
 
