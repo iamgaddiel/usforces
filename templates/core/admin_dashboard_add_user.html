@@ -101,6 +101,36 @@
                   </div>
                 </div>
   
+                <!-- DOB -->
+                <div class="form-group row">
+                  <label class="col-lg-4 col-form-label" for="val-username"
+                    >Date Of Birth <span class="text-danger">*</span>
+                  </label>
+                  <div class="col-lg-6">
+                      {{   form.date_of_birth|attr:"type:date"|attr:"class:form-control"|attr:"placeholder:12/12/2000..." }}
+                  </div>
+                </div>
+  
+                <!-- State -->
+                <div class="form-group row">
+                  <label class="col-lg-4 col-form-label" for="val-username"
+                    >State <span class="text-danger">*</span>
+                  </label>
+                  <div class="col-lg-6">
+                      {{   form.state|attr:"class:form-control" }}
+                  </div>
+                </div>
+  
+                <!-- Rank -->
+                <div class="form-group row">
+                  <label class="col-lg-4 col-form-label" for="val-username"
+                    >Rank <span class="text-danger">*</span>
+                  </label>
+                  <div class="col-lg-6">
+                      {{   form.rank|attr:"class:form-control" }}
+                  </div>
+                </div>
+  
                 <!-- Military ID -->
                 <div class="form-group row">
                   <label class="col-lg-4 col-form-label" for="val-username"
@@ -143,7 +173,7 @@
                   </div>
                 </div>
   
-  
+                {% if not form_type %}
                 <!-- Password -->
                 <div class="form-group row">
                   <label class="col-lg-4 col-form-label" for="val-username"
@@ -165,7 +195,7 @@
                   </div>
                 </div>
   
-  
+                {% endif %}
                 <!-- marital_status -->
                 <div class="form-group row">
                   <label class="col-lg-4 col-form-label" for="val-username"

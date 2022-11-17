@@ -12,12 +12,12 @@ class CustomUserCreationForm(UserCreationForm):
         fields = '__all__'
         exclude = ['date_joined', 'password']
 
-    # def save(self, commit=False) -> Any:
-    #     user = super().save()
-    #     user.set_password(self.instance.password)
-    #     super().save(commit=True)
-    #     return user
 
+class AdminUserUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = '__all__'
+        exclude = ['date_joined', 'password']
 
 
 class RetirementForm(forms.ModelForm):

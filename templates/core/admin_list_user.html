@@ -64,13 +64,22 @@
                       <td>
                         <span class="d-flex">
                           <a
-                            href="{% url 'core:admin_user_detail' user.pk %}"
+                            href="{% url 'core:admin_user_update' user.pk %}"
                             data-toggle="tooltip"
                             data-placement="top"
                             title="Edit"
                             class="nav-link"
                           >
                             <i class="fa fa-pencil color-muted m-r-5"></i>
+                          </a>
+                          <a
+                            href="{% url 'core:admin_user_detail' user.pk %}"
+                            data-toggle="tooltip"
+                            data-placement="top"
+                            title="View"
+                            class="nav-link"
+                          >
+                            <i class="fa fa-eye color-muted m-r-5"></i>
                           </a>
                           <a
                             href="{% url 'core:admin_user_delete' user.pk %}"

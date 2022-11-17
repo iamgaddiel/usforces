@@ -14,25 +14,38 @@ from django.views.generic import (
     DeleteView,
     CreateView,
     ListView,
+    UpdateView,
     View
 )
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.views import  LoginView
+from django.contrib.auth.views import LoginView
 from django.contrib.auth.hashers import check_password, make_password
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse_lazy
 from django.shortcuts import redirect, resolve_url
 from django.core import serializers
 
-from core.forms import CheckStatusForm, CustomUserCreationForm, GiftCardRequestForm, GiftCreationForm, NewsCreationForm, ReplacementForm, RetirementForm, UserCreationForm, UserLoginForm, VacationForm
+from core.forms import (
+    CheckStatusForm,
+    CustomUserCreationForm,
+    GiftCardRequestForm,
+    GiftCreationForm,
+    NewsCreationForm,
+    ReplacementForm,
+    RetirementForm,
+    UserCreationForm,
+    UserLoginForm,
+    VacationForm,
+    AdminUserUpdateForm
+)
+
 from core.models import Gift, GiftCardRequest, News, Replacement, Retirement, User, Vacation
 from core.utils import get_random_string
 
 
-
 def index(request):
     template_name = 'core/index.html'
-    context = { 'news': News.objects.all()[:4] }
+    context = {'news': News.objects.all()[:4]}
     if request.session.has_key('CATEGORY_ID') and request.session.has_key('CATEGORY_NAME'):
         del request.session['CATEGORY_ID']
         del request.session['CATEGORY_NAME']
@@ -44,9 +57,8 @@ def search_code_status(request):
     context = {'form': CheckStatusForm, "obj": ""}
 
     if request.method == "POST":
-        
 
-        if (form :=  CheckStatusForm(request.POST)).is_valid():
+        if (form := CheckStatusForm(request.POST)).is_valid():
             code = request.POST.get('code', None).strip()
             category = request.POST.get('category', None)
 
@@ -57,9 +69,9 @@ def search_code_status(request):
                 case "replacement":
                     try:
                         obj = Replacement.objects.get(id=code)
-                        return render(request, template_name, context={'form': form, 'obj': obj })
+                        return render(request, template_name, context={'form': form, 'obj': obj})
                     except Replacement.DoesNotExist:
-                        return render(request, template_name, context={'form': form, 'obj': None })
+                        return render(request, template_name, context={'form': form, 'obj': None})
 
                 case "retirement":
                     try:
@@ -86,17 +98,17 @@ def search_code_status(request):
 
 
 # ---------------------------------------------------------
-# ----------------- [ Admin User Section ] ----------------  
+# ----------------- [ Admin User Section ] ----------------
 # ---------------------------------------------------------
 class AdminLoginView(LoginView):
     template_name = 'core/admin_login.html'
 
     def post(self, request, *args, **kwargs) -> HTTPResponse:
         try:
-            email  = request.POST.get('username', None)
+            email = request.POST.get('username', None)
             password = request.POST.get('password', None)
 
-            user =  User.objects.get(email=email)
+            user = User.objects.get(email=email)
             if (user := authenticate(request, email=email, password=password)) is None:
                 context = {
                     'error': 'Access denied'
@@ -104,11 +116,10 @@ class AdminLoginView(LoginView):
                 return render(request, self.template_name)
             login(request, user)
 
-            
         except User.DoesNotExist as e:
             context = {
-                    'error': 'No user with this details'
-                }
+                'error': 'No user with this details'
+            }
             return render(request, self.template_name, context)
         return super().post(request, *args, **kwargs)
 
@@ -134,6 +145,21 @@ class AdminUserList(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return User.objects.exclude(email='admin@gmail.com')
+
+
+class AdminUserUpdate(LoginRequiredMixin, UpdateView):
+    context_object_name = 'users'
+    template_name = 'core/admin_dashboard_add_user.html'
+    model = User
+    form_class = AdminUserUpdateForm
+
+    def get_success_url(self) -> str:
+        return resolve_url('core:admin_user_detail', pk=self.kwargs.get('pk'))
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form_type'] = 'update'
+        return context
 
 
 class AdminUserCreate(LoginRequiredMixin, CreateView):
@@ -162,7 +188,6 @@ class AdminUserDetail(LoginRequiredMixin, DetailView):
     model = User
     template_name = 'core/admin_user_detail.html'
     context_object_name = 'user'
-
 
 
 class AdminUpdateSolider(LoginRequiredMixin):
@@ -261,12 +286,14 @@ class AdminNewsDeleteView(View):
         News.objects.get(pk=self.kwargs.get('pk')).delete()
         return redirect('core:admin_card_news_list')
 # ---------------------------------------------------------
-# ----------------- [User Section ] ---------------------  
+# ----------------- [User Section ] ---------------------
 # ---------------------------------------------------------
+
 
 def user_logout(request):
     logout(request)
     return redirect('core:index')
+
 
 class UserLogoutView(View):
     def get(self, *args, **kwargs):
@@ -276,7 +303,7 @@ class UserLogoutView(View):
 
 def user_login(request):
     template_name = 'core/index.html'
-    context = { "form": UserLoginForm() }
+    context = {"form": UserLoginForm()}
 
     if request.method == "POST":
         if not (login_form := UserLoginForm(request.POST)).is_valid():
@@ -284,12 +311,12 @@ def user_login(request):
 
         try:
             # military_id  = request.POST.get('military_id', None)
-            military_id  = request.POST.get('military_id', None)
-            password  = request.POST.get('password', None)
-            user_query =  User.objects.get(military_id=military_id)
+            military_id = request.POST.get('military_id', None)
+            password = request.POST.get('password', None)
+            user_query = User.objects.get(military_id=military_id)
 
             if not user_query.check_password(password):
-                context = { 'error': 'Incorrect password' }
+                context = {'error': 'Incorrect password'}
                 return render(request, template_name, context)
 
             user_obj = {
@@ -310,16 +337,16 @@ def user_login(request):
             return redirect('core:user_dashboard')
 
         except User.DoesNotExist as e:
-            context = { 'error': 'No user with this details'}
+            context = {'error': 'No user with this details'}
             return render(request, template_name, context)
-        
+
     return render(request, template_name, context)
 
 
 class UserDashboard(TemplateView):
     template_name = 'core/user_dashboard.html'
     # model = User
-    
+
     def get(self, *args, **kwargs):
         if not self.request.session.has_key('user'):
             return redirect('core:user_login')
@@ -343,6 +370,7 @@ class RequestDone(TemplateView):
 # ----------------[ User Retirement ] ---------
 # ---------------------------------------
 
+
 class UserRetirementView(ListView):
     model = Retirement
     template_name = 'core/user_retirement.html'
@@ -354,7 +382,6 @@ class UserRetirementCreationView(CreateView):
     template_name = "core/request_retirement.html"
     success_url = reverse_lazy('core:request_done')
     form_class = RetirementForm
-
 
     def form_valid(self, form: BaseModelForm) -> HttpResponse:
         category = form.save()
@@ -403,7 +430,6 @@ class UserTransferView(ListView):
     context_object_name = 'transfer'
 
 
-
 # ---------------------------------------
 # ----------------[ Gift Card ] ---------
 # ---------------------------------------
@@ -426,6 +452,7 @@ class UserShareGiftView(CreateView):
         self.request.session['CATEGORY_ID'] = str(category.id)
         self.request.session['CATEGORY_NAME'] = 'Gift'
         return super().form_valid(form)
+
 
 class UserReplacementDetailView(DetailView):
     model = Gift

@@ -18,6 +18,7 @@ from .views import (
     AdminRetirementUpdate,
     AdminVacationList,
     AdminVacationUpdate,
+    AdminUserUpdate,
     RequestDone,
     UserDashboard,
     UserGiftListView,
@@ -76,6 +77,11 @@ urlpatterns = [
         'SC0gAo/admin/user/remove/<uuid:pk>/',
         AdminUserDelete.as_view(),
         name='admin_user_delete'
+    ),
+    path(
+        'SC0gAo/admin/user/update/<uuid:pk>/',
+        AdminUserUpdate.as_view(),
+        name='admin_user_update'
     ),
     path(
         'SC0gAo/admin/user/<uuid:pk>/',

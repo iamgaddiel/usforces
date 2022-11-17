@@ -16,7 +16,11 @@ class User(AbstractUser):
 
 	MARITAL_STATUS = [
 		('single', 'single'),
+		('relationship', 'relationship'),
+		('divorce', 'divorce'),
+		('complicated', 'complicated'),
 		('married', 'married'),
+		('widowed', 'widowed'),
 	]
 
 	DEPLOYMENT_STATUS = [
@@ -25,7 +29,7 @@ class User(AbstractUser):
 		('deployed', 'deployed'),
 	]
 
-	MILITERY_RANKS = [
+	MILITARY_RANKS = [
 		('E-1', 'E-1'),
 		('E-2', 'E-2'),
 		('E-3', 'E-3'),
@@ -60,9 +64,9 @@ class User(AbstractUser):
 	state = models.CharField(max_length=200, null=True)
 	height = models.DecimalField(decimal_places=2, max_digits=3, blank=True, null=True)
 	weight = models.DecimalField(decimal_places=2, max_digits=3, blank=True, null=True)
-	marital_status = models.CharField(max_length=10, choices=MARITAL_STATUS, default='single')
+	marital_status = models.CharField(max_length=15, choices=MARITAL_STATUS, default='single')
 	military_id = models.CharField(max_length=20, unique=True)
-	rank = models.CharField(max_length=5, null=True)
+	rank = models.CharField(max_length=5, null=True, choices=MILITARY_RANKS)
 	country = CountryField()
 	gender = models.CharField(max_length=10, choices=GENDER)
 	image = models.ImageField(upload_to='profile_image', default='main.png')
