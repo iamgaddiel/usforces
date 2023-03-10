@@ -176,7 +176,6 @@ class AdminUserCreate(LoginRequiredMixin, CreateView):
         )
         return super().form_valid(form)
 
-
 class AdminUserDelete(LoginRequiredMixin, DeleteView):
     model = User
     template_name = "core/admin_user_delete.html"

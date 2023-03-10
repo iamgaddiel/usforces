@@ -9,24 +9,24 @@ from django_countries.fields import CountryField
 
 class User(AbstractUser):
 	GENDER = [
-		('male', 'male'),
-		('female', 'female'),
-		('other', 'other'),
+		('male', 'Male'),
+		('female', 'Female'),
+		('other', 'Other'),
 	]
 
 	MARITAL_STATUS = [
-		('single', 'single'),
-		('relationship', 'relationship'),
-		('divorce', 'divorce'),
-		('complicated', 'complicated'),
-		('married', 'married'),
-		('widowed', 'widowed'),
+		('single', 'Single'),
+		('relationship', 'Relationship'),
+		('divorce', 'Divorce'),
+		('complicated', 'Complicated'),
+		('married', 'Married'),
+		('widowed', 'Widowed'),
 	]
 
 	DEPLOYMENT_STATUS = [
-		('undeployed', 'undeployed'),
-		('processing', 'processing'),
-		('deployed', 'deployed'),
+		('undeployed', 'Undeployed'),
+		('processing', 'Processing'),
+		('deployed', 'Deployed'),
 	]
 
 	MILITARY_RANKS = [
@@ -62,8 +62,8 @@ class User(AbstractUser):
 	partners_name = models.CharField(max_length=200, blank=True)
 	date_of_birth = models.DateField(null=True)
 	state = models.CharField(max_length=200, null=True)
-	height = models.DecimalField(decimal_places=2, max_digits=3, blank=True, null=True)
-	weight = models.DecimalField(decimal_places=5, max_digits=5, blank=True, null=True)
+	height = models.DecimalField(decimal_places=2, max_digits=6, blank=True, null=True)
+	weight = models.DecimalField(decimal_places=2, max_digits=6,  blank=True, null=True)
 	marital_status = models.CharField(max_length=15, choices=MARITAL_STATUS, default='single')
 	military_id = models.CharField(max_length=20, unique=True)
 	rank = models.CharField(max_length=5, null=True)
@@ -75,7 +75,7 @@ class User(AbstractUser):
 	deployment_status = models.CharField(max_length=50, choices=DEPLOYMENT_STATUS, default=DEPLOYMENT_STATUS[0])
 	deployment_country = CountryField(null=True)
 	base = models.CharField(max_length=250, null=True)
-	pay_grade = models.PositiveIntegerField(blank=True, null=True, choices=MILITARY_RANKS)
+	pay_grade = models.CharField(blank=True, null=True, choices=MILITARY_RANKS, max_length=4)
 	remarks = models.TextField(null=True)
 
 
